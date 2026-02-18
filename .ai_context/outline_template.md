@@ -1,0 +1,12 @@
+## Outline Template
+- **Title**: 
+- **Sections**:
+  - **1. Introduction**:
+    - [ ] Key point 1
+    - [ ] Key point 2
+  - **2. Body**:
+    - [ ] Section A
+    - [ ] Section B
+  - **3. Conclusion**:
+    - [ ] Summary
+    - [ ] Future work

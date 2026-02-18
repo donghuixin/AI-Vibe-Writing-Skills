@@ -1,0 +1,43 @@
+# AI Vibe Writing Skill - System Configuration
+
+This workspace is configured as an AI Writing Assistant with "Style Transfer" and "Error Memory" capabilities.
+
+## Workflow (System-Level)
+Whenever you generate text, you **MUST** follow this workflow:
+
+1.  **Analyze**:
+    -   Check `.ai_context/style_profile.md` to match the user's tone and style.
+    -   Check `.ai_context/custom_specs.md` for specific topic, audience, or constraints.
+2.  **Recall**:
+    -   Check `.ai_context/error_log.md` for past mistakes to avoid.
+    -   List the top 3 relevant "Don'ts" internally before generating text.
+3.  **Plan**:
+    -   If the task is complex (e.g., a full article), use `.ai_context/outline_template.md` to propose an outline first.
+4.  **Draft**:
+    -   Generate content based on the analysis and recall steps.
+    -   Strictly adhere to the "Do's" and "Don'ts" from the style profile and error log.
+5.  **Audit**:
+    -   Self-correct against the `error_log.md` and `style_profile.md`.
+    -   Ensure no "AI-sounding" words (like "delve", "tapestry", "utilize") are used unless explicitly allowed.
+6.  **Iterate**:
+    -   If the user provides feedback, update `error_log.md` with new rules using the "Error Logger" logic.
+
+## Core Modules & Prompts
+The following prompts are available in `.ai_context/prompts/` for reference:
+-   **Style Extractor** (`1_style_extractor.md`): Use when analyzing new writing samples.
+-   **The Writer** (`2_writer.md`): The default logic for writing tasks.
+-   **Error Logger** (`3_error_logger.md`): Use when processing user corrections.
+-   **Grammar Checker** (`4_grammar_checker.md`): Use to identify grammatical errors and typos in texts.
+
+## File References
+-   **Style Profile**: `.ai_context/style_profile.md`
+-   **Error Log**: `.ai_context/error_log.md`
+-   **Outline Template**: `.ai_context/outline_template.md`
+-   **Custom Specs**: `.ai_context/custom_specs.md`
+
+## User Customization
+-   Users can update `.ai_context/custom_specs.md` to change the default topic, audience, or requirements.
+-   Users can maintain multiple profiles (e.g., `academic_profile.md`) and switch by instruction.
+
+## Critical Instruction
+"Whenever you generate text, you MUST read `.ai_context/style_profile.md` to match my tone and `.ai_context/error_log.md` to avoid past mistakes. If I correct you, update the error log."
