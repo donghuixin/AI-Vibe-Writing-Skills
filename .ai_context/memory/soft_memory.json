@@ -7,6 +7,64 @@
       "phrasing": [],
       "tone": [],
       "avoid": []
+    },
+    "paper": {
+      "preferences": [
+        "Keep LaTeX output clean and minimal; avoid adding decorative formatting.",
+        "Use precise, common academic vocabulary and short, clear sentences.",
+        "Explain concepts close to where they appear to reduce confusion time.",
+        "Prioritize logical coherence over ornate connectives.",
+        "State core novelty early and align experiments with contribution claims.",
+        "Keep captions self-explanatory and place key explanations near figures/tables."
+      ],
+      "phrasing": [
+        "Use reviewer-facing language: novelty, rigor, reproducibility, and evidence."
+      ],
+      "tone": [
+        "Objective, rigorous, and concise."
+      ],
+      "avoid": [
+        "Overclaiming results without evidence or citations.",
+        "Bullet-list paragraphs when prose is required.",
+        "Overused AI-sounding words (e.g., delve, leverage, tapestry)."
+      ]
+    },
+    "thesis": {
+      "preferences": [
+        "One paragraph, one core idea; place topic sentences early.",
+        "Maintain consistent terminology and symbols across chapters.",
+        "Introduce concepts near first mention and avoid long unexplained gaps.",
+        "Preserve information density by removing irrelevant history."
+      ],
+      "phrasing": [
+        "Use clear chapter-level transitions that summarize the upcoming section."
+      ],
+      "tone": [
+        "Formal, steady, and methodical."
+      ],
+      "avoid": [
+        "Ambiguous referents and long sentences with unclear relative clauses.",
+        "Redundant restatement without added insight."
+      ]
+    },
+    "grant": {
+      "preferences": [
+        "Align each section with the funder’s mission and explicit review criteria.",
+        "Structure Specific Aims for clarity, feasibility, and impact.",
+        "Provide a realistic timeline and milestones to demonstrate feasibility.",
+        "Surface potential risks and mitigation strategies early.",
+        "Use a compelling, specific, benefit-oriented title."
+      ],
+      "phrasing": [
+        "Emphasize significance, innovation, approach, and expected outcomes."
+      ],
+      "tone": [
+        "Persuasive, confident, and reviewer-centric."
+      ],
+      "avoid": [
+        "Vague alignment statements without concrete criteria mapping.",
+        "Unverifiable claims or exaggerated impact language."
+      ]
     }
   }
 }

@@ -8,6 +8,10 @@
 
 ## 🌟 What's New / 更新日志
 
+**v1.3 - Writing Knowledge Bases / 写作知识库**
+Added curated writing knowledge bases for grant proposals, papers, and theses.
+新增基金、论文与学位论文写作知识库，支持按写作类型检索与应用。
+
 **v1.2 - Long-Term Memory / 长期记忆**
 Added domain-based hard/soft memory to preserve precise terms and user preferences.
 新增按领域划分的硬性/柔性记忆，用于精准术语与偏好存储。
@@ -41,6 +45,12 @@ Added a dedicated module to detect and correct grammatical errors and typos in b
 **Hard Memory**: Stores exact terms, units, and key values by domain.  
 **Soft Memory**: Stores preferences, phrasing, and tone by domain.  
 **原理**: 硬性记忆用于术语、单位、关键数值的精确存储；柔性记忆用于偏好与表达习惯的持续适配。
+
+### 📚 WRITING KNOWLEDGE BASES / 写作知识库
+**Grant**: Reviewer-aligned structure, persuasion, and feasibility cues.  
+**Paper**: Academic rigor, novelty framing, and LaTeX cleanliness.  
+**Thesis**: Long-form clarity, topic sentences, and narrative flow.  
+**原理**: 针对不同写作类型沉淀可复用规范，按领域检索并持续迭代。
 
 ### ⚙️ CUSTOMIZATION / 自定义规范
 **Context**: Adapts to specific audiences (e.g., Technical, General) and topics.  
@@ -97,6 +107,14 @@ Provide durable domain facts or preferences to store.
 > "In medical writing, always use mmol/L for glucose. Save this as hard memory."
 >
 > “在医学领域，葡萄糖单位固定使用 mmol/L，作为硬性记忆存储。”
+
+### Step 6: Writing Knowledge Bases / 写作知识库
+Select a writing domain and apply the corresponding knowledge base.
+选择写作类型并应用对应知识库：
+
+> "Use the paper knowledge base and draft the Related Work with reviewer-style rigor."
+>
+> “调用论文知识库，以审稿人视角写 Related Work。”
 
 ---
 
@@ -175,7 +193,9 @@ graph TD
 
 ## 📈 Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=donghuixin/AI-Vibe-Writing-Skills&type=Date)](https://star-history.com/#donghuixin/AI-Vibe-Writing-Skills&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=donghuixin/AI-Vibe-Writing-Skills&type=Date&cache=20260218)](https://star-history.com/#donghuixin/AI-Vibe-Writing-Skills&Date)
+If the chart looks stale, update the cache parameter to force refresh.
+如果图表显示滞后，可更新 cache 参数以强制刷新。
 
 ## 📄 License
 

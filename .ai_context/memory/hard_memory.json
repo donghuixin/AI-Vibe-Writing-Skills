@@ -6,6 +6,78 @@
       "terms": [],
       "units": [],
       "key_values": []
+    },
+    "paper": {
+      "terms": [
+        {
+          "term": "Contribution Types",
+          "definition": "Core contributions typically fall into Insight, Performance, or Capability."
+        },
+        {
+          "term": "CARS Introduction Moves",
+          "definition": "Establish territory, find a niche, and occupy the niche."
+        },
+        {
+          "term": "Confusion Time",
+          "definition": "Total reader time spent resolving confusion; reduce by explaining concepts when introduced."
+        },
+        {
+          "term": "Information Density",
+          "definition": "Efficiency of conveying effective information; avoid irrelevant history and redundancy."
+        }
+      ],
+      "units": [],
+      "key_values": [
+        {
+          "key": "Paper core structure",
+          "value": "Abstract → Introduction → Main body (Related Work, Methodology, Experiments, Discussion, Conclusion) → References."
+        },
+        {
+          "key": "Submission polish checklist focus",
+          "value": "Consistency of symbols/refs, figures cited in order, clear captions, anonymity and page limit checked."
+        }
+      ]
+    },
+    "thesis": {
+      "terms": [
+        {
+          "term": "CARS Introduction Moves",
+          "definition": "Establish territory, find a niche, and occupy the niche."
+        },
+        {
+          "term": "Confusion Time",
+          "definition": "Total reader time spent resolving confusion; reduce by explaining concepts when introduced."
+        },
+        {
+          "term": "Information Density",
+          "definition": "Efficiency of conveying effective information; avoid irrelevant history and redundancy."
+        }
+      ],
+      "units": [],
+      "key_values": [
+        {
+          "key": "Thesis core structure",
+          "value": "Introduction → Background/Related Work → Methodology → Experiments/Results → Discussion → Conclusion."
+        }
+      ]
+    },
+    "grant": {
+      "terms": [
+        {
+          "term": "Specific Aims",
+          "definition": "Concise statement of goals and hypotheses that anchors the proposal."
+        },
+        {
+          "term": "Review Criteria Alignment",
+          "definition": "Explicitly map proposal text to funder criteria and mission."
+        },
+        {
+          "term": "Feasibility Evidence",
+          "definition": "Concrete milestones, timeline, and risk mitigation to demonstrate achievability."
+        }
+      ],
+      "units": [],
+      "key_values": []
     }
   }
 }
