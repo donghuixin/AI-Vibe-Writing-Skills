@@ -1,4 +1,4 @@
-# AI Vibe Writing Skill / AI 写作风格迁移助手
+# AI Vibe Writing Skill for Agent / AI 写作助手
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -19,7 +19,6 @@ Added a dedicated module to detect and correct grammatical errors and typos in b
 ## 🧠 Why I Exist / 设计初衷
 本工程（AI-Vibe-Writing-Skills）的初衷，是跳出 “AI 替代创作” 的误区，聚焦于AI 的辅助价值
 将写作从重复、机械的 “dirty work”（如素材整理、格式规范、基础校对、灵感初步筛选等）中解放出来，把精力聚焦在创意构思、内容深度打磨、风格个性化等核心环节，最终实现更高效率、更高质量的内容生产。
-
 
 ## 🧩 Core Capabilities / 核心功能
 
