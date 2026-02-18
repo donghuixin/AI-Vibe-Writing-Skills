@@ -10,6 +10,7 @@ Whenever you generate text, you **MUST** follow this workflow:
     -   Check `.ai_context/custom_specs.md` for specific topic, audience, or constraints.
 2.  **Recall**:
     -   Check `.ai_context/error_log.md` for past mistakes to avoid.
+    -   Check `.ai_context/memory/hard_memory.json` and `.ai_context/memory/soft_memory.json` for domain memories.
     -   List the top 3 relevant "Don'ts" internally before generating text.
 3.  **Plan**:
     -   If the task is complex (e.g., a full article), use `.ai_context/outline_template.md` to propose an outline first.
@@ -21,6 +22,7 @@ Whenever you generate text, you **MUST** follow this workflow:
     -   Ensure no "AI-sounding" words (like "delve", "tapestry", "utilize") are used unless explicitly allowed.
 6.  **Iterate**:
     -   If the user provides feedback, update `error_log.md` with new rules using the "Error Logger" logic.
+    -   If the feedback contains durable facts or preferences, update long-term memory by domain.
 
 ## Core Modules & Prompts
 The following prompts are available in `.ai_context/prompts/` for reference:
@@ -28,16 +30,19 @@ The following prompts are available in `.ai_context/prompts/` for reference:
 -   **The Writer** (`2_writer.md`): The default logic for writing tasks.
 -   **Error Logger** (`3_error_logger.md`): Use when processing user corrections.
 -   **Grammar Checker** (`4_grammar_checker.md`): Use to identify grammatical errors and typos in texts.
+-   **Long-Term Memory** (`5_long_term_memory.md`): Use to store and recall domain-specific hard/soft memory.
 
 ## File References
 -   **Style Profile**: `.ai_context/style_profile.md`
 -   **Error Log**: `.ai_context/error_log.md`
 -   **Outline Template**: `.ai_context/outline_template.md`
 -   **Custom Specs**: `.ai_context/custom_specs.md`
+-   **Hard Memory**: `.ai_context/memory/hard_memory.json`
+-   **Soft Memory**: `.ai_context/memory/soft_memory.json`
 
 ## User Customization
 -   Users can update `.ai_context/custom_specs.md` to change the default topic, audience, or requirements.
 -   Users can maintain multiple profiles (e.g., `academic_profile.md`) and switch by instruction.
 
 ## Critical Instruction
-"Whenever you generate text, you MUST read `.ai_context/style_profile.md` to match my tone and `.ai_context/error_log.md` to avoid past mistakes. If I correct you, update the error log."
+"Whenever you generate text, you MUST read `.ai_context/style_profile.md` to match my tone, `.ai_context/error_log.md` to avoid past mistakes, and `.ai_context/memory/hard_memory.json` / `.ai_context/memory/soft_memory.json` to align long-term memory. If I correct you, update the error log and relevant memory."

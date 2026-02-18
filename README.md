@@ -8,6 +8,10 @@
 
 ## 🌟 What's New / 更新日志
 
+**v1.2 - Long-Term Memory / 长期记忆**
+Added domain-based hard/soft memory to preserve precise terms and user preferences.
+新增按领域划分的硬性/柔性记忆，用于精准术语与偏好存储。
+
 **v1.1 - Grammar & Spell Checker / 语法与拼写检查器**
 Added a dedicated module to detect and correct grammatical errors and typos in both English and Chinese.
 新增了专用的语法与拼写检查模块，支持中英文双语纠错。
@@ -33,6 +37,11 @@ Added a dedicated module to detect and correct grammatical errors and typos in b
 **Quality**: Built-in bilingual grammar and spell checker.  
 **Review**: Identifies typos and awkward phrasing without changing your style.  
 **原理**: 内置中英文双语语法检查，识别错别字和语病，同时保留原有风格。
+
+### 🧠 LONG-TERM MEMORY / 长期记忆
+**Hard Memory**: Stores exact terms, units, and key values by domain.  
+**Soft Memory**: Stores preferences, phrasing, and tone by domain.  
+**原理**: 硬性记忆用于术语、单位、关键数值的精确存储；柔性记忆用于偏好与表达习惯的持续适配。
 
 ### ⚙️ CUSTOMIZATION / 自定义规范
 **Context**: Adapts to specific audiences (e.g., Technical, General) and topics.  
@@ -82,6 +91,14 @@ If I make a mistake (e.g., use a word you dislike), correct me immediately.
 *I will automatically update `error_log.md` to ensure I don't make the same mistake again.*
 *我会自动更新 `error_log.md`，保证下次不再犯。*
 
+### Step 5: Long-Term Memory / 长期记忆
+Provide durable domain facts or preferences to store.
+提供稳定的领域事实或偏好以便长期存储：
+
+> "In medical writing, always use mmol/L for glucose. Save this as hard memory."
+>
+> “在医学领域，葡萄糖单位固定使用 mmol/L，作为硬性记忆存储。”
+
 ---
 
 ## 📂 File Structure / 文件结构
@@ -91,7 +108,9 @@ If I make a mistake (e.g., use a word you dislike), correct me immediately.
   - `error_log.md`: Your negative constraints.
   - `custom_specs.md`: User-defined writing context.
   - `outline_template.md`: Template for structuring content.
-  - `prompts/`: Core logic prompts (Style Extractor, Writer, Error Logger, Grammar Checker).
+  - `memory/hard_memory.json`: Domain hard memory (terms, units, key values).
+  - `memory/soft_memory.json`: Domain soft memory (preferences, phrasing, tone).
+  - `prompts/`: Core logic prompts (Style Extractor, Writer, Error Logger, Grammar Checker, Long-Term Memory).
 - **`.traerules`**: System instructions ensuring the workflow is followed.
 
 ## 🗺️ Functional Structure / 功能结构
@@ -103,6 +122,8 @@ graph TD
     <br />风格提取器]
     B --> D[Custom Specs
     <br />自定义规范]
+    B --> P[Long-Term Memory
+    <br />长期记忆]
     
     C --> E[Style Profile
     <br />风格库]
@@ -113,21 +134,30 @@ graph TD
     G --> E
     G --> H[Error Log
     <br />错题本]
+    G --> Q[Hard Memory
+    <br />硬性记忆]
+    G --> R[Soft Memory
+    <br />柔性记忆]
     
     A --> I{生成阶段 / Generation Phase}
     I --> J[The Writer
     <br />写作引擎]
     I --> K[Grammar Checker
     <br />语法检查器]
+    I --> S[Memory Recall
+    <br />记忆检索]
     
     J --> L[生成内容 / Generated Content]
     K --> L
+    S --> L
     
     L --> M{迭代阶段 / Iteration Phase}
     M --> N[用户反馈 / User Feedback]
     N --> O[Error Logger
     <br />错误记录器]
     O --> H
+    O --> Q
+    O --> R
     
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style L fill:#9f9,stroke:#333,stroke-width:2px
@@ -139,10 +169,10 @@ graph TD
 **分析（提取风格） -> 存储（建立风格库与错题本） -> 生成（RAG 检索增强） -> 迭代（更新错题本）**
 
 **Workflow Explanation / 流程说明**:
-1. **Analysis**: The system analyzes user-provided samples and custom specifications to build a style profile and outline template.
-2. **Storage**: The style profile and error log are stored for future reference.
-3. **Generation**: The Writer module uses the stored profiles to generate content, while the Grammar Checker ensures quality.
-4. **Iteration**: User feedback is processed by the Error Logger to update the error log, creating a continuous improvement loop.
+1. **Analysis**: The system analyzes user-provided samples and domain context to extract style traits and memory candidates.
+2. **Storage**: Hard memory and soft memory are stored by domain alongside the style profile and error log.
+3. **Generation**: The Writer retrieves relevant hard/soft memory to ensure accuracy and tone alignment, while the Grammar Checker ensures quality.
+4. **Iteration**: User feedback updates both the error log and long-term memory to improve future outputs.
 
 ## 📈 Star History
 

@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "description": "Soft memory for user preferences, phrasing, tone, and style tendencies by domain.",
+  "domains": {
+    "general": {
+      "preferences": [],
+      "phrasing": [],
+      "tone": [],
+      "avoid": []
+    }
+  }
+}

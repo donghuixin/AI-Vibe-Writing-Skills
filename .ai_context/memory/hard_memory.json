@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "description": "Hard memory for exact terms, units, and key numbers by domain.",
+  "domains": {
+    "general": {
+      "terms": [],
+      "units": [],
+      "key_values": []
+    }
+  }
+}
