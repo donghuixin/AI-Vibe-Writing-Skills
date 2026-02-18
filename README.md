@@ -34,57 +34,7 @@ Added a dedicated module to detect and correct grammatical errors and typos in b
 **Outline**: Manages structure for long-form content.  
 **原理**: 自动适配目标受众和主题，支持长文大纲管理。
 
-## 🗺️ Functional Structure / 功能结构
-
-```mermaid
-graph TD
-    A[用户写作请求 / User Request] --> B{分析阶段 / Analysis Phase}
-    B --> C[Style Extractor
-    <br />风格提取器]
-    B --> D[Custom Specs
-    <br />自定义规范]
-    
-    C --> E[Style Profile
-    <br />风格库]
-    D --> F[Outline Template
-    <br />大纲模板]
-    
-    A --> G{存储阶段 / Storage Phase}
-    G --> E
-    G --> H[Error Log
-    <br />错题本]
-    
-    A --> I{生成阶段 / Generation Phase}
-    I --> J[The Writer
-    <br />写作引擎]
-    I --> K[Grammar Checker
-    <br />语法检查器]
-    
-    J --> L[生成内容 / Generated Content]
-    K --> L
-    
-    L --> M{迭代阶段 / Iteration Phase}
-    M --> N[用户反馈 / User Feedback]
-    N --> O[Error Logger
-    <br />错误记录器]
-    O --> H
-    
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style L fill:#9f9,stroke:#333,stroke-width:2px
-    style H fill:#ff9,stroke:#333,stroke-width:2px
-    style E fill:#9ff,stroke:#333,stroke-width:2px
-```
-
-**Core Logic / 核心逻辑**: 
-**分析（提取风格） -> 存储（建立风格库与错题本） -> 生成（RAG 检索增强） -> 迭代（更新错题本）**
-
-**Workflow Explanation / 流程说明**:
-1. **Analysis**: The system analyzes user-provided samples and custom specifications to build a style profile and outline template.
-2. **Storage**: The style profile and error log are stored for future reference.
-3. **Generation**: The Writer module uses the stored profiles to generate content, while the Grammar Checker ensures quality.
-4. **Iteration**: User feedback is processed by the Error Logger to update the error log, creating a continuous improvement loop.
-
-## 🚀 How to Start / 如何开始使用
+##  How to Start / 如何开始使用
 
 You can activate this system immediately by following these steps:
 你可以立即尝试以下步骤来“激活”这个系统：
@@ -138,6 +88,56 @@ If I make a mistake (e.g., use a word you dislike), correct me immediately.
   - `outline_template.md`: Template for structuring content.
   - `prompts/`: Core logic prompts (Style Extractor, Writer, Error Logger, Grammar Checker).
 - **`.traerules`**: System instructions ensuring the workflow is followed.
+
+## 🗺️ Functional Structure / 功能结构
+
+```mermaid
+graph TD
+    A[用户写作请求 / User Request] --> B{分析阶段 / Analysis Phase}
+    B --> C[Style Extractor
+    <br />风格提取器]
+    B --> D[Custom Specs
+    <br />自定义规范]
+    
+    C --> E[Style Profile
+    <br />风格库]
+    D --> F[Outline Template
+    <br />大纲模板]
+    
+    A --> G{存储阶段 / Storage Phase}
+    G --> E
+    G --> H[Error Log
+    <br />错题本]
+    
+    A --> I{生成阶段 / Generation Phase}
+    I --> J[The Writer
+    <br />写作引擎]
+    I --> K[Grammar Checker
+    <br />语法检查器]
+    
+    J --> L[生成内容 / Generated Content]
+    K --> L
+    
+    L --> M{迭代阶段 / Iteration Phase}
+    M --> N[用户反馈 / User Feedback]
+    N --> O[Error Logger
+    <br />错误记录器]
+    O --> H
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style L fill:#9f9,stroke:#333,stroke-width:2px
+    style H fill:#ff9,stroke:#333,stroke-width:2px
+    style E fill:#9ff,stroke:#333,stroke-width:2px
+```
+
+**Core Logic / 核心逻辑**: 
+**分析（提取风格） -> 存储（建立风格库与错题本） -> 生成（RAG 检索增强） -> 迭代（更新错题本）**
+
+**Workflow Explanation / 流程说明**:
+1. **Analysis**: The system analyzes user-provided samples and custom specifications to build a style profile and outline template.
+2. **Storage**: The style profile and error log are stored for future reference.
+3. **Generation**: The Writer module uses the stored profiles to generate content, while the Grammar Checker ensures quality.
+4. **Iteration**: User feedback is processed by the Error Logger to update the error log, creating a continuous improvement loop.
 
 ## 📈 Star History
 
