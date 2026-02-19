@@ -24,7 +24,10 @@
 }
 
 # GPTZero MCP Integration
-当用户要求“运行监测/检测”时，调用 MCP 服务进行 GPTZero 检测，获取 AI 味与重复率（或抄袭率）：
+当用户要求"运行监测/检测"时，**首先询问用户是否启用 GPTZero 检测**：
+> "是否启用 GPTZero AI 检测服务？这将消耗 API 额度并检测 AI 概率与重复率。"
+
+如果用户确认启用，则调用 MCP 服务进行 GPTZero 检测，获取 AI 味与重复率（或抄袭率）：
 1. 从 `.ai_context/custom_specs.md` 读取 MCP 配置与 GPTZero API Key。
 2. 调用 MCP：gptzero.detect(text) -> report。
 3. 将 report 映射到 Unified Report Schema：
@@ -32,6 +35,7 @@
    - overall.originality_score 或 overall.plagiarism_score <- GPTZero 的重复率/抄袭率
    - platforms 追加 GPTZero 结果项（dimension 使用 ai_probability/originality/plagiarism）
 4. 若 MCP 调用失败，platforms 记录失败原因并提示用户重试。
+5. 如果用户选择不启用，则仅执行内置 AI 味检测。
 
 # Unified Report Schema
 {
