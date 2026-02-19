@@ -8,6 +8,10 @@
 
 ## 🌟 What's New / 更新日志
 
+**v1.4 - Multi-Agent Writing Skill / 多智能体协作写作**
+Added outline-manager, content-writer, content-review agents with a coordinator loop.
+新增大纲管理、写作、检阅智能体与流程协调器，完成写作闭环。
+
 **v1.3 - Writing Knowledge Bases / 写作知识库**
 Added curated writing knowledge bases for grant proposals, papers, and theses.
 新增基金、论文与学位论文写作知识库，支持按写作类型检索与应用。
@@ -52,10 +56,95 @@ Added a dedicated module to detect and correct grammatical errors and typos in b
 **Thesis**: Long-form clarity, topic sentences, and narrative flow.  
 **原理**: 针对不同写作类型沉淀可复用规范，按领域检索并持续迭代。
 
+### 🤝 MULTI-AGENT COLLABORATION / 多智能体协作写作
+**Outline Manager**: Enforces outline constraints and validates outputs.  
+**Writer**: Drafts and revises under outline and memory constraints.  
+**Reviewer**: Detects AI tone and integrates multi-platform checks.  
+**原理**: 通过大纲约束→内容创作→AI 味检测→多平台核验实现闭环。
+
 ### ⚙️ CUSTOMIZATION / 自定义规范
 **Context**: Adapts to specific audiences (e.g., Technical, General) and topics.  
 **Outline**: Manages structure for long-form content.  
 **原理**: 自动适配目标受众和主题，支持长文大纲管理。
+
+
+This tutorial shows how to configure each agent role using existing prompt and spec files.  
+以下教程演示如何通过现有的 prompt 与规范文件配置各智能体角色。
+
+### 1) Outline Manager Agent / 大纲管理智能体
+**Purpose / 作用**: Create, store, and validate outlines. / 创建、存储并校验大纲。  
+**Where to edit / 编辑位置**:
+- `.ai_context/prompts/6_outline_manager_agent.md`
+- `.ai_context/outline_template.md`
+- `.ai_context/custom_specs.md`
+
+**Configuration Steps / 配置步骤**:
+1. **Define Structure**: Open `.ai_context/outline_template.md` and define your preferred outline JSON structure (sections, paragraphs, word ranges).
+2. **Set Validation Rules**: In `.ai_context/custom_specs.md`, adjust outline validation thresholds:
+   - `Word Deviation Tolerance`: Acceptable deviation from word count targets (e.g., 0.1 for 10%).
+   - `Core Point Coverage`: Minimum percentage of core points that must be covered (e.g., 0.9).
+3. **Configure Storage**: (Optional) In `6_outline_manager_agent.md`, modify the outline storage key format if needed.
+
+### 2) Content Writer Agent / 写作智能体
+**Purpose / 作用**: Draft and revise content based on outline and memory. / 按大纲与记忆写作与修订。  
+**Where to edit / 编辑位置**:
+- `.ai_context/prompts/7_content_writer_agent.md`
+- `.ai_context/custom_specs.md`
+- `.ai_context/memory/hard_memory.json`
+- `.ai_context/memory/soft_memory.json`
+
+**Configuration Steps / 配置步骤**:
+1. **Set Writing Context**: In `.ai_context/custom_specs.md`, define `Target Audience` and `Topic` to guide the writer's tone and depth.
+2. **Configure Revision Limits**: In `.ai_context/custom_specs.md`, set `Max Revision Rounds` to control how many times the writer can iterate on a draft.
+3. **Populate Memory**:
+   - Add domain facts (terms, units) to `.ai_context/memory/hard_memory.json`.
+   - Add style preferences (phrasing, tone) to `.ai_context/memory/soft_memory.json`.
+4. **Output Format**: (Optional) In `7_content_writer_agent.md`, customize the content output format and metadata fields if specific metadata is required.
+
+### 3) Content Review Agent / 检阅智能体
+**Purpose / 作用**: Detect AI tone and aggregate platform checks. / AI 味检测与多平台核验。  
+**Where to edit / 编辑位置**:
+- `.ai_context/prompts/8_content_review_agent.md`
+- `.ai_context/custom_specs.md`
+
+**Configuration Steps / 配置步骤**:
+1. **Configure GPTZero MCP (New!)**:
+   - The agent now supports GPTZero via MCP for AI detection and plagiarism checking.
+   - **Code Reference**: [8_content_review_agent.md](file:///Users/huixin/Documents/ProgramDevelopment/AI_Vibe_Writing_Skill/.ai_context/prompts/8_content_review_agent.md#L17-L56)
+2. **Set API Keys & Settings**:
+   - Open `.ai_context/custom_specs.md`.
+   - Fill in `GPTZero MCP` settings: Service Name, Method, Timeout, and Retry count.
+   - Set your `GPTZero API Key`.
+   - **Code Reference**: [custom_specs.md](file:///Users/huixin/Documents/ProgramDevelopment/AI_Vibe_Writing_Skill/.ai_context/custom_specs.md#L9-L18)
+3. **Usage**: When you trigger "Review" or "Detection", the agent will automatically call GPTZero via MCP and include the results (AI probability, Plagiarism score) in the unified report.
+4. **Adjust Thresholds**: In `.ai_context/custom_specs.md`, set `AI Tone Threshold` to determine when a rewrite is triggered.
+
+### 4) Workflow Coordinator / 流程协调器
+**Purpose / 作用**: Orchestrate outline → write → review loops. / 协调整体闭环流程。  
+**Where to edit / 编辑位置**:
+- `.ai_context/prompts/9_workflow_coordinator.md`
+- `.ai_context/custom_specs.md`
+
+**Configuration Steps / 配置步骤**:
+1. In `9_workflow_coordinator.md`, set the loop order and max revision rounds.
+2. In `custom_specs.md`, align coordination rules with your writing cadence.
+
+### Quick Trigger Examples / 快速触发示例
+> "Use outline-manager-agent to generate a 3-level outline for topic X."
+> 
+> “调用大纲管理智能体，为主题 X 生成三级大纲。”
+
+> "Use content-writer-agent to draft section 2 based on outline-001."
+> 
+> “调用写作智能体，基于 outline-001 写第 2 节。”
+
+> "Use content-review-agent to review the latest draft and report AI tone."
+> 
+> “调用检阅智能体，检查最新草稿并输出 AI 味报告。”
+
+> "Use workflow-coordinator to run the full multi-agent loop."
+> 
+> “调用流程协调器，执行完整多智能体闭环。”
 
 ##  How to Start / 如何开始使用
 
@@ -116,6 +205,14 @@ Select a writing domain and apply the corresponding knowledge base.
 >
 > “调用论文知识库，以审稿人视角写 Related Work。”
 
+### Step 7: Multi-Agent Collaboration / 多智能体协作
+Trigger the multi-agent loop and let the system orchestrate writing.
+启动多智能体闭环并交由系统协调：
+
+> "Use outline-manager-agent + content-writer-agent + content-review-agent to draft section 2."
+>
+> “调用大纲管理、写作、检阅三智能体完成第 2 章。”
+
 ---
 
 ## 📂 File Structure / 文件结构
@@ -127,7 +224,16 @@ Select a writing domain and apply the corresponding knowledge base.
   - `outline_template.md`: Template for structuring content.
   - `memory/hard_memory.json`: Domain hard memory (terms, units, key values).
   - `memory/soft_memory.json`: Domain soft memory (preferences, phrasing, tone).
-  - `prompts/`: Core logic prompts (Style Extractor, Writer, Error Logger, Grammar Checker, Long-Term Memory).
+  - `prompts/`: Core logic prompts.
+    - `1_style_extractor.md`
+    - `2_writer.md`
+    - `3_error_logger.md`
+    - `4_grammar_checker.md`
+    - `5_long_term_memory.md`
+    - `6_outline_manager_agent.md`
+    - `7_content_writer_agent.md`
+    - `8_content_review_agent.md`
+    - `9_workflow_coordinator.md`
 - **`.traerules`**: System instructions ensuring the workflow is followed.
 
 ## 🗺️ Functional Structure / 功能结构
@@ -191,6 +297,13 @@ graph TD
 3. **Generation**: The Writer retrieves relevant hard/soft memory to ensure accuracy and tone alignment, while the Grammar Checker ensures quality.
 4. **Iteration**: User feedback updates both the error log and long-term memory to improve future outputs.
 
+## 🧭 Multi-Agent Skill IDs / 多智能体 Skill ID
+- **outline-manager-agent**
+- **content-writer-agent**
+- **content-review-agent**
+- **workflow-coordinator**
+
+## 🧩 Agent Role Configuration Tutorial / 智能体角色配置教程
 ## 📈 Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=donghuixin/AI-Vibe-Writing-Skills&type=Date&cache=20260218)](https://star-history.com/#donghuixin/AI-Vibe-Writing-Skills&Date)

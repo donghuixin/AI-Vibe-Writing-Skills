@@ -31,6 +31,10 @@ The following prompts are available in `.ai_context/prompts/` for reference:
 -   **Error Logger** (`3_error_logger.md`): Use when processing user corrections.
 -   **Grammar Checker** (`4_grammar_checker.md`): Use to identify grammatical errors and typos in texts.
 -   **Long-Term Memory** (`5_long_term_memory.md`): Use to store and recall domain-specific hard/soft memory.
+-   **Outline Manager Agent** (`6_outline_manager_agent.md`): Manage outline CRUD and validation.
+-   **Content Writer Agent** (`7_content_writer_agent.md`): Generate and revise content under outline constraints.
+-   **Content Review Agent** (`8_content_review_agent.md`): Run AI tone detection and integrate external checks.
+-   **Workflow Coordinator** (`9_workflow_coordinator.md`): Orchestrate the multi-agent writing loop.
 
 ## File References
 -   **Style Profile**: `.ai_context/style_profile.md`
@@ -39,6 +43,15 @@ The following prompts are available in `.ai_context/prompts/` for reference:
 -   **Custom Specs**: `.ai_context/custom_specs.md`
 -   **Hard Memory**: `.ai_context/memory/hard_memory.json`
 -   **Soft Memory**: `.ai_context/memory/soft_memory.json`
+
+## Multi-Agent Writing Loop
+When the multi-agent skill is invoked, follow:
+1.  Use Outline Manager Agent to load or validate the outline and store it in hard memory.
+2.  Use Content Writer Agent to draft content under outline constraints.
+3.  Use Outline Manager Agent to validate output and return structured feedback.
+4.  Iterate writing up to the configured max revision rounds.
+5.  Use Content Review Agent to detect AI tone and optional third-party checks.
+6.  If review fails, request rewrite and re-run review.
 
 ## User Customization
 -   Users can update `.ai_context/custom_specs.md` to change the default topic, audience, or requirements.

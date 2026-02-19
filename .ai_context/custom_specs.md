@@ -2,3 +2,23 @@
 - **Topic**: [e.g. AI, Crypto, Biology]
 - **Target Audience**: [e.g. Beginners, Experts]
 - **Special Requirements**: [e.g. Must include references, Must use analogies]
+- **Outline Validation**:
+  - **Word Deviation Tolerance**: [e.g. 0.1]
+  - **Core Point Coverage**: [e.g. 0.9]
+  - **Max Revision Rounds**: [e.g. 3]
+- **Review Settings**:
+  - **AI Tone Threshold**: [e.g. 60]
+  - **Detection Priority**: [e.g. builtin, third_party]
+  - **Disabled Detectors**: [e.g. gptzero, originality]
+- **MCP Services**:
+  - **GPTZero MCP Name**: [e.g. gptzero]
+  - **GPTZero MCP Method**: [e.g. detect]
+  - **GPTZero Timeout**: [e.g. 30s]
+  - **GPTZero Retry**: [e.g. 1]
+- **Detector API Keys**:
+  - **GPTZero**: [e.g. env:GPTZERO_API_KEY]
+  - **Originality**: [e.g. env:ORIGINALITY_API_KEY]
+  - **Copyscape**: [e.g. env:COPYSCAPE_API_KEY]
+  - **Turnitin**: [e.g. env:TURNITIN_API_KEY]
+  - **Baidu**: [e.g. env:BAIDU_AI_DETECT_KEY]
+  - **ZeroGPT**: [e.g. env:ZEROGPT_API_KEY]
