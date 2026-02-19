@@ -303,6 +303,39 @@ graph TD
 - **content-review-agent**
 - **workflow-coordinator**
 
+## 🔄 Multi-Agent Workflow / 多智能体协作流程
+
+```mermaid
+graph TD
+    Start([Start / 开始]) --> Coordinator[Workflow Coordinator
+    <br />流程协调器]
+    
+    Coordinator -->|1. Create/Load| OutlineMgr[Outline Manager
+    <br />大纲管理智能体]
+    OutlineMgr -->|Save to Memory| HardMem[(Hard Memory
+    <br />硬性记忆)]
+    OutlineMgr -->|Valid Outline| Coordinator
+    
+    Coordinator -->|2. Draft Section| Writer[Content Writer
+    <br />写作智能体]
+    HardMem -.->|Read Outline| Writer
+    Writer -->|Draft| Coordinator
+    
+    Coordinator -->|3. Review| Reviewer[Content Review
+    <br />检阅智能体]
+    Reviewer -->|Check| MCP[GPTZero MCP]
+    
+    Reviewer -->|Result| Decision{Pass? / 通过?}
+    
+    Decision -- Yes --> Finish([Finish / 完成])
+    Decision -- No -->|Revise / 修订| Writer
+    
+    style Coordinator fill:#f96,stroke:#333,stroke-width:2px
+    style OutlineMgr fill:#9cf,stroke:#333,stroke-width:2px
+    style Writer fill:#9f9,stroke:#333,stroke-width:2px
+    style Reviewer fill:#fc9,stroke:#333,stroke-width:2px
+```
+
 ## 🧩 Agent Role Configuration Tutorial / 智能体角色配置教程
 ## 📈 Star History
 
