@@ -91,6 +91,14 @@ Added a dedicated module to detect and correct grammatical errors and typos in b
 You can activate this system immediately by following these steps:
 你可以立即尝试以下步骤来“激活”这个系统：
 
+### Step 0: Installation / 安装
+Clone the repository and open it in your IDE (Trae, VS Code, Cursor, etc.) to load the full context.
+克隆项目并在你的 IDE（Trae, VS Code, Cursor 等）中打开，以加载完整的上下文。
+
+```bash
+git clone https://github.com/donghuixin/AI-Vibe-Writing-Skills.git
+```
+
 ### Step 1: Style Extraction / 提取风格
 Provide 3-5 of your past high-quality writings to the AI.
 把你的 3-5 篇过往高质量文章发给 AI，并说：
