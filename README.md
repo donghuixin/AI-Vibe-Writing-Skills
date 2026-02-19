@@ -346,8 +346,8 @@ graph TD
     
     Reviewer -->|Result| Decision{Pass? / 通过?}
     
-    Decision -- Yes --> Finish([Finish / 完成])
-    Decision -- No -->|Revise / 修订| Writer
+    Decision -->|Yes| Finish([Finish / 完成])
+    Decision -->|No: Revise / 修订| Writer
     
     style Coordinator fill:#f96,stroke:#333,stroke-width:2px
     style OutlineMgr fill:#9cf,stroke:#333,stroke-width:2px
