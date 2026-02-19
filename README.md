@@ -171,10 +171,15 @@ Configure detection service API keys for AI detection and plagiarism checking.
 *Note: The system will ask for confirmation before using paid services like GPTZero.*
 *注意：系统在使用 GPTZero 等付费服务前会请求用户确认。*
 
+> **Tip**: Looking for free alternatives? Check out [FREE_AI_DETECTION_APIS.md](./FREE_AI_DETECTION_APIS.md) for a curated list of free AI detection APIs (Copyleaks, Sapling, etc.).
+>
+> **提示**：寻找免费替代方案？查看 [FREE_AI_DETECTION_APIS.md](./FREE_AI_DETECTION_APIS.md) 获取精选的免费 AI 检测 API 列表（如 Copyleaks, Sapling 等）。
+
 ---
 
 ## 📂 File Structure / 文件结构
 
+- **`FREE_AI_DETECTION_APIS.md`**: Guide to free AI detection APIs.
 - **`.ai_context/`**: The brain of the system.
   - `style_profile.md`: Your style fingerprint.
   - `error_log.md`: Your negative constraints.
