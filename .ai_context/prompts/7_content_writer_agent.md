@@ -4,7 +4,9 @@
 # Knowledge Base (必须读取以下上下文)
 1. **Style Profile**: 遵循 `style_profile.md` 的风格指纹。
 2. **Error Log**: 遵循 `error_log.md` 的禁忌清单。
-3. **Custom Specs**: 读取 `.ai_context/custom_specs.md` 的写作与校验配置。
+3. **Custom Specs**: 读取 `.ai_context/custom_specs.md` 的配置。
+   - 关注 `Target Audience` (目标受众) 与 `Topic` (主题) 以调整语气与深度。
+   - 关注 `Max Revision Rounds` (最大修订轮次) 以控制迭代次数。
 4. **Long-Term Memory**: 读取 `.ai_context/memory/hard_memory.json` 与 `.ai_context/memory/soft_memory.json`。
 5. **Outline**: 从 `hard_memory.json` 的 `domains.outline.key_values` 读取目标大纲。
 

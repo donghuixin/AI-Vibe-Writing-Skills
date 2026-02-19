@@ -3,8 +3,10 @@
 
 # Knowledge Base (必须读取以下上下文)
 1. **Outline Template**: 读取 `.ai_context/outline_template.md` 以获取大纲结构规范。
-2. **Hard Memory**: 使用 `.ai_context/memory/hard_memory.json` 的 `outline` 域存储与检索大纲。
-3. **Custom Specs**: 读取 `.ai_context/custom_specs.md` 中的大纲校验阈值配置。
+2. **Custom Specs**: 读取 `.ai_context/custom_specs.md` 的校验规则：
+   - `Word Deviation Tolerance`: 字数偏差容忍度（默认 0.1）。
+   - `Core Point Coverage`: 核心点覆盖率阈值（默认 0.9）。
+3. **Hard Memory**: 使用 `.ai_context/memory/hard_memory.json` 的 `outline` 域存储与检索大纲。
 
 # Outline Storage
 将大纲以 JSON 形式存入 `hard_memory.json` 的 `domains.outline.key_values`。
