@@ -91,31 +91,51 @@ Added a dedicated module to detect and correct grammatical errors and typos in b
 You can activate this system immediately by following these steps:
 你可以立即尝试以下步骤来“激活”这个系统：
 
-### Step 0: Installation / 安装
-Clone the repository and open it in your IDE (Trae, VS Code, Cursor, etc.) to load the full context.
-克隆项目并在你的 IDE（Trae, VS Code, Cursor 等）中打开，以加载完整的上下文。
+### Step 0: Installation (Mandatory) / 安装（必读）
+**You MUST clone the full repository to use this system.** 
+The system relies on the local `.ai_context` folder for memory, style profiles, and agent configurations. Without cloning, the agents cannot access your style or project settings.
+**你必须克隆完整仓库才能使用本系统。**
+系统依赖本地 `.ai_context` 文件夹来读取记忆、风格配置和智能体设置。如果不克隆，智能体将无法访问你的风格或项目设置。
 
 ```bash
 git clone https://github.com/donghuixin/AI-Vibe-Writing-Skills.git
 ```
+Open the cloned folder in your IDE (Trae, VS Code, Cursor) to activate the context.
+克隆后在 IDE（Trae, VS Code, Cursor）中打开该文件夹以激活上下文。
 
-### Step 1: Style Extraction / 提取风格
+### Step 1: Agent Selection / 智能体选择指南
+Choose the right agent for your task. You don't always need all of them.
+根据你的任务选择合适的智能体组合，不需要每次都全量开启。
+
+| Goal / 目标 | Recommended Agents / 推荐智能体 | Why / 原因 |
+| :--- | :--- | :--- |
+| **Simple Writing** / 简单写作 | **Content Writer** | Direct drafting with style mimicry. <br> 直接生成，保留风格。 |
+| **Long-form Content** / 长文创作 | **Outline Manager** + **Content Writer** | Ensures logical structure and flow. <br> 保证长文结构逻辑严密。 |
+| **Quality Assurance** / 质量把控 | **Content Writer** + **Content Review** | Checks for AI tone and plagiarism. <br> 检测 AI 味和查重。 |
+| **Full Automation** / 全自动闭环 | **Workflow Coordinator** | Orchestrates the full loop (Outline → Write → Review). <br> 自动调度全流程。 |
+
+### Step 2: Style Extraction / 提取风格
+**Required for first-time use.**
 Provide 3-5 of your past high-quality writings to the AI.
+**首次使用必须执行。**
 把你的 3-5 篇过往高质量文章发给 AI，并说：
 
 > "Please use the **Style Extractor** to analyze these texts and update `style_profile.md`."
 >
 > “请使用 **Style Extractor** 分析这些文章，并更新 `style_profile.md`。”
 
-### Step 2: Customization / 配置规范
+### Step 3: Customization / 配置规范
+**Optional but recommended.**
 Open `.ai_context/custom_specs.md` and fill in your common writing context.
+**可选但推荐。**
 你可以打开 `.ai_context/custom_specs.md`，填入你常用的写作背景，这样我每次写作都会自动适配这些背景。
 
 Example / 例如：
 - **Audience / 受众**: Technical Beginners / 技术小白
 - **Domain / 领域**: Artificial Intelligence / 人工智能
 
-### Step 3: The Writer / 日常写作
+### Step 4: The Writer / 日常写作
+**Agent: Content Writer**
 Just give a task. No need to repeat complex prompts.
 直接发布任务即可，无需每次重复 Prompt。
 
@@ -126,7 +146,7 @@ Just give a task. No need to repeat complex prompts.
 *I will automatically read `style_profile.md` to mimic your tone and check `error_log.md` to avoid taboos.*
 *我会自动读取 `style_profile.md` 模仿你的语气，并检查 `error_log.md` 避开禁忌。*
 
-### Step 4: Error Logger / 纠错迭代
+### Step 5: Error Logger / 纠错迭代
 If I make a mistake (e.g., use a word you dislike), correct me immediately.
 如果我犯了错（比如用了你不喜欢的词），直接告诉我：
 
@@ -137,7 +157,7 @@ If I make a mistake (e.g., use a word you dislike), correct me immediately.
 *I will automatically update `error_log.md` to ensure I don't make the same mistake again.*
 *我会自动更新 `error_log.md`，保证下次不再犯。*
 
-### Step 5: Long-Term Memory / 长期记忆
+### Step 6: Long-Term Memory / 长期记忆
 Provide durable domain facts or preferences to store.
 提供稳定的领域事实或偏好以便长期存储：
 
@@ -145,7 +165,7 @@ Provide durable domain facts or preferences to store.
 >
 > “在医学领域，葡萄糖单位固定使用 mmol/L，作为硬性记忆存储。”
 
-### Step 6: Writing Knowledge Bases / 写作知识库
+### Step 7: Writing Knowledge Bases / 写作知识库
 Select a writing domain and apply the corresponding knowledge base.
 选择写作类型并应用对应知识库：
 
@@ -153,7 +173,8 @@ Select a writing domain and apply the corresponding knowledge base.
 >
 > “调用论文知识库，以审稿人视角写 Related Work。”
 
-### Step 7: Multi-Agent Collaboration / 多智能体协作
+### Step 8: Multi-Agent Collaboration / 多智能体协作
+**Agents: Workflow Coordinator / Outline Manager / Content Writer / Content Review**
 Trigger the multi-agent loop and let the system orchestrate writing.
 启动多智能体闭环并交由系统协调：
 
@@ -161,9 +182,12 @@ Trigger the multi-agent loop and let the system orchestrate writing.
 >
 > "调用大纲管理、写作、检阅三智能体完成第 2 章。"
 
-### Step 8: API Key Configuration / API Key 配置
-Configure detection service API keys for AI detection and plagiarism checking.
-配置检测服务的 API Key 以启用 AI 检测与查重功能：
+### Step 9: API Key Configuration / API Key 配置
+**Agent: Content Review**
+**Ready for AI & Plagiarism Detection.**
+The system is pre-configured to support **GPTZero**, **Copyleaks**, and other detection APIs. You just need to add your API key.
+**已预置 AI 与查重检测能力。**
+系统已预配置支持 **GPTZero**、**Copyleaks** 等检测 API。你只需填入 API Key 即可启用。
 
 1. **Open configuration file**: `.ai_context/custom_specs.md`
 2. **Find API Keys section**: Look for "Detector API Keys"
