@@ -3,6 +3,11 @@
 - **Target Audience**: [e.g. Beginners, Experts]
 - **Special Requirements**: [e.g. Must include references, Must use analogies]
 - **Writing Mode**: [e.g. Direct Draft, Structured Draft, Reference-Driven]
+- **Context Budget**:
+  - **Max Context Tokens**: [e.g. 12000]
+  - **Target Utilization**: [e.g. 0.7]
+  - **Min Useful Tokens**: [e.g. 2000]
+  - **Compression Strategy**: [e.g. bullet_summary, outline_only]
 - **Evidence Requirements**:
   - **Minimum References**: [e.g. 3]
   - **Evidence Coverage**: [e.g. 0.8]

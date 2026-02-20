@@ -184,6 +184,18 @@ Provide references to build a local evidence library and reusable knowledge.
 Configure evidence requirements in `.ai_context/custom_specs.md` and follow `.ai_context/reference_learning.md`.
 在 `.ai_context/custom_specs.md` 中设置证据要求，并遵循 `.ai_context/reference_learning.md`。
 
+### Step 7.6: Context Budget / 上下文预算
+Set a context budget to keep writing performance stable.
+设置上下文预算以保证写作性能稳定：
+
+1. **Max Context Tokens**: 上下文上限
+2. **Target Utilization**: 建议使用率
+3. **Min Useful Tokens**: 最低有效内容
+4. **Compression Strategy**: 压缩策略
+
+Configure in `.ai_context/custom_specs.md`.
+在 `.ai_context/custom_specs.md` 中配置。
+
 ### Step 8: Multi-Agent Collaboration / 多智能体协作
 **Agents: Workflow Coordinator / Outline Manager / Content Writer / Content Review**
 Trigger the multi-agent loop and let the system orchestrate writing.
