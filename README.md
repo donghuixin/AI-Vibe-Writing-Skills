@@ -395,7 +395,7 @@ graph TD
 
 ## 📈 Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=donghuixin/AI-Vibe-Writing-Skills&type=Date&cache=20260219)](https://star-history.com/#donghuixin/AI-Vibe-Writing-Skills&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=donghuixin/AI-Vibe-Writing-Skills&type=Date&cache=20260220)](https://star-history.com/#donghuixin/AI-Vibe-Writing-Skills&Date)
 If the chart looks stale, update the cache parameter to force refresh.
 如果图表显示滞后，可更新 cache 参数以强制刷新。
 
