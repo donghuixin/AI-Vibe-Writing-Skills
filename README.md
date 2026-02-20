@@ -173,6 +173,17 @@ Select a writing domain and apply the corresponding knowledge base.
 >
 > “调用论文知识库，以审稿人视角写 Related Work。”
 
+### Step 7.5: Reference Learning / 参考文献学习
+Provide references to build a local evidence library and reusable knowledge.
+提供参考文献以构建本地证据库与可复用知识：
+
+> "Learn these references and store facts, data, terms, and style."
+>
+> “学习这些参考文献并本地存储事实、数据、术语与风格。”
+
+Configure evidence requirements in `.ai_context/custom_specs.md` and follow `.ai_context/reference_learning.md`.
+在 `.ai_context/custom_specs.md` 中设置证据要求，并遵循 `.ai_context/reference_learning.md`。
+
 ### Step 8: Multi-Agent Collaboration / 多智能体协作
 **Agents: Workflow Coordinator / Outline Manager / Content Writer / Content Review**
 Trigger the multi-agent loop and let the system orchestrate writing.
@@ -217,8 +228,10 @@ The system is pre-configured to support **GPTZero**, **Copyleaks**, and other de
   - `error_log.md`: Your negative constraints.
   - `custom_specs.md`: User-defined writing context.
   - `outline_template.md`: Template for structuring content.
+  - `reference_learning.md`: Reference learning pipeline.
   - `memory/hard_memory.json`: Domain hard memory (terms, units, key values).
   - `memory/soft_memory.json`: Domain soft memory (preferences, phrasing, tone).
+  - `memory/reference_library.json`: Local reference library.
   - `prompts/`: Core logic prompts.
     - `1_style_extractor.md`
     - `2_writer.md`

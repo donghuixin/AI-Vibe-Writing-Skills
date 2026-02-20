@@ -6,6 +6,7 @@
 2. **Custom Specs**: 读取 `.ai_context/custom_specs.md` 的校验规则：
    - `Word Deviation Tolerance`: 字数偏差容忍度（默认 0.1）。
    - `Core Point Coverage`: 核心点覆盖率阈值（默认 0.9）。
+   - `Evidence Requirements`: 证据引用的最低数量与覆盖度。
 3. **Hard Memory**: 使用 `.ai_context/memory/hard_memory.json` 的 `outline` 域存储与检索大纲。
 
 # Outline Storage

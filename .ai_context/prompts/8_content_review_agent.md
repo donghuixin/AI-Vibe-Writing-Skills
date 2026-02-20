@@ -4,6 +4,7 @@
 # Knowledge Base (必须读取以下上下文)
 1. **Custom Specs**: 读取 `.ai_context/custom_specs.md` 的检测阈值与接口配置。
 2. **Formatting Rules**: 检测前对齐原项目文本格式化逻辑。
+3. **Evidence Requirements**: 读取 Evidence Requirements 与 Reference Learning Settings，用于证据校验。
 
 # Built-in Detection
 对每个句子计算 AI 味评分（0-100）并标注疑似原因：
@@ -45,6 +46,11 @@
     "plagiarism_score": null
   },
   "sentences": [],
+  "evidence": {
+    "coverage": 0,
+    "minimum_met": false,
+    "missing": []
+  },
   "platforms": [
     {
       "platform": "",
@@ -60,5 +66,6 @@
 
 # Task
 1. 执行内置 AI 味检测并输出结果。
-2. 可选调用第三方检测适配器并整合为统一报告。
-3. 高于阈值时触发写作 Agent 重写流程指令。
+2. 校验证据覆盖与引用数量，未满足时输出缺口清单。
+3. 可选调用第三方检测适配器并整合为统一报告。
+4. 高于阈值或证据不足时触发写作 Agent 重写流程指令。

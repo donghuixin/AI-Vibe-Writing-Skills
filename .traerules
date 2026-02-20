@@ -11,6 +11,7 @@ Whenever you generate text, you **MUST** follow this workflow:
 2.  **Recall**:
     -   Check `.ai_context/error_log.md` for past mistakes to avoid.
     -   Check `.ai_context/memory/hard_memory.json` and `.ai_context/memory/soft_memory.json` for domain memories.
+    -   Check `.ai_context/memory/reference_library.json` when evidence is required.
     -   List the top 3 relevant "Don'ts" internally before generating text.
 3.  **Plan**:
     -   If the task is complex (e.g., a full article), use `.ai_context/outline_template.md` to propose an outline first.
@@ -43,6 +44,7 @@ The following prompts are available in `.ai_context/prompts/` for reference:
 -   **Custom Specs**: `.ai_context/custom_specs.md`
 -   **Hard Memory**: `.ai_context/memory/hard_memory.json`
 -   **Soft Memory**: `.ai_context/memory/soft_memory.json`
+-   **Reference Library**: `.ai_context/memory/reference_library.json`
 
 ## Multi-Agent Writing Loop
 When the multi-agent skill is invoked, follow:
@@ -50,7 +52,7 @@ When the multi-agent skill is invoked, follow:
 2.  Use Content Writer Agent to draft content under outline constraints.
 3.  Use Outline Manager Agent to validate output and return structured feedback.
 4.  Iterate writing up to the configured max revision rounds.
-5.  Use Content Review Agent to detect AI tone and optional third-party checks.
+5.  Use Content Review Agent to detect AI tone, evidence coverage, and optional third-party checks.
 6.  If review fails, request rewrite and re-run review.
 
 ## User Customization

@@ -2,6 +2,12 @@
 - **Topic**: [e.g. AI, Crypto, Biology]
 - **Target Audience**: [e.g. Beginners, Experts]
 - **Special Requirements**: [e.g. Must include references, Must use analogies]
+- **Writing Mode**: [e.g. Direct Draft, Structured Draft, Reference-Driven]
+- **Evidence Requirements**:
+  - **Minimum References**: [e.g. 3]
+  - **Evidence Coverage**: [e.g. 0.8]
+  - **Citation Style**: [e.g. APA, MLA, IEEE]
+  - **Evidence Format**: [e.g. Inline, Footnote, Endnote]
 - **Outline Validation**:
   - **Word Deviation Tolerance**: [e.g. 0.1]
   - **Core Point Coverage**: [e.g. 0.9]
@@ -10,6 +16,12 @@
   - **AI Tone Threshold**: [e.g. 60]
   - **Detection Priority**: [e.g. builtin, third_party]
   - **Disabled Detectors**: [e.g. gptzero, originality]
+- **Reference Learning Settings**:
+  - **Library Path**: [e.g. .ai_context/memory/reference_library.json]
+  - **Ingestion Mode**: [e.g. summary_only, summary_and_quotes]
+  - **Deduplication Strategy**: [e.g. title_year, title_venue]
+  - **Term Extraction**: [e.g. enabled]
+  - **Style Extraction Scope**: [e.g. abstracts_only, full_text]
 - **MCP Services**:
   - **GPTZero MCP Name**: [e.g. gptzero]
   - **GPTZero MCP Method**: [e.g. detect]

@@ -71,6 +71,13 @@ Prompts 位置：
 - 按领域写入长期记忆，确保后续写作可复用。
 - 对需要引用的内容明确标注来源与用途，避免误用。
 
+### 参考文献学习链路
+1. **采集**：接收用户提供的原文、摘要或要点清单。
+2. **抽取**：提取事实、数据、术语、可引用片段与风格特征。
+3. **入库**：写入 `reference_library.json` 并同步到硬/软记忆。
+4. **引用**：写作时根据 Evidence Requirements 选取证据与引用格式。
+5. **复核**：检阅阶段校验证据覆盖与引用数量。
+
 ## 5. 快速配置入口
 
 - `style_profile.md`：个人风格指纹
@@ -78,3 +85,5 @@ Prompts 位置：
 - `custom_specs.md`：主题/受众/检测/阈值等全局配置
 - `outline_template.md`：大纲结构模板
 - `hard_memory.json` / `soft_memory.json`：长期记忆存储
+- `reference_library.json`：参考文献库
+- `reference_learning.md`：参考文献学习流程
