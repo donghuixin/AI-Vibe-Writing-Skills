@@ -36,6 +36,7 @@ The following prompts are available in `.ai_context/prompts/` for reference:
 -   **Content Writer Agent** (`7_content_writer_agent.md`): Generate and revise content under outline constraints.
 -   **Content Review Agent** (`8_content_review_agent.md`): Run AI tone detection and integrate external checks.
 -   **Workflow Coordinator** (`9_workflow_coordinator.md`): Orchestrate the multi-agent writing loop.
+-   **PDF Reader Agent** (`10_pdf_reader_agent.md`): Read local/online PDFs and extract evidence.
 
 ## File References
 -   **Style Profile**: `.ai_context/style_profile.md`

@@ -35,6 +35,7 @@
 - **写作智能体**（7_content_writer_agent）：在大纲与记忆约束下生成与修订内容。
 - **检阅智能体**（8_content_review_agent）：AI 味检测与外部查重能力整合（如 GPTZero）。
 - **流程协调器**（9_workflow_coordinator）：串联大纲 → 写作 → 检阅的闭环流程。
+- **PDF 阅读智能体**（10_pdf_reader_agent）：读取本地/在线 PDF 并入库参考文献与证据。
 
 Prompts 位置：
 - `.ai_context/prompts/1_style_extractor.md`
@@ -46,6 +47,7 @@ Prompts 位置：
 - `.ai_context/prompts/7_content_writer_agent.md`
 - `.ai_context/prompts/8_content_review_agent.md`
 - `.ai_context/prompts/9_workflow_coordinator.md`
+- `.ai_context/prompts/10_pdf_reader_agent.md`
 
 ## 3. 写作注意事项（高优先级规则）
 

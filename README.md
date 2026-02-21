@@ -184,6 +184,34 @@ Provide references to build a local evidence library and reusable knowledge.
 Configure evidence requirements in `.ai_context/custom_specs.md` and follow `.ai_context/reference_learning.md`.
 在 `.ai_context/custom_specs.md` 中设置证据要求，并遵循 `.ai_context/reference_learning.md`。
 
+### Step 7.7: PDF Reading / PDF 阅读
+Read local or online PDFs and ingest structured evidence.
+读取本地或在线 PDF 并入库结构化证据：
+
+> "Use pdf-reader-agent to read this PDF and extract evidence."
+>
+> “调用 PDF 阅读智能体读取该 PDF 并提取证据。”
+
+Configure PDF Reading Settings in `.ai_context/custom_specs.md`.
+在 `.ai_context/custom_specs.md` 中配置 PDF Reading Settings。
+
+### IDE Integration / IDE 接入方式
+**Trae**
+- 将本仓库作为工作区打开
+- 调用 pdf-reader-agent 并提供本地路径或在线 PDF URL
+
+**Cursor**
+- 在项目中打开 PDF 文件或粘贴 URL
+- 使用指令调用 pdf-reader-agent 生成 Summary 与入库计划
+
+**Claude Code**
+- 将 PDF 路径或 URL 作为输入交给 pdf-reader-agent
+- 让智能体输出结构化摘要与 reference_library 更新计划
+
+**VS Code**
+- 打开工作区并粘贴 PDF 路径或 URL
+- 调用 pdf-reader-agent 读取并输出结构化证据
+
 ### Step 7.6: Context Budget / 上下文预算
 Set a context budget to keep writing performance stable.
 设置上下文预算以保证写作性能稳定：
@@ -254,6 +282,7 @@ The system is pre-configured to support **GPTZero**, **Copyleaks**, and other de
     - `7_content_writer_agent.md`
     - `8_content_review_agent.md`
     - `9_workflow_coordinator.md`
+    - `10_pdf_reader_agent.md`
 - **`.traerules`**: System instructions ensuring the workflow is followed.
 
 ## 🗺️ Functional Structure / 功能结构

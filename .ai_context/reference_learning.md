@@ -4,6 +4,7 @@
 
 ## 1. Input Format / 输入格式
 - 原文文本、摘要、要点列表或引用条目
+- 本地 PDF 或在线 PDF
 - 标注基本元数据：标题、作者、年份、来源、领域标签
 
 ## 2. Extraction Targets / 抽取目标
@@ -23,6 +24,11 @@
 ## 4. Evidence Usage / 证据使用规则
 - 引用数量与覆盖度遵循 `.ai_context/custom_specs.md` 的 Evidence Requirements
 - 写作时输出引用清单，便于审计与复用
+
+## 4.5 PDF Reading / PDF 阅读
+- 按 `.ai_context/custom_specs.md` 的 PDF Reading Settings 控制页数与优先章节
+- 优先抽取摘要、方法、结果与结论中的可引用片段
+- 对图表与数据段落生成结构化 data_points
 
 ## 5. Suggested Record Schema / 推荐条目结构
 {
