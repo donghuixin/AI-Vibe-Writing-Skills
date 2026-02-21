@@ -13,6 +13,12 @@
   - **Evidence Coverage**: [e.g. 0.8]
   - **Citation Style**: [e.g. APA, MLA, IEEE]
   - **Evidence Format**: [e.g. Inline, Footnote, Endnote]
+- **Citation Formatting**:
+  - **Author Format**: [e.g. surname_initial]
+  - **Max Authors**: [e.g. 3]
+  - **EtAl Threshold**: [e.g. 4]
+  - **Include DOI**: [e.g. true]
+  - **Include URL**: [e.g. false]
 - **Outline Validation**:
   - **Word Deviation Tolerance**: [e.g. 0.1]
   - **Core Point Coverage**: [e.g. 0.9]

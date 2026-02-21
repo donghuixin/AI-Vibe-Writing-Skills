@@ -195,6 +195,9 @@ Read local or online PDFs and ingest structured evidence.
 Configure PDF Reading Settings in `.ai_context/custom_specs.md`.
 在 `.ai_context/custom_specs.md` 中配置 PDF Reading Settings。
 
+Use `.ai_context/pdf_ingestion_template.md` for standardized ingestion.
+使用 `.ai_context/pdf_ingestion_template.md` 进行标准化入库。
+
 ### IDE Integration / IDE 接入方式
 **Trae**
 - 将本仓库作为工作区打开
@@ -269,6 +272,7 @@ The system is pre-configured to support **GPTZero**, **Copyleaks**, and other de
   - `custom_specs.md`: User-defined writing context.
   - `outline_template.md`: Template for structuring content.
   - `reference_learning.md`: Reference learning pipeline.
+  - `pdf_ingestion_template.md`: PDF ingestion template.
   - `memory/hard_memory.json`: Domain hard memory (terms, units, key values).
   - `memory/soft_memory.json`: Domain soft memory (preferences, phrasing, tone).
   - `memory/reference_library.json`: Local reference library.

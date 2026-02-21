@@ -89,3 +89,4 @@ Prompts 位置：
 - `hard_memory.json` / `soft_memory.json`：长期记忆存储
 - `reference_library.json`：参考文献库
 - `reference_learning.md`：参考文献学习流程
+- `pdf_ingestion_template.md`：PDF 入库模板

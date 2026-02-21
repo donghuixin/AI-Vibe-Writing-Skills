@@ -30,6 +30,10 @@
 - 优先抽取摘要、方法、结果与结论中的可引用片段
 - 对图表与数据段落生成结构化 data_points
 
+## 4.6 Citation Formatting / 引用格式化
+- 引用样式遵循 `.ai_context/custom_specs.md` 的 Citation Style
+- 作者与 DOI/URL 输出遵循 Citation Formatting
+
 ## 5. Suggested Record Schema / 推荐条目结构
 {
   "id": "ref:year:shortkey",
@@ -44,5 +48,19 @@
   "quotes": [],
   "data_points": [],
   "terms": [],
-  "style_notes": []
+  "style_notes": [],
+  "citations": {
+    "apa": "",
+    "ieee": ""
+  },
+  "quality": {
+    "score": 0,
+    "coverage": {
+      "abstract": 0,
+      "method": 0,
+      "results": 0,
+      "conclusion": 0
+    },
+    "gaps": []
+  }
 }
