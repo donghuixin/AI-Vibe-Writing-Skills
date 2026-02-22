@@ -8,6 +8,12 @@
 
 ## 🌟 What's New / 更新日志
 
+**v1.5 - PDF Reading & MinerU / PDF 阅读与 MinerU 集成**
+Added `pdf-reader-agent` for deep PDF reading with `MinerU` integration.
+Supported APA/IEEE citation formatting and reading quality scoring.
+新增 `pdf-reader-agent` 支持深度 PDF 阅读与 `MinerU` 集成。
+支持 APA/IEEE 引用格式化与阅读质量评分。
+
 **v1.4 - Multi-Agent Writing Skill / 多智能体协作写作**
 Added outline-manager, content-writer, content-review agents with a coordinator loop.
 新增大纲管理、写作、检阅智能体与流程协调器，完成写作闭环。
@@ -192,8 +198,10 @@ Read local or online PDFs and ingest structured evidence.
 >
 > “调用 PDF 阅读智能体读取该 PDF 并提取证据。”
 
-Configure PDF Reading Settings in `.ai_context/custom_specs.md`.
-在 `.ai_context/custom_specs.md` 中配置 PDF Reading Settings。
+Configure PDF Reading Settings in `.ai_context/custom_specs.md`:
+- **Citation Formatting**: APA / IEEE
+- **Quality Scoring**: Enable/Disable
+在 `.ai_context/custom_specs.md` 中配置 PDF Reading Settings（含引用格式化与质量评分）。
 
 Use `.ai_context/pdf_ingestion_template.md` for standardized ingestion.
 使用 `.ai_context/pdf_ingestion_template.md` 进行标准化入库。
@@ -460,7 +468,7 @@ graph TD
 
 ## 📈 Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=donghuixin/AI-Vibe-Writing-Skills&type=Date&cache=20260220)](https://star-history.com/#donghuixin/AI-Vibe-Writing-Skills&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=donghuixin/AI-Vibe-Writing-Skills&type=Date&cache=20260222)](https://star-history.com/#donghuixin/AI-Vibe-Writing-Skills&Date)
 If the chart looks stale, update the cache parameter to force refresh.
 如果图表显示滞后，可更新 cache 参数以强制刷新。
 
