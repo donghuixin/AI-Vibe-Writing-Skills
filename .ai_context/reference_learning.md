@@ -29,6 +29,7 @@
 - 按 `.ai_context/custom_specs.md` 的 PDF Reading Settings 控制页数与优先章节
 - 优先抽取摘要、方法、结果与结论中的可引用片段
 - 对图表与数据段落生成结构化 data_points
+- 当 PDF Engine 使用 MinerU 时，先生成结构化 markdown/JSON，再进行证据抽取与术语沉淀
 
 ## 4.6 Citation Formatting / 引用格式化
 - 引用样式遵循 `.ai_context/custom_specs.md` 的 Citation Style

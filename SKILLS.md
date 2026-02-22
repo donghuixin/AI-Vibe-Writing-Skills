@@ -79,6 +79,7 @@ Prompts 位置：
 3. **入库**：写入 `reference_library.json` 并同步到硬/软记忆。
 4. **引用**：写作时根据 Evidence Requirements 选取证据与引用格式。
 5. **复核**：检阅阶段校验证据覆盖与引用数量。
+6. **MinerU 路径**：当使用 MinerU 解析 PDF 时，先生成结构化 markdown/JSON 再抽取与入库。
 
 ## 5. 快速配置入口
 

@@ -198,6 +198,9 @@ Configure PDF Reading Settings in `.ai_context/custom_specs.md`.
 Use `.ai_context/pdf_ingestion_template.md` for standardized ingestion.
 使用 `.ai_context/pdf_ingestion_template.md` 进行标准化入库。
 
+If `PDF Engine` is set to mineru, the agent will parse PDFs into structured markdown/JSON before extracting evidence.
+若 `PDF Engine` 设为 mineru，智能体将先解析为结构化 markdown/JSON 再抽取证据。
+
 ### IDE Integration / IDE 接入方式
 **Trae**
 - 将本仓库作为工作区打开
@@ -214,6 +217,10 @@ Use `.ai_context/pdf_ingestion_template.md` for standardized ingestion.
 **VS Code**
 - 打开工作区并粘贴 PDF 路径或 URL
 - 调用 pdf-reader-agent 读取并输出结构化证据
+
+**MinerU (Optional)**
+- 使用 MinerU 将 PDF 转为 markdown/JSON
+- 将结果交给 pdf-reader-agent 做结构化证据与入库
 
 ### Step 7.6: Context Budget / 上下文预算
 Set a context budget to keep writing performance stable.

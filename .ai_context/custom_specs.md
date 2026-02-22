@@ -34,6 +34,7 @@
   - **Term Extraction**: [e.g. enabled]
   - **Style Extraction Scope**: [e.g. abstracts_only, full_text]
 - **PDF Reading Settings**:
+  - **PDF Engine**: [e.g. mineru, builtin]
   - **PDF Source**: [e.g. local, online]
   - **Max Pages**: [e.g. 30]
   - **Section Priority**: [e.g. abstract, intro, method, results, conclusion]
