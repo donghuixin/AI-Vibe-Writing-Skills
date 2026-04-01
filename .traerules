@@ -37,6 +37,9 @@ The following prompts are available in `.ai_context/prompts/` for reference:
 -   **Content Review Agent** (`8_content_review_agent.md`): Run AI tone detection and integrate external checks.
 -   **Workflow Coordinator** (`9_workflow_coordinator.md`): Orchestrate the multi-agent writing loop.
 -   **PDF Reader Agent** (`10_pdf_reader_agent.md`): Read local/online PDFs and extract evidence.
+-   **Context Compactor Agent** (`11_context_compactor_agent.md`): Compress long contexts to prevent token overflow and hallucinations.
+-   **Router Agent** (`12_router_agent.md`): Dynamically inject prompt slices based on the section being edited.
+-   **LaTeX Self-Healing Agent** (`13_latex_self_healing_agent.md`): Dynamically generate scripts to fix complex LaTeX compilation errors.
 
 ## File References
 -   **Style Profile**: `.ai_context/style_profile.md`

@@ -8,6 +8,11 @@
 
 ## 🌟 What's New / 更新日志
 
+**v1.8 - Next-Gen Architecture (Claude Code Inspired) / 下一代动态架构**
+- **Context Compactor (上下文压缩器)**: 引入 `11_context_compactor_agent.md`，当 Token 溢出时自动压缩历史探讨，提取“核心论点骨架”与“风格快照”，根治长文本幻觉。
+- **Dynamic Prompt Routing (主控路由)**: 引入 `12_router_agent.md`，基于 Prompt as Code 理念，根据正在编写的章节（如 Intro, Methodology）动态挂载微调指令切片，提高输出精度。
+- **LaTeX Self-Healing Loop (编译自愈)**: 引入 `13_latex_self_healing_agent.md`，赋予智能体动态编写修复脚本的权限，通过“读日志->写脚本清理/修复->重新编译”的闭环，自主解决复杂的 BibTeX 与宏包冲突报错。
+
 **v1.7 - Flow Appraisal / 心流鉴赏模块**
 Added Flow Appraisal to the Review agent to assess reader “flow” and “excitement” states with actionable suggestions (Expectation–Response, Breadcrumb transitions, Cognitive load minimization, Aha moments, Candor).
 为检阅智能体新增“心流鉴赏”能力，评估读者是否保持心流与兴奋状态，并给出可执行修订建议（期待-回应闭环、面包屑过渡、认知减负、顿悟、坦诚披露）。
@@ -323,6 +328,9 @@ The system is pre-configured to support **GPTZero**, **Copyleaks**, and other de
     - `8_content_review_agent.md`
     - `9_workflow_coordinator.md`
     - `10_pdf_reader_agent.md`
+    - `11_context_compactor_agent.md`
+    - `12_router_agent.md`
+    - `13_latex_self_healing_agent.md`
 - **`.traerules`**: System instructions ensuring the workflow is followed.
 
 ## 🗺️ Functional Structure / 功能结构
@@ -458,6 +466,9 @@ This tutorial shows how to configure each agent role using existing prompt and s
 - **content-writer-agent**
 - **content-review-agent**
 - **workflow-coordinator**
+- **context-compactor-agent**
+- **router-agent**
+- **latex-self-healing-agent**
 
 ## 🔄 Multi-Agent Workflow / 多智能体协作流程
 
