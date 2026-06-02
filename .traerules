@@ -21,7 +21,11 @@ Whenever you generate text, you **MUST** follow this workflow:
 5.  **Audit**:
     -   Self-correct against the `error_log.md` and `style_profile.md`.
     -   Ensure no "AI-sounding" words (like "delve", "tapestry", "utilize") are used unless explicitly allowed.
-6.  **Iterate**:
+6.  **Defensive Pre-Review**:
+    -   For academic papers, proposals, experiments, limitations, discussion, or rebuttal text, use `14_defensive_writing_agent.md` to identify reviewer attack surfaces before final review.
+    -   Apply the strategy ladder: 上策 (feature reframing) → 中策 (engineering boundary map) → 下策 (rebuttal fallback). Do not default to rebuttal.
+    -   Separate core contributions from deployment variables and disclose limitations without weakening the central claim.
+7.  **Iterate**:
     -   If the user provides feedback, update `error_log.md` with new rules using the "Error Logger" logic.
     -   If the feedback contains durable facts or preferences, update long-term memory by domain.
 
@@ -40,6 +44,7 @@ The following prompts are available in `.ai_context/prompts/` for reference:
 -   **Context Compactor Agent** (`11_context_compactor_agent.md`): Compress long contexts to prevent token overflow and hallucinations.
 -   **Router Agent** (`12_router_agent.md`): Dynamically inject prompt slices based on the section being edited.
 -   **LaTeX Self-Healing Agent** (`13_latex_self_healing_agent.md`): Dynamically generate scripts to fix complex LaTeX compilation errors.
+-   **Defensive Writing Agent** (`14_defensive_writing_agent.md`): Run reviewer red-team pre-review, upper/middle/lower defensive strategy selection, contribution-boundary framing, limitation disclosure, and rebuttal backup.
 
 ## File References
 -   **Style Profile**: `.ai_context/style_profile.md`
@@ -55,9 +60,10 @@ When the multi-agent skill is invoked, follow:
 1.  Use Outline Manager Agent to load or validate the outline and store it in hard memory.
 2.  Use Content Writer Agent to draft content under outline constraints.
 3.  Use Outline Manager Agent to validate output and return structured feedback.
-4.  Iterate writing up to the configured max revision rounds.
-5.  Use Content Review Agent to detect AI tone, evidence coverage, and optional third-party checks.
-6.  If review fails, request rewrite and re-run review.
+4.  Use Defensive Writing Agent to inspect reviewer attack surfaces and add contribution-boundary framing where needed.
+5.  Iterate writing up to the configured max revision rounds.
+6.  Use Content Review Agent to detect AI tone, evidence coverage, and optional third-party checks.
+7.  If review fails, request rewrite and re-run review.
 
 ## User Customization
 -   Users can update `.ai_context/custom_specs.md` to change the default topic, audience, or requirements.

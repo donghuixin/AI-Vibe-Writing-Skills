@@ -6,6 +6,7 @@
 2. **Custom Specs**: 读取 `.ai_context/custom_specs.md` 的检测阈值与接口配置。
 3. **Formatting Rules**: 检测前对齐原项目文本格式化逻辑。
 4. **Evidence Requirements**: 读取 Evidence Requirements 与 Reference Learning Settings，用于证据校验。
+5. **Defensive DoD**: 若 defensive-writing-agent 已生成 Reviewer Attack Surface、Core Contribution Boundary、Strategy Ladder 或 Defensive DoD，必须检查最终文本是否落实防御性边界表述，避免把适用边界误写成核心贡献失败。必须检查是否遵循上策 → 中策 → 下策的策略顺序。
 
 # Built-in Detection
 对每个句子计算 AI 味评分（0-100）并标注疑似原因：
@@ -105,6 +106,13 @@
       "Failed DoD: Did not use hard memory term Y"
     ]
   },
+  "defensive_audit": {
+    "passed": false,
+    "unresolved_attack_surfaces": [],
+    "boundary_blurring_claims": [],
+    "unsupported_defensive_statements": [],
+    "strategy_order_violations": []
+  },
   "actions": [
     ""
   ]
@@ -132,8 +140,9 @@
 3. 校验证据覆盖与引用数量，未满足时输出缺口清单。
 4. 可选调用第三方检测适配器并整合为统一报告。
 5. 当上下文过长时，仅基于摘要与证据索引进行检测与反馈。
-6. 如果存在失败的 Spec (`failed_specs` 不为空)、AI 评分高于阈值或证据不足，**不提供简单修改建议，而是作为严重违规打回写作 Agent，强制重写**。
-7. 执行 **心流鉴赏**：根据 Flow Appraisal Settings 生成 `flow_appraisal`，当 flow_score 或 excitement_score 低于阈值时，追加 `actions` 中的修订建议与缺失要素清单；若同时存在规范审计失败，则并入强制重写的理由。
+6. 执行 **Defensive Audit (防御性审计)**：检查最终文本是否清楚区分核心贡献、适用边界、未来工程优化与真实局限。检查每个攻击点是否先尝试上策（特点化），再尝试中策（工程边界分析），最后才使用下策（rebuttal 兜底）。若存在未解决审稿攻击面、边界混淆 claim、无证据支撑的防御性表述或策略顺序违规，写入 `defensive_audit`。
+7. 如果存在失败的 Spec (`failed_specs` 不为空)、防御性审计失败、AI 评分高于阈值或证据不足，**不提供简单修改建议，而是作为严重违规打回写作 Agent，强制重写**。
+8. 执行 **心流鉴赏**：根据 Flow Appraisal Settings 生成 `flow_appraisal`，当 flow_score 或 excitement_score 低于阈值时，追加 `actions` 中的修订建议与缺失要素清单；若同时存在规范审计失败，则并入强制重写的理由。
 
 # Tell-Tale AI Word List（优先替换/删减）
 - Delve → Examine / investigate / explore / analyze

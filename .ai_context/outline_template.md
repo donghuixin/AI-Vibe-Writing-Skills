@@ -31,6 +31,12 @@
             "Must cite reference X",
             "Must use term Y",
             "No more than N words"
+          ],
+          "defensive_dod": [
+            "Must choose upper/middle/lower defensive strategy for reviewer attack X",
+            "Must separate core contribution from deployment variables",
+            "Must disclose limitation Z without weakening core claim",
+            "Must anchor defensive framing to evidence E"
           ]
         }
       ]
@@ -63,3 +69,8 @@ structure:
           - "Must cite reference X"
           - "Must use term Y"
           - "No more than N words"
+        defensive_dod:
+          - "Must choose upper/middle/lower defensive strategy for reviewer attack X"
+          - "Must separate core contribution from deployment variables"
+          - "Must disclose limitation Z without weakening core claim"
+          - "Must anchor defensive framing to evidence E"

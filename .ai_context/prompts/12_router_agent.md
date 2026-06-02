@@ -23,6 +23,10 @@
    - 目标：处理纯 LaTeX 源码的排版与修改。
    - 注入指令：严禁破坏原有的 `\cite{}`, `\ref{}`, `\begin{equation}` 结构。保持宏包依赖的纯净性，不做不必要的排版结构改动。
 
+5. **[Slice: Defensive_Discussion_&_Rebuttal]**
+   - 目标：处理 Discussion、Limitations、Experiments 风险解释与 Rebuttal。
+   - 注入指令：调用 defensive-writing-agent 的四段式逻辑 `Attack -> Validity Threat -> Boundary Reframing -> Evidence Anchor`，并执行上策 → 中策 → 下策的策略顺序。上策：判断“这不是缺陷，这是特点”，结合目标场景说明其价值；中策：将真实局限分析为工程边界，给出原因、优化变量和未来指导；下策：仅在前两者不成立时生成 rebuttal 兜底、补证据或降级 claim。要求先区分核心贡献、适用边界与未来工程优化；主动披露局限但不把局限写成核心失败；所有防御性表述必须有证据锚点或明确范围条件；若风险真实动摇核心贡献，必须建议补实验、补分析或降级 claim。
+
 # Task
 1. **分析当前状态**：检测用户当前正在修改的章节（如是在写 Introduction 还是改公式），或当前打开的文件后缀（`.tex` vs `.md`）。
 2. **路由分配**：从 Prompt Slices Library 中提取对应切片。

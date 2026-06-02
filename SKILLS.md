@@ -9,8 +9,9 @@
 2. **规划 (Outline)**：生成带有严格 `definition_of_done` (DoD) 的大纲章节。
 3. **分析与召回**：读取 `style_profile.md` 与长短期记忆，避免已知错误并对齐领域术语。
 4. **写作 (Draft)**：写作 Agent 根据 DoD 与约束生成内容。遇大规模修改须先提交 `<Revision_Plan>`。
-5. **规范审计 (Spec Audit) 与自检**：检阅 Agent 对照 `document_spec.md` 逐条审计。排查 AI 味及词汇违例。
-6. **迭代**：未能通过审计直接打回强制重写。用户反馈更新对应记忆库。
+5. **防御性预审 (Defensive Red-Team Review)**：防御性写作 Agent 提前识别审稿攻击面，区分核心贡献、适用边界与未来工程优化。
+6. **规范审计 (Spec Audit) 与自检**：检阅 Agent 对照 `document_spec.md` 逐条审计。排查 AI 味及词汇违例。
+7. **迭代**：未能通过审计直接打回强制重写。用户反馈更新对应记忆库。
 
 参考配置入口：
 - `.traerules`
@@ -35,8 +36,12 @@
 - **大纲管理智能体**（6_outline_manager_agent）：创建/校验/存储大纲并输出结构化校验结果。
 - **写作智能体**（7_content_writer_agent）：在大纲与记忆约束下生成与修订内容。
 - **检阅智能体**（8_content_review_agent）：AI 味检测与外部查重能力整合（如 GPTZero）。
-- **流程协调器**（9_workflow_coordinator）：串联大纲 → 写作 → 检阅的闭环流程。
+- **流程协调器**（9_workflow_coordinator）：串联大纲 → 写作 → 防御性预审 → 检阅的闭环流程。
 - **PDF 阅读智能体**（10_pdf_reader_agent）：读取本地/在线 PDF 并入库参考文献与证据。
+- **上下文压缩器**（11_context_compactor_agent）：将长上下文压缩为核心论点骨架、风格快照与已决规范。
+- **主控路由智能体**（12_router_agent）：根据章节与文件类型动态挂载 Prompt 切片。
+- **LaTeX 编译自愈智能体**（13_latex_self_healing_agent）：通过日志分析、动态脚本与重编译闭环修复 LaTeX 问题。
+- **防御性写作智能体**（14_defensive_writing_agent）：执行审稿人红队式预审，按上策（特点化）→中策（工程边界分析）→下策（rebuttal 兜底）选择策略，并输出攻击面、贡献边界、防御性表述与 rebuttal backup。
 
 Prompts 位置：
 - `.ai_context/prompts/1_style_extractor.md`
@@ -49,12 +54,17 @@ Prompts 位置：
 - `.ai_context/prompts/8_content_review_agent.md`
 - `.ai_context/prompts/9_workflow_coordinator.md`
 - `.ai_context/prompts/10_pdf_reader_agent.md`
+- `.ai_context/prompts/11_context_compactor_agent.md`
+- `.ai_context/prompts/12_router_agent.md`
+- `.ai_context/prompts/13_latex_self_healing_agent.md`
+- `.ai_context/prompts/14_defensive_writing_agent.md`
 
 ## 3. Antigravity Workflows / Antigravity 自动化工作流
 
 本仓库内置了专为 Antigravity Agent 设计的自动化执行脚本（位于 `.agents/workflows/` 目录下）：
 - **`/ai_vibe_writing`**: 自动分析 `custom_specs.md`、生成大纲、起草文本并完成 AI 检阅与修订。
 - **`/pdf_ingestion`**: 自动下载或读取本地 PDF，解析文本并提取结构化事实写入 `reference_library.json` 等长期记忆。
+- **`/defensive_writing`**: 对论文片段、实验、Discussion、Limitations 或 Rebuttal 执行审稿攻击面红队式预审，生成防御性表述与审稿回复备份。
 
 ## 4. 写作注意事项（高优先级规则）
 
@@ -67,6 +77,7 @@ Prompts 位置：
 7. **严格对齐长期记忆**：术语、单位、关键事实以硬记忆为准。
 8. **语法检查只做纠错**：除非用户明确要求重写。
 9. **规范审计 (Spec Audit) 必须刚性**：检阅 Agent 若发现未满足 Spec，应直接打回 `failed_specs`，不可含糊通过。
+10. **防御性写作必须走上中下三策**：遇到学术论文、实验、Discussion、Limitations 或 Rebuttal，必须先判断审稿人攻击的是核心贡献、证据链还是部署变量。优先使用上策：判断“这不是缺陷，这是特点”；若不成立，使用中策：分析缺点的原因、优化变量与工程边界；最后才用下策：rebuttal 兜底、补证据或降级 claim。若局限动摇核心创新，应建议补实验、补分析或降级 claim。
 
 ## 4. 知识库与参考文献学习（推荐流程）
 

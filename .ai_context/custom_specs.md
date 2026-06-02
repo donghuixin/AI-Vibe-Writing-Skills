@@ -41,6 +41,18 @@
   - **Require Intuition Before Formula**: [e.g. true]
   - **Signposting Required**: [e.g. true]
   - **Topic Sentence Required**: [e.g. true]
+- **Defensive Writing Settings**:
+  - **Target Venue**: [e.g. NeurIPS, CHI, MobiCom, Nature, IEEE Journal]
+  - **Contribution Type**: [e.g. method, system, dataset, theory, benchmark, concept_feasibility]
+  - **Known Weaknesses**: [e.g. short-range evaluation, limited sample size, missing energy study]
+  - **Reviewer Sensitivity**: [e.g. novelty, baselines, statistics, deployment, reproducibility]
+  - **Strategy Preference**: [e.g. upper_first]
+  - **Allow Feature Reframing**: [e.g. true]
+  - **Require Engineering Boundary Analysis**: [e.g. true]
+  - **Attack Surface Severity Threshold**: [e.g. medium]
+  - **Generate Rebuttal Backup**: [e.g. true]
+  - **Auto Narrow Unsupported Claims**: [e.g. true]
+  - **Required Defensive Sections**: [e.g. Discussion, Limitations]
 - **Reference Learning Settings**:
   - **Library Path**: [e.g. .ai_context/memory/reference_library.json]
   - **Ingestion Mode**: [e.g. summary_only, summary_and_quotes]

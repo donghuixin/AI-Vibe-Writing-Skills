@@ -32,10 +32,19 @@ This workflow orchestrates the multi-agent writing loop described in the AI Vibe
    - Read domain facts from `.ai_context/memory/hard_memory.json` and `.ai_context/memory/soft_memory.json`.
    - Draft the content section by section, strongly adhering to the style profile and avoiding words from the error log.
 
-4. **Self-Review** (Agent Role: Content Review):
+5. **Defensive Red-Team Pre-Review** (Agent Role: Defensive Writing):
+   - Read `.ai_context/prompts/14_defensive_writing_agent.md`.
+   - For academic papers, experiments, Discussion, Limitations, or Rebuttal text, identify reviewer attack surfaces before the final review stage.
+   - Apply the defensive strategy ladder: 上策 (feature reframing) → 中策 (engineering boundary map) → 下策 (rebuttal fallback).
+   - Separate core contributions from non-core deployment variables.
+   - Generate strategy ladder, defensive framing, suggested insertions, rebuttal backup, and Defensive DoD.
+   - If the defensive agent finds a high-severity issue that truly weakens the core contribution, return to Step 4 and either narrow the claim, add evidence, or request additional experiments.
+
+6. **Self-Review** (Agent Role: Content Review):
    - Read `.ai_context/prompts/8_content_review_agent.md`.
    - Review the generated draft for "AI Tone", grammar issues, and verify it aligns with the error log constraints.
-   - If any major issues or "AI-sounding" phrases are detected, jump back to Step 3 and revise the draft.
+   - Verify the draft also satisfies the Defensive DoD when defensive pre-review was triggered.
+   - If any major issues or "AI-sounding" phrases are detected, jump back to Step 4 and revise the draft.
 
-5. **Final Output**:
+7. **Final Output**:
    - Present the finalized text to the user. Ask if it meets expectations or if any new rules should be added to the `.ai_context/error_log.md`.

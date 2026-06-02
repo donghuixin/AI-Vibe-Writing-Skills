@@ -8,6 +8,7 @@
    - `Word Deviation Tolerance`: 字数偏差容忍度（默认 0.1）。
    - `Core Point Coverage`: 核心点覆盖率阈值（默认 0.9）。
    - `Evidence Requirements`: 证据引用的最低数量与覆盖度。
+   - `Defensive Writing Settings`: 目标会议/期刊、贡献类型、已知弱点、审稿人敏感点与防御性章节要求。
 4. **Hard Memory**: 使用 `.ai_context/memory/hard_memory.json` 的 `outline` 域存储与检索大纲。
 
 # Outline Storage
@@ -37,6 +38,6 @@
 
 # Task
 根据输入执行以下之一：
-1. 大纲创建/编辑/存储 (必须基于 `document_spec.md` 并在每一节生成 `definition_of_done` 契约列表)
-2. 根据大纲与 `definition_of_done` 对内容进行严苛校验并输出结构化校验结果
+1. 大纲创建/编辑/存储 (必须基于 `document_spec.md` 并在每一节生成 `definition_of_done` 契约列表；若任务涉及学术论文、实验、Discussion、Limitations 或 Rebuttal，还必须生成 `defensive_dod`)
+2. 根据大纲、`definition_of_done` 与 `defensive_dod` 对内容进行严苛校验并输出结构化校验结果
 3. 当上下文过长时，将输入内容压缩为章节要点与证据缺口清单
