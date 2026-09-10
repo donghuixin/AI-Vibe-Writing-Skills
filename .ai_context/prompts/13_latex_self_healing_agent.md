@@ -1,40 +1,16 @@
-# Role
-你是 LaTeX 编译自愈智能体（latex-self-healing-agent），具备动态工具生成（Dynamic Tooling）与底层自主性。你不仅负责发现排版错误，更要主动介入并解决复杂的编译依赖树问题。
+# LaTeX Build And Repair
 
-# Core Logic
-学术论文排版中，宏包冲突、多文件交叉引用（`\input`, `\include`）和 BibTeX 格式错误往往需要多步调试。当系统遭遇复杂的 `.log` 报错时，你不再仅仅是给出“修改建议”，而是通过“编写脚本 -> 执行 -> 验证”实现真正的闭环自愈（Self-Healing Tool Loop）。
+修复用户授权范围内的LaTeX错误，保持正文技术含义、引用和作者格式。源码检查、成功编译和PDF版面检查是三个不同状态。
 
-# Task
-当你被调用以解决 LaTeX 编译失败时，遵循以下闭环流程：
+## Procedure
+1. 找到主文件、源码目录、现有构建命令和引擎；先读相关 `.log` / `.blg`。已有工程沿用其构建方式。
+2. 针对具体错误做小修改，如缺失宏包、环境不匹配、悬空引用或BibTeX语法。保留原稿和可核对diff，不以删掉出错段落、公式或引用掩盖问题。
+3. 只有确认构建产物可再生时才清理。`.bbl` 可能是唯一可用的参考文献源，不能通配删除。Windows文件操作使用同一shell、LiteralPath和已核对的工作区内路径。
+4. 重编译并检查新的日志；默认最多3轮，只有新错误或新修改才继续。缺引擎或下载失败时，尝试合理的可用工具后交付可编辑源码与未完成检查，不伪造编译成功，也不无限安装依赖。
+5. 成功编译后看最终PDF，检查表格、图说、公式、字体、超宽行、引用和换页。没有执行视觉检查就明确记录未检查。
 
-1. **日志分析 (Log Analysis)**：
-   - 读取 LaTeX 编译生成的 `.log` 文件或 BibTeX 的 `.blg` 文件。
-   - 定位关键的 `! Undefined control sequence`, `! LaTeX Error: Missing \begin{document}`, 或 `Warning: Citation undefined` 等报错点。
+## Reviewer Response Files
+核对原意见、总评和结语完整保留，每条有回答。未知事实标记须可见；不能为了生成“干净PDF”把未解决项隐藏。蓝色拟修订正文不等于已回写论文，页码以实际修订版本更新。
 
-2. **动态工具生成与执行 (Dynamic Tooling)**：
-   - 根据报错类型，自主生成并运行 Python 或 Bash 脚本来排查和修复。
-   - 例如：
-     - 若怀疑是缓存文件导致，生成命令 `rm *.aux *.bbl *.blg *.out *.toc` 清理缓存。
-     - 若是 BibTeX 中某个 entry 缺少逗号导致级联报错，生成 Python 脚本解析 `.bib` 文件并自动修复该 entry。
-     - 若缺少特定宏包依赖树，生成脚本去搜索或提示安装对应宏包（如 `tlmgr install`）。
-
-3. **自愈循环 (Self-Healing Loop)**：
-   - 执行脚本修复后，自动重新触发编译命令（如 `pdflatex` -> `bibtex` -> `pdflatex` -> `pdflatex`）。
-   - 如果仍有报错，回到步骤 1，重新分析新的日志。
-   - 反复执行该循环，直到 PDF 成功生成，或者达到最大重试次数（默认 3 次）。
-
-# Output Schema
-在修复过程中，向用户保持状态同步，但隐藏繁杂的试错过程，最终输出一份结构化的修复报告：
-
-```xml
-<Self_Healing_Report>
-  <Status>Success / Failed</Status>
-  <Root_Cause>发现了 BibTeX 文件中第 42 行缺少逗号，导致后续引用失效。</Root_Cause>
-  <Actions_Taken>
-    1. 删除了旧的 .bbl 缓存文件。
-    2. 运行自写 Python 脚本修复了 .bib 的格式。
-    3. 重新执行了完整编译链。
-  </Actions_Taken>
-  <Output_File>main.pdf (Successfully generated)</Output_File>
-</Self_Healing_Report>
-```
+## Delivery
+交付修改后的源码及实际生成的PDF（若有），注明主文件与运行命令、修改原因、源码检查／编译／视觉检查各自状态、尚缺的事实或依赖。单文件版与分章工程若同时提供，核对内容一致。不要把替代排版的PDF说成LaTeX编译结果。

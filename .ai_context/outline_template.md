@@ -1,6 +1,9 @@
 ## Outline Template
 
+Copy only the needed structure into the author's paper workspace. Ranges of zero and constraints containing X/Y/Z/N/E are placeholders, not actual requirements. Replace or omit them using the current task and evidence; defensive fields are optional for ordinary drafting.
+
 ### JSON
+```json
 {
   "outline_id": "outline-001",
   "topic": "",
@@ -35,8 +38,8 @@
             "No more than N words"
           ],
           "defensive_dod": [
-            "Must choose upper/middle/lower defensive strategy for reviewer attack X",
-            "Must separate core contribution from deployment variables",
+            "Identify the reviewer question and select an evidence-supported response",
+            "Check whether the limitation affects the stated contribution",
             "Must disclose limitation Z and its evidence-supported impact on the claim",
             "Must anchor defensive framing to evidence E"
           ]
@@ -45,8 +48,10 @@
     }
   ]
 }
+```
 
 ### YAML
+```yaml
 outline_id: outline-001
 topic: ""
 core_points: []
@@ -74,10 +79,11 @@ structure:
           - "Must use term Y"
           - "No more than N words"
         defensive_dod:
-          - "Must choose upper/middle/lower defensive strategy for reviewer attack X"
-          - "Must separate core contribution from deployment variables"
+          - "Identify the reviewer question and select an evidence-supported response"
+          - "Check whether the limitation affects the stated contribution"
           - "Must disclose limitation Z and its evidence-supported impact on the claim"
           - "Must anchor defensive framing to evidence E"
+```
 
 ### Systems Paper Extension
 `claim_ids` 与 `systems_logic_dod` 为可选字段，非系统任务可省略。系统论文从 `.ai_context/systems_paper_logic.md` 关联 C/H/D/E/B；例如验收“D1 的输出与下一模块输入一致”“C1 只使用 E1 已验证范围”。缺失实验标记为待补证据，不能用一句正文当作已经完成该 DoD。

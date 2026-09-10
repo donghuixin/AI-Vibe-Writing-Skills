@@ -21,3 +21,13 @@ mineru_models/
 
 # Local test artifacts
 test.pdf
+
+# Local environments and generated project instances
+.venv/
+venv/
+*.py[cod]
+/.ai_context/document_spec.md
+/.ai_context/systems_paper_logic.md
+/.ai_context/revision_response.md
+/.ai_context/outline.json
+/.ai_context/memory/reference_library.json

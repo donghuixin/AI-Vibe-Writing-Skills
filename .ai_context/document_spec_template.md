@@ -1,61 +1,48 @@
-# Document Spec Template (Your Single Source of Truth)
+# Document Spec
 
-**Topic**: [Enter the main topic of the document here]
-**Goal**: [What is the primary objective of this writing?]
-**Target Audience**: [Who are you writing for? E.g., technical experts, beginners]
+本表记录当前写作约定，不是实验事实的证明。按任务填写；局部修改无需补完整表，也不因缺表重复索取已有授权。实例保存到论文工作区的 `.ai_context/document_spec.md`。
 
-## Core Argument (The "Why")
-- [What is the central thesis or main takeaway?]
-- [Key point 1]
-- [Key point 2]
+## Task And Inputs
+- **Topic / Goal / Audience**:
+- **Deliverable / Scope / Source Version**:
+- **User Instructions And Confirmed Choices**:
+- **Available Files / Missing Material / Output Format**:
 
-## Structural Constraints
-- **Word Count Target**: [e.g., 1000-1500 words]
-- **Required Sections**: [List the sections that must be present, e.g., Introduction, Methodology, Conclusion]
-- **Format Requirements**: [e.g., Use bullet points for lists, keep paragraphs under 5 sentences]
+## Contribution And Evidence
+- **Main Claim / Contribution Type**:
+- **What Is Already Demonstrated**:
+- **What Is Derived Or Estimated**:
+- **Known Contradictions / Unsupported Claims**:
+- **Next Action**: 解释、改写、收窄或针对性补证据，不自动扩成全套实验
 
-## Systems Paper Logic (Optional)
-- **Target Venue / Year / Track / Stage**: [Separate drafting, rebuttal, revision, and camera-ready]
-- **Scenario / Objective / Constraints**: [Task, metric, unit, requirement source, resource budget]
-- **Closest Prior Work / Gap**: [Sources and specific assumption or cost mismatch]
-- **Insight / Design Decision**: [Why the mechanism addresses the technical challenge]
-- **Logic Worksheet**: [Use systems_paper_logic_template.md; save as .ai_context/systems_paper_logic.md]
-- **Core Claim IDs / Evidence Status**: [C1...; supported / partial / missing / contradicted]
-- **Official Sources / Checked At / Unresolved Rules**: [Verify the target edition; do not inherit old rules]
+系统论文沿用 [systems_paper_logic_template.md](systems_paper_logic_template.md) 的 C/H/D/E/B 与证据表，不另建重复账本。其他任务可用简短的“主张—来源—条件—状态”表。
 
-## Defensive Writing Constraints (Reviewer Attack Surface)
-- **Contribution Type**: [method / system / dataset / theory / benchmark / concept_feasibility]
-- **Core Contribution Boundary**:
-  - [What the paper truly claims as its central innovation]
-  - [What evidence directly supports this claim]
-- **Non-Core / Deployment Variables**:
-  - [Candidate deployment variables; verify whether each affects the claimed core metric before classifying it as non-core]
-- **Known Weaknesses To Disclose**:
-  - [Weakness 1, e.g., short-range evaluation]
-  - [Weakness 2, e.g., limited sample size]
-- **Reviewer Attack Surfaces To Preempt**:
-  - [e.g., baseline fairness, ablation completeness, generalizability, statistical significance, energy cost]
-- **Preferred Defensive Strategy**:
-  - **Upper Strategy Candidates (Feature Reframing)**: [Weaknesses that may be reframed as scenario-aligned features]
-  - **Middle Strategy Candidates (Engineering Boundary Map)**: [Weaknesses that need cause/boundary/optimization analysis]
-  - **Lower Strategy Candidates (Rebuttal Fallback)**: [Weaknesses that require rebuttal backup, claim narrowing, or extra evidence]
-- **Claims That Must Be Narrowed**:
-  - [Any claim that needs scope conditions because evidence is limited]
+## Structure
+- **Required Sections / Length**: 仅用户或适用投稿规则明确要求时设为必需
+- **Question Answered By Each Section**:
+- **Figures / Tables And Their Evidence**:
+- **Cross-Section Terms / Metrics / Claim Locations**:
 
-## Evidence Requirements (The "Proof")
-- **Mandatory References**: 
-  - [Reference ID or Title 1 from reference_library]
-  - [Reference ID or Title 2]
-- **Data/Facts to Include**:
-  - [Fact 1]
-  - [Data point 2]
+## Author Voice
+- **Author Samples / Locations**:
+- **Confirmed Preferences**:
+- **Observed Tendencies And Confidence**:
+- **Terms / Units / Symbols To Preserve**:
+- **Genre-Specific Choices**: 正文论证、response直接答问、其他文体另行判断
 
-## Vocabulary & Memory Constraints (The "Tone & Facts")
-- **Hard Memory Terms (Must Use)**: 
-  - [Term 1]
-  - [Term 2]
-- **Negative Constraints (Do NOT Use)**: 
-  - [Check error_log.md for these, e.g., "delve", "in conclusion"]
+通用建议不当作作者偏好。词语是否需要修改取决于句子功能和技术含义；完整证明不应为了“谦逊”改成不确定猜测。
 
-> [!IMPORTANT]
-> This Document Spec is the writing contract, not empirical evidence. Resolve conflicts with original data or verified sources by reporting and correcting the claim. The Outline Manager and Content Writer follow the approved spec; full-document drafting starts after user approval.
+## Review And Venue
+- **Venue / Year / Track / Stage**:
+- **Applicable Decision Letter / Official Rules / Locations**:
+- **Checked At / Unresolved Rules**:
+- **Known Limitations And Effect On Claims**:
+- **Reviewer Requests / Author Requests / Internal Suggestions**:
+- **Revision Matrix**: response任务使用 [revision_response_template.md](revision_response_template.md)
+
+## Completion
+- **Requested Edits Applied / Evidence Still Missing**:
+- **Manuscript And Response Consistent**:
+- **Source Checks / Build / PDF Inspection**: 各自记录实际状态
+
+原始数据或核验来源与Spec冲突时，修正主张并记录原因；旧Spec、记忆或风格不覆盖新证据。

@@ -1,5 +1,7 @@
 # Systems Paper Logic Worksheet
 
+以下工作表实例和项目配置路径均相对作者的论文 workspace；模板与提示词链接相对 skill 仓库。沿用项目已有位置，私有稿件、评审与证据不写入共享 skill 仓库。
+
 本文件是模板。完整项目写作时填入 `.ai_context/systems_paper_logic.md`；局部检查可直接输出。`unknown` 表示尚无材料，不等于没有风险；ID 仅用于追踪，不写入论文正文。
 
 ## Scope & Venue Check
@@ -61,7 +63,7 @@
 
 ## Defensive Handoff
 
-| Risk / C / E / B | Validity Impact | Upper Strategy Evidence | Middle Strategy Cause / Variable / Bound / Cost | Lower Strategy & Policy Constraints |
+| Risk / C / E / B | Validity Impact | Available Evidence | Response Choice / Reason | Missing Evidence / Applicable Rules |
 | :--- | :--- | :--- | :--- | :--- |
 | | | | | |
 

@@ -1,88 +1,66 @@
-## Custom Specifications
-- **Topic**: [e.g. AI, Crypto, Biology]
-- **Target Audience**: [e.g. Beginners, Experts]
-- **Special Requirements**: [e.g. Must include references, Must use analogies]
-- **Writing Mode**: [e.g. Direct Draft, Structured Draft, Reference-Driven]
-- **Context Budget**:
-  - **Max Context Tokens**: [e.g. 12000]
-  - **Target Utilization**: [e.g. 0.7]
-  - **Min Useful Tokens**: [e.g. 2000]
-  - **Compression Strategy**: [e.g. bullet_summary, outline_only]
-- **Evidence Requirements**:
-  - **Minimum References**: [e.g. 3]
-  - **Evidence Coverage**: [e.g. 0.8]
-  - **Citation Style**: [e.g. APA, MLA, IEEE]
-  - **Evidence Format**: [e.g. Inline, Footnote, Endnote]
-- **Citation Formatting**:
-  - **Author Format**: [e.g. surname_initial]
-  - **Max Authors**: [e.g. 3]
-  - **EtAl Threshold**: [e.g. 4]
-  - **Include DOI**: [e.g. true]
-  - **Include URL**: [e.g. false]
-- **Outline Validation**:
-  - **Word Deviation Tolerance**: [e.g. 0.1]
-  - **Core Point Coverage**: [e.g. 0.9]
-  - **Max Revision Rounds**: [e.g. 3]
-- **Review Settings**:
-  - **AI Tone Threshold**: [e.g. 60]
-  - **Detection Priority**: [e.g. builtin, third_party]
-  - **Disabled Detectors**: [e.g. gptzero, originality]
-- **AI Style Scrub Settings**:
-  - **Flag Mechanical Transitions**: [e.g. true]
-  - **Flag Hyperbolic Modifiers**: [e.g. true]
-  - **Flag Absolute Claims**: [e.g. true]
-  - **Flag Nominalizations**: [e.g. true]
-  - **Out-of-Domain Jargon Policy**: [e.g. replace_with_plain_english]
-  - **Tell-Tale Word List**: [e.g. delve,tapestry,testament,multifaceted,fosters,in summary,to summarize]
-- **Flow Appraisal Settings**:
-  - **Min Flow Score**: [e.g. 70]
-  - **Min Excitement Score**: [e.g. 70]
-  - **Require Killer Figure 1**: [e.g. true]
-  - **Require Intuition Before Formula**: [e.g. true]
-  - **Signposting Required**: [e.g. true]
-  - **Topic Sentence Required**: [e.g. true]
-- **Defensive Writing Settings**:
-  - **Target Venue**: [e.g. NeurIPS, CHI, MobiCom, Nature, IEEE Journal]
-  - **Contribution Type**: [e.g. method, system, dataset, theory, benchmark, concept_feasibility]
-  - **Known Weaknesses**: [e.g. short-range evaluation, limited sample size, missing energy study]
-  - **Reviewer Sensitivity**: [e.g. novelty, baselines, statistics, deployment, reproducibility]
-  - **Strategy Preference**: [e.g. upper_first]
-  - **Allow Feature Reframing**: [e.g. true]
-  - **Require Engineering Boundary Analysis**: [e.g. true]
-  - **Attack Surface Severity Threshold**: [e.g. medium]
-  - **Generate Rebuttal Backup**: [e.g. true]
-  - **Auto Narrow Unsupported Claims**: [e.g. true]
-  - **Required Defensive Sections**: [e.g. Discussion, Limitations]
-- **Systems Paper Logic Settings**:
-  - **Mode**: auto
-  - **Target Year / Track / Stage**: [e.g. 2026 / full paper / drafting]
-  - **Logic Worksheet**: .ai_context/systems_paper_logic.md
-  - **Official Sources**: [Target edition CFP, author kit, and stage-specific notice]
-  - **Checked At / Unresolved Policy Items**: [Only record verification actually performed]
-  - **Mode Meaning**: auto = systems-paper structure or logic tasks only; on = explicitly requested logic audit; off = skip. Grammar-only tasks do not trigger automatically.
-- **Reference Learning Settings**:
-  - **Library Path**: [e.g. .ai_context/memory/reference_library.json]
-  - **Ingestion Mode**: [e.g. summary_only, summary_and_quotes]
-  - **Deduplication Strategy**: [e.g. title_year, title_venue]
-  - **Term Extraction**: [e.g. enabled]
-  - **Style Extraction Scope**: [e.g. abstracts_only, full_text]
-- **PDF Reading Settings**:
-  - **PDF Engine**: [e.g. mineru, builtin]
-  - **PDF Source**: [e.g. local, online]
-  - **Max Pages**: [e.g. 30]
-  - **Section Priority**: [e.g. abstract, intro, method, results, conclusion]
-  - **Extraction Mode**: [e.g. text_first, ocr_fallback]
-  - **Chunk Size**: [e.g. 800]
-  - **Chunk Overlap**: [e.g. 120]
-- **MCP Services**:
-  - **GPTZero MCP Name**: [e.g. gptzero]
-  - **GPTZero MCP Method**: [e.g. detect]
-  - **GPTZero Timeout**: [e.g. 30s]
-  - **GPTZero Retry**: [e.g. 1]
-- **Detector API Keys**:
-  - **GPTZero**: [e.g. env:GPTZERO_API_KEY]
-  - **Originality**: [e.g. env:ORIGINALITY_API_KEY]
-  - **Copyscape**: [e.g. env:COPYSCAPE_API_KEY]
-  - **Turnitin**: [e.g. env:TURNITIN_API_KEY]
-  - **Baidu**: [e.g. env:BAIDU_AI_DETECT_KEY]
-  - **ZeroGPT**: [e.g. env:ZEROGPT_API_KEY]
+# Project Settings
+
+这是项目配置模板。只填写本次需要的项，未填写不阻止局部修改。实例放在作者的论文工作区。已有用户指令与授权优先于这里的默认建议。
+
+## Task
+- **Topic / Audience**:
+- **Deliverable**: manuscript / response_letter / outline / local_edit / reading_notes
+- **Requested Scope**: 文件、章节或段落；是否仅语法
+- **Available Inputs / Missing Inputs**: 原稿、可编辑源码、数据、图表、review、decision letter
+- **Output Language / Format**:
+- **Max Revision Rounds**: 3；只有新修改或未解决问题才继续，不为用满轮次重复检查
+
+## Author Voice
+- **Author Samples**: 文件、版本与位置；区分作者原稿和其他人的范文
+- **Genre**: paper / response_letter / thesis / grant
+- **Author-Confirmed Preferences**:
+- **Observed Tendencies**: 附样本与可信度；未确认观察不变成永久禁令
+- **Terms / Symbols To Preserve**:
+- **Style Review Output**: 原句、位置、具体原因、最小改句；不输出AI作者概率或风格总分
+
+## Evidence And References
+- **Citation Style**: 稿件现有样式，或目标venue的明确要求
+- **Evidence Worksheet**: 系统论文使用 `.ai_context/systems_paper_logic.md`；已有表格可沿用
+- **Required Sources**: 与实际主张相关的来源，不设通用最少引用数或覆盖率门槛
+- **Evidence States**: supported / partial / missing / contradicted
+- **Evidence Types**: measured / derived / estimated / literature / author_reported
+- **Source Detail**: 页码、图表、数据与配置版本、访问范围
+- **Reference Library**: `.ai_context/memory/reference_library.json`
+
+## Systems Paper Logic Settings
+- **Mode**: auto
+- **Mode Meaning**: auto仅用于系统论文论证、结构或实验解释；on显式检查；off跳过。仅语法不自动触发。
+- **Contribution Type**: mechanism / system / measurement / dataset / theory / experience
+- **Logic Worksheet**: `.ai_context/systems_paper_logic.md`
+- **Target Venue / Year / Track / Stage**:
+- **Official Sources / Checked At / Unresolved Policy Items**:
+- **Domain Checks**: 按主张选择无线、移动系统、感知或部署检查，不强制同一套实验
+
+## Reviewer Response
+- **Decision Letter / Reviewer Source**: 逐字原文、版本与位置
+- **Decision / Round**: 依原信填写，不从评论数量推测决定
+- **Deadline / Timezone**: 未给具体时刻就保留未知，不默认为当日结束
+- **Requirement Source**: editor / reviewer / author_request / internal_check
+- **Response Matrix**: `.ai_context/revision_response.md`；使用对应模板或已有表格
+- **Submission State**: draft / revised_in_source / compiled / visually_checked；分别记录
+- **Pending Marker**: 如 `[AUTHOR CHECK: ...]`，未解决内容保持可见
+
+## Review And Limitations
+- **Review Depth**: 与任务、主张风险和证据缺口相称
+- **Finding Format**: 位置、问题、证据、影响、最小处理方式
+- **Response Choice**: 澄清 / 纠正 / 收窄 / 补分析或实验 / 有依据地不同意
+- **Strategy Rule**: 先判断事实与主张，再选处理方式；不预设先把限制包装成优点
+- **Optional Local Tool**: `Local_AI_Style_Check/style_lint.py`；候选问题由作者语境裁定
+- **External Text Services**: 默认不调用；外发稿件须符合用户已有授权与服务的实际能力
+
+## PDF And LaTeX
+- **PDF Engine / Reading Scope**: 已有本地工具；复杂版面可选MinerU；记录未读区域
+- **Source / Main File / Build Command / Available Tools**:
+- **Verification**: 源码结构、编译日志、最终PDF版面分别检查；无引擎可交付源码并说明未编译
+- **Cleanup**: 只处理已确认可再生的构建产物，不把所有 `.bbl` 当作可删除缓存
+
+## Context Management
+- **Context Budget**: 由承载工具和任务决定，不设通用最少token量
+- **Compact When Needed**: 保留事实来源、作者确认、有效决策、未解决项与授权
+
+旧AI Tone、Flow、Excitement、PPL阈值及`upper_first`不再驱动重写，见 `docs/migration.md`。

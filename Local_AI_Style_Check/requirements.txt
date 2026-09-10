@@ -1,3 +1,2 @@
-torch>=2.0.0
-transformers>=4.30.0
-pylatexenc>=2.10
+# Local style lint uses only the Python standard library (Python 3.11+).
+# No model, network client, or third-party package is required.

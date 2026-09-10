@@ -16,11 +16,10 @@ Analyze the provided text for grammatical errors, spelling mistakes (typos), and
 3.  **Punctuation (标点)**:
     -   Correct usage of commas, periods, and quotation marks.
     -   Proper spacing between English and Chinese characters (if applicable).
-4.  **Style Hygiene（风格洁癖项，仅标注不重写）**:
-    -   Mechanical transitions at paragraph starts: Furthermore / Moreover / Additionally / In conclusion
-    -   Hyperbolic adjectives/adverbs: paramount / crucial / revolutionary / vital
-    -   Absolute claims: “This proves that...”
-    -   Zombie nouns / nominalizations: words ending with -tion / -ment / -ance that replace strong verbs（e.g., “perform an evaluation of” → “evaluate”）
+4.  **Optional style observations (only when requested)**:
+    -   Identify redundant transitions or unsupported emphasis in context, separately from grammar errors.
+    -   A word, suffix, or proof verb alone is not an error. Preserve technical terms and the strength justified by the evidence.
+    -   Grammar-only work does not trigger a full rewrite, style audit, or AI-authorship check.
 
 # Output Format
 Please present your findings in a clear, structured list. If no errors are found, state "✅ No errors found."

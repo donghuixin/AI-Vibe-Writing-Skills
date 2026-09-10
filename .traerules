@@ -1,75 +1,8 @@
-# AI Vibe Writing Skill - System Configuration
+# AI Vibe Writing — compatibility entry
 
-This workspace is configured as an AI Writing Assistant with "Style Transfer" and "Error Memory" capabilities.
+Read `SKILL.md` beside this file and follow its task routing and path conventions. Load only the selected prompts; this file adds no separate writing pipeline.
 
-## Workflow (System-Level)
-Whenever you generate text, you **MUST** follow this workflow:
-
-1.  **Analyze**:
-    -   Check `.ai_context/style_profile.md` to match the user's tone and style.
-    -   Check `.ai_context/custom_specs.md` for specific topic, audience, or constraints.
-2.  **Recall**:
-    -   Check `.ai_context/error_log.md` for past mistakes to avoid.
-    -   Check `.ai_context/memory/hard_memory.json` and `.ai_context/memory/soft_memory.json` for domain memories.
-    -   Check `.ai_context/memory/reference_library.json` when evidence is required.
-    -   List the top 3 relevant "Don'ts" internally before generating text.
-3.  **Plan**:
-    -   If the task is complex (e.g., a full article), use `.ai_context/outline_template.md` to propose an outline first.
-    -   For MobiCom/SenSys or related systems-paper logic tasks, honor `Systems Paper Logic Settings.Mode` and use `15_systems_paper_logic_agent.md` before outlining. Track claims, mechanisms, evidence, and boundaries in `.ai_context/systems_paper_logic.md`; recheck after drafting. Skip automatic logic review for grammar-only tasks.
-4.  **Draft**:
-    -   Generate content based on the analysis and recall steps.
-    -   Strictly adhere to the "Do's" and "Don'ts" from the style profile and error log.
-5.  **Audit**:
-    -   Self-correct against the `error_log.md` and `style_profile.md`.
-    -   Ensure no "AI-sounding" words (like "delve", "tapestry", "utilize") are used unless explicitly allowed.
-6.  **Defensive Pre-Review**:
-    -   For academic papers, proposals, experiments, limitations, discussion, or rebuttal text, use `14_defensive_writing_agent.md` to identify reviewer attack surfaces before final review.
-    -   Apply the strategy ladder: 上策 (feature reframing) → 中策 (engineering boundary map) → 下策 (rebuttal fallback). Do not default to rebuttal.
-    -   Separate core contributions from deployment variables based on evidence. Disclose actual impacts, including core failures; never assume every limitation is non-fatal. Verify venue-year-stage rebuttal rules before generating submission-ready replies.
-7.  **Iterate**:
-    -   If the user provides feedback, update `error_log.md` with new rules using the "Error Logger" logic.
-    -   If the feedback contains durable facts or preferences, update long-term memory by domain.
-
-## Core Modules & Prompts
-The following prompts are available in `.ai_context/prompts/` for reference:
--   **Style Extractor** (`1_style_extractor.md`): Use when analyzing new writing samples.
--   **The Writer** (`2_writer.md`): The default logic for writing tasks.
--   **Error Logger** (`3_error_logger.md`): Use when processing user corrections.
--   **Grammar Checker** (`4_grammar_checker.md`): Use to identify grammatical errors and typos in texts.
--   **Long-Term Memory** (`5_long_term_memory.md`): Use to store and recall domain-specific hard/soft memory.
--   **Outline Manager Agent** (`6_outline_manager_agent.md`): Manage outline CRUD and validation.
--   **Content Writer Agent** (`7_content_writer_agent.md`): Generate and revise content under outline constraints.
--   **Content Review Agent** (`8_content_review_agent.md`): Run AI tone detection and integrate external checks.
--   **Workflow Coordinator** (`9_workflow_coordinator.md`): Orchestrate the multi-agent writing loop.
--   **PDF Reader Agent** (`10_pdf_reader_agent.md`): Read local/online PDFs and extract evidence.
--   **Context Compactor Agent** (`11_context_compactor_agent.md`): Compress long contexts to prevent token overflow and hallucinations.
--   **Router Agent** (`12_router_agent.md`): Dynamically inject prompt slices based on the section being edited.
--   **LaTeX Self-Healing Agent** (`13_latex_self_healing_agent.md`): Dynamically generate scripts to fix complex LaTeX compilation errors.
--   **Defensive Writing Agent** (`14_defensive_writing_agent.md`): Run reviewer red-team pre-review, upper/middle/lower defensive strategy selection, contribution-boundary framing, limitation disclosure, and rebuttal backup.
--   **Systems Paper Logic Agent** (`15_systems_paper_logic_agent.md`): Map scenario, challenge, insight, design, evidence, and boundaries; audit Introduction-to-Design and claim-to-experiment consistency.
-
-## File References
--   **Style Profile**: `.ai_context/style_profile.md`
--   **Error Log**: `.ai_context/error_log.md`
--   **Outline Template**: `.ai_context/outline_template.md`
--   **Custom Specs**: `.ai_context/custom_specs.md`
--   **Hard Memory**: `.ai_context/memory/hard_memory.json`
--   **Soft Memory**: `.ai_context/memory/soft_memory.json`
--   **Reference Library**: `.ai_context/memory/reference_library.json`
-
-## Multi-Agent Writing Loop
-When the multi-agent skill is invoked, follow:
-1.  Use Outline Manager Agent to load or validate the outline and store it in hard memory.
-2.  Use Content Writer Agent to draft content under outline constraints.
-3.  Use Outline Manager Agent to validate output and return structured feedback.
-4.  Use Defensive Writing Agent to inspect reviewer attack surfaces and add contribution-boundary framing where needed.
-5.  Iterate writing up to the configured max revision rounds.
-6.  Use Content Review Agent to detect AI tone, evidence coverage, and optional third-party checks.
-7.  If review fails on writing, revise within the configured limit. If evidence is missing, narrow supported claims and report the outstanding evidence needs; do not loop until the prose appears to pass.
-
-## User Customization
--   Users can update `.ai_context/custom_specs.md` to change the default topic, audience, or requirements.
--   Users can maintain multiple profiles (e.g., `academic_profile.md`) and switch by instruction.
-
-## Critical Instruction
-"Whenever you generate text, you MUST read `.ai_context/style_profile.md` to match my tone, `.ai_context/error_log.md` to avoid past mistakes, and `.ai_context/memory/hard_memory.json` / `.ai_context/memory/soft_memory.json` to align long-term memory. If I correct you, update the error log and relevant memory."
+- Keep existing numbered prompt paths available for direct calls.
+- Grammar-only requests use the minimal correction route. Formal reviewer responses use `16_response_letter_agent.md`; author-style learning uses `1_style_extractor.md`.
+- Use current-session authorization. An authorized rewrite does not require an extra approval just because it is extensive.
+- Keep manuscript evidence, reviewer material, author profiles, and task memory in the author's current paper workspace. The public skill repository contains reusable instructions and templates.

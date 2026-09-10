@@ -1,67 +1,46 @@
-# Reference Learning Pipeline / 参考文献学习流程
+# Reference Learning And Evidence
 
-本流程用于高效学习用户提供的参考文献，并将知识、数据、术语与写作风格沉淀到本地记忆与参考库。
+文献摘要、书目信息和支持某条主张的证据分开保存。只读取任务需要的来源，保留实际读到的范围。
 
-## 1. Input Format / 输入格式
-- 原文文本、摘要、要点列表或引用条目
-- 本地 PDF 或在线 PDF
-- 标注基本元数据：标题、作者、年份、来源、领域标签
+## Three Checks
+1. **Identity**：文献是否存在，标题、作者、年份、版本、DOI是否对应。
+2. **Support**：原文哪一页、图、表或段落支持当前陈述；结果的比较对象、条件与指标是否相同。
+3. **Use**：它是背景、方法依据、对照结果还是作者推论；不得把外部实验写成本文量测。
 
-## 2. Extraction Targets / 抽取目标
-- **Facts**：可验证事实与关键结论
-- **Data**：数据、指标、数值区间与实验结果
-- **Terms**：领域术语与标准化写法
-- **Style**：段落节奏、句式偏好与论证方式
+检索命中或摘要相似只能支持第一层或部分背景，不能冒充全文查证。缺访问权限时记录未核验，不猜测引用内容。沿用稿件citation keys和版本选择；系统会议论文不应被通用“优先journal”的规则自动替换。
 
-## 3. Storage Strategy / 本地存储策略
-- **Reference Library**：`.ai_context/memory/reference_library.json`
-  - 保存来源信息、摘要、可引用片段与标签索引
-- **Hard Memory**：`.ai_context/memory/hard_memory.json`
-  - 保存术语、单位、关键事实与稳定数据
-- **Soft Memory**：`.ai_context/memory/soft_memory.json`
-  - 保存措辞偏好、论证风格、语气与结构习惯
+## Source Record
+在论文工作区的 `.ai_context/memory/reference_library.json` 保留 `sources` 列表。条目按需要包含：
 
-## 4. Evidence Usage / 证据使用规则
-- 引用数量与覆盖度遵循 `.ai_context/custom_specs.md` 的 Evidence Requirements
-- 写作时输出引用清单，便于审计与复用
-
-## 4.5 PDF Reading / PDF 阅读
-- 按 `.ai_context/custom_specs.md` 的 PDF Reading Settings 控制页数与优先章节
-- 优先抽取摘要、方法、结果与结论中的可引用片段
-- 对图表与数据段落生成结构化 data_points
-- 当 PDF Engine 使用 MinerU 时，先生成结构化 markdown/JSON，再进行证据抽取与术语沉淀
-
-## 4.6 Citation Formatting / 引用格式化
-- 引用样式遵循 `.ai_context/custom_specs.md` 的 Citation Style
-- 作者与 DOI/URL 输出遵循 Citation Formatting
-
-## 5. Suggested Record Schema / 推荐条目结构
+```json
 {
-  "id": "ref:year:shortkey",
+  "id": "ref-example",
   "title": "",
   "authors": [],
-  "year": "",
-  "venue": "",
-  "domain": "",
-  "tags": [],
-  "abstract": "",
-  "key_points": [],
-  "quotes": [],
-  "data_points": [],
-  "terms": [],
-  "style_notes": [],
-  "citations": {
-    "apa": "",
-    "ieee": ""
-  },
-  "quality": {
-    "score": 0,
-    "coverage": {
-      "abstract": 0,
-      "method": 0,
-      "results": 0,
-      "conclusion": 0
-    },
-    "gaps": []
-  }
+  "year": null,
+  "version": "",
+  "url_or_file": "",
+  "access_scope": "abstract_only / selected_pages / full_text",
+  "checked_at": null,
+  "summary": "",
+  "evidence": [
+    {
+      "claim_id": "C1",
+      "locator": "page / figure / table / paragraph",
+      "statement": "",
+      "conditions": "",
+      "result_type": "measured / derived / estimated / author_inference",
+      "support_status": "verified / partial / unverified / contradicted"
+    }
+  ],
+  "gaps": []
 }
+```
+
+这里只是字段模板，不是已完成的来源记录。少量文献可用同等信息的简表，沿用既有来源ID。引用数量、模型评分和正文生成长度不代表证据充分。
+
+## PDFs And Author Style
+- 文字提取失败、读过的页码和图表视觉检查状态分别记录；`parse_pdf.py`仅做文字提取。
+- 关键公式、曲线、图例和多栏顺序需要核对原页，不能把OCR数值直接当作事实。
+- 从别人的文章学习结构时，记录为参考建议；只有作者自己的样本或确认才进入其style profile。
+- 事实或偏好需记忆时遵循 [长期记忆规则](prompts/5_long_term_memory.md)。
