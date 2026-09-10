@@ -53,6 +53,13 @@
   - **Generate Rebuttal Backup**: [e.g. true]
   - **Auto Narrow Unsupported Claims**: [e.g. true]
   - **Required Defensive Sections**: [e.g. Discussion, Limitations]
+- **Systems Paper Logic Settings**:
+  - **Mode**: auto
+  - **Target Year / Track / Stage**: [e.g. 2026 / full paper / drafting]
+  - **Logic Worksheet**: .ai_context/systems_paper_logic.md
+  - **Official Sources**: [Target edition CFP, author kit, and stage-specific notice]
+  - **Checked At / Unresolved Policy Items**: [Only record verification actually performed]
+  - **Mode Meaning**: auto = systems-paper structure or logic tasks only; on = explicitly requested logic audit; off = skip. Grammar-only tasks do not trigger automatically.
 - **Reference Learning Settings**:
   - **Library Path**: [e.g. .ai_context/memory/reference_library.json]
   - **Ingestion Mode**: [e.g. summary_only, summary_and_quotes]

@@ -14,13 +14,22 @@
 - **Required Sections**: [List the sections that must be present, e.g., Introduction, Methodology, Conclusion]
 - **Format Requirements**: [e.g., Use bullet points for lists, keep paragraphs under 5 sentences]
 
+## Systems Paper Logic (Optional)
+- **Target Venue / Year / Track / Stage**: [Separate drafting, rebuttal, revision, and camera-ready]
+- **Scenario / Objective / Constraints**: [Task, metric, unit, requirement source, resource budget]
+- **Closest Prior Work / Gap**: [Sources and specific assumption or cost mismatch]
+- **Insight / Design Decision**: [Why the mechanism addresses the technical challenge]
+- **Logic Worksheet**: [Use systems_paper_logic_template.md; save as .ai_context/systems_paper_logic.md]
+- **Core Claim IDs / Evidence Status**: [C1...; supported / partial / missing / contradicted]
+- **Official Sources / Checked At / Unresolved Rules**: [Verify the target edition; do not inherit old rules]
+
 ## Defensive Writing Constraints (Reviewer Attack Surface)
 - **Contribution Type**: [method / system / dataset / theory / benchmark / concept_feasibility]
 - **Core Contribution Boundary**:
   - [What the paper truly claims as its central innovation]
   - [What evidence directly supports this claim]
 - **Non-Core / Deployment Variables**:
-  - [Variables that may affect deployment but should not be treated as core failure, e.g., distance, hardware packaging, power tuning]
+  - [Candidate deployment variables; verify whether each affects the claimed core metric before classifying it as non-core]
 - **Known Weaknesses To Disclose**:
   - [Weakness 1, e.g., short-range evaluation]
   - [Weakness 2, e.g., limited sample size]
@@ -49,4 +58,4 @@
   - [Check error_log.md for these, e.g., "delve", "in conclusion"]
 
 > [!IMPORTANT]
-> This Document Spec is the highest priority contract. The Outline Manager and Content Writer MUST strictly adhere to this spec. No writing should commence until this spec is approved by the user.
+> This Document Spec is the writing contract, not empirical evidence. Resolve conflicts with original data or verified sources by reporting and correcting the claim. The Outline Manager and Content Writer follow the approved spec; full-document drafting starts after user approval.

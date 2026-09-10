@@ -2,16 +2,18 @@
 
 本文件汇总当前仓库中所有写作能力、核心提示词（prompts）与写作注意事项，并梳理知识库与参考文献学习的使用方式，便于用户快速理解和配置。
 
+可发现的统一入口：[SKILL.md](./SKILL.md)。系统论文方法来源与比较：[MobiCom / SenSys GitHub 调研](./docs/research/mobicom-sensys-writing-skills.md)。
+
 ## 1. 系统级写作流程（必须遵循）
 
 本系统采用 **Spec-Driven (规范驱动)** 写作理念，工作流贯穿所有任务：
 1. **规范制定 (Spec Definition)**：系统生成 `document_spec.md`，明确核心论据、证据与负面约束。此为单点客观真相 (Single Source of Truth)。
-2. **规划 (Outline)**：生成带有严格 `definition_of_done` (DoD) 的大纲章节。
+2. **论证与规划 (Logic & Outline)**：系统论文先运行 systems-paper-logic-agent，建立 C/H/D/E/B 与证据状态；再生成带 DoD 的大纲。非系统或仅语法任务不强加逻辑审计。
 3. **分析与召回**：读取 `style_profile.md` 与长短期记忆，避免已知错误并对齐领域术语。
 4. **写作 (Draft)**：写作 Agent 根据 DoD 与约束生成内容。遇大规模修改须先提交 `<Revision_Plan>`。
 5. **防御性预审 (Defensive Red-Team Review)**：防御性写作 Agent 提前识别审稿攻击面，区分核心贡献、适用边界与未来工程优化。
 6. **规范审计 (Spec Audit) 与自检**：检阅 Agent 对照 `document_spec.md` 逐条审计。排查 AI 味及词汇违例。
-7. **迭代**：未能通过审计直接打回强制重写。用户反馈更新对应记忆库。
+7. **迭代**：写作断点返回修订，缺失实验返回补证据清单，遵守最大轮次。用户反馈更新对应记忆库。
 
 参考配置入口：
 - `.traerules`
@@ -42,6 +44,7 @@
 - **主控路由智能体**（12_router_agent）：根据章节与文件类型动态挂载 Prompt 切片。
 - **LaTeX 编译自愈智能体**（13_latex_self_healing_agent）：通过日志分析、动态脚本与重编译闭环修复 LaTeX 问题。
 - **防御性写作智能体**（14_defensive_writing_agent）：执行审稿人红队式预审，按上策（特点化）→中策（工程边界分析）→下策（rebuttal 兜底）选择策略，并输出攻击面、贡献边界、防御性表述与 rebuttal backup。
+- **系统论文逻辑链智能体**（15_systems_paper_logic_agent）：对 MobiCom / SenSys 等论文执行场景、挑战、洞察、设计、实验与边界审计，检查章节交接和贡献证据匹配；不替代防御性 Agent 或综合检阅。
 
 Prompts 位置：
 - `.ai_context/prompts/1_style_extractor.md`
@@ -58,6 +61,9 @@ Prompts 位置：
 - `.ai_context/prompts/12_router_agent.md`
 - `.ai_context/prompts/13_latex_self_healing_agent.md`
 - `.ai_context/prompts/14_defensive_writing_agent.md`
+- `.ai_context/prompts/15_systems_paper_logic_agent.md`
+
+系统论文工作表模板：[systems_paper_logic_template.md](./.ai_context/systems_paper_logic_template.md)。全文任务实例为 `.ai_context/systems_paper_logic.md`，局部审计可直接返回报告。输出状态为 `pass / revise / needs_evidence / partial / not_applicable`；规则年份、track 与阶段单独核验，未知边界不编造数字。
 
 ## 3. Antigravity Workflows / Antigravity 自动化工作流
 
@@ -78,6 +84,7 @@ Prompts 位置：
 8. **语法检查只做纠错**：除非用户明确要求重写。
 9. **规范审计 (Spec Audit) 必须刚性**：检阅 Agent 若发现未满足 Spec，应直接打回 `failed_specs`，不可含糊通过。
 10. **防御性写作必须走上中下三策**：遇到学术论文、实验、Discussion、Limitations 或 Rebuttal，必须先判断审稿人攻击的是核心贡献、证据链还是部署变量。优先使用上策：判断“这不是缺陷，这是特点”；若不成立，使用中策：分析缺点的原因、优化变量与工程边界；最后才用下策：rebuttal 兜底、补证据或降级 claim。若局限动摇核心创新，应建议补实验、补分析或降级 claim。
+11. **证据先于策略**：上策需真实需求与特性收益，中策区分实测 / 模型估计 / 理论边界 / 未知；正式回复遵守已核验的目标届规则，补实验计划不等于可提交的 rebuttal。
 
 ## 4. 知识库与参考文献学习（推荐流程）
 

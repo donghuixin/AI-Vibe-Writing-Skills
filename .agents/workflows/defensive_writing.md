@@ -19,10 +19,12 @@ This workflow runs a focused defensive-writing pass for academic paper sections,
    - Read `.ai_context/memory/hard_memory.json`, `.ai_context/memory/soft_memory.json`, and `.ai_context/memory/reference_library.json` for terms, venue norms, and evidence anchors.
 
 3. **Build Reviewer Attack Surface**:
+   - Read the relevant C/E/B rows from `.ai_context/systems_paper_logic.md` if available; otherwise record explicit temporary assumptions. Determine actual validity impact before treating any variable as non-core.
    - Classify risks using the 10 default attack categories: experimental range, sample size, baseline fairness, ablation, generalizability, statistical significance, deployment cost, energy, real-time latency, and novelty.
    - For each risk, output: `Attack -> Validity Threat -> Boundary Reframing -> Evidence Anchor`.
 
 4. **Select Strategy Tier**:
+   - Enforce the evidence gate in the agent prompt. Short-range testing alone is neither a physical range bound nor a security benefit; skipping an unsupported tier is valid.
    - For each attack point, try 上策 first: reframe the issue as a scenario-aligned feature or design choice.
    - If 上策 is not supported by the actual scenario, use 中策: analyze the limitation as an engineering boundary with causes, optimization variables, and feasible improvement directions.
    - Use 下策 only when the issue cannot be reframed or bounded in the manuscript; prepare rebuttal fallback, claim narrowing, or additional evidence requests.
@@ -32,6 +34,7 @@ This workflow runs a focused defensive-writing pass for academic paper sections,
    - Produce a Strategy Ladder showing 上策 / 中策 / 下策 options and the selected tier.
    - Produce Suggested Insertions for the target section.
    - Produce Rebuttal Backup for likely reviewer comments.
+   - Verify the target venue, year, track, and stage rules before labeling a reply submission-ready. Keep internal experiment plans separate from permitted response text and never claim unfinished changes are complete.
    - Produce Defensive DoD for final review.
 
 6. **Escalate True Core Risks**:

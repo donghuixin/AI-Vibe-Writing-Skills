@@ -7,6 +7,7 @@
 3. **Formatting Rules**: 检测前对齐原项目文本格式化逻辑。
 4. **Evidence Requirements**: 读取 Evidence Requirements 与 Reference Learning Settings，用于证据校验。
 5. **Defensive DoD**: 若 defensive-writing-agent 已生成 Reviewer Attack Surface、Core Contribution Boundary、Strategy Ladder 或 Defensive DoD，必须检查最终文本是否落实防御性边界表述，避免把适用边界误写成核心贡献失败。必须检查是否遵循上策 → 中策 → 下策的策略顺序。
+6. **Systems Logic DoD**: 系统论文读取 `.ai_context/systems_paper_logic.md` 与大纲 `systems_logic_dod`；检查 C/H/D/E/B、机制归因、范围与跨章节一致性。引用数量或流畅度分数不能代替逐 claim 证据检查；不适用时明确跳过。
 
 # Built-in Detection
 对每个句子计算 AI 味评分（0-100）并标注疑似原因：
@@ -113,12 +114,24 @@
     "unsupported_defensive_statements": [],
     "strategy_order_violations": []
   },
+  "systems_logic_audit": {
+    "status": "not_applicable",
+    "scope": "",
+    "claim_ids_checked": [],
+    "broken_links": [],
+    "unsupported_claims": [],
+    "cross_section_mismatches": [],
+    "evidence_needed": [],
+    "policy_items_unverified": []
+  },
   "actions": [
     ""
   ]
 }
 
 # Flow Appraisal / 心流鉴赏模块
+`systems_logic_audit.status` 取值：`pass / revise / needs_evidence / partial / not_applicable`。断点须写位置、受影响 claim、影响和修复动作；只读片段不能给全文 pass。三策有证据门槛，跳过不成立的上策不是策略违规。未触发防御性预审时不以其占位 `passed: false` 强制重写。
+
 读取 `.ai_context/custom_specs.md` 的 **Flow Appraisal Settings**，评估读者是否能保持“心流”与“excited”状态，输出结构化评分与可执行改进建议。
 
 评估维度：
@@ -141,7 +154,7 @@
 4. 可选调用第三方检测适配器并整合为统一报告。
 5. 当上下文过长时，仅基于摘要与证据索引进行检测与反馈。
 6. 执行 **Defensive Audit (防御性审计)**：检查最终文本是否清楚区分核心贡献、适用边界、未来工程优化与真实局限。检查每个攻击点是否先尝试上策（特点化），再尝试中策（工程边界分析），最后才使用下策（rebuttal 兜底）。若存在未解决审稿攻击面、边界混淆 claim、无证据支撑的防御性表述或策略顺序违规，写入 `defensive_audit`。
-7. 如果存在失败的 Spec (`failed_specs` 不为空)、防御性审计失败、AI 评分高于阈值或证据不足，**不提供简单修改建议，而是作为严重违规打回写作 Agent，强制重写**。
+7. 对已触发审计的失败项分类处理：写作、术语或章节断点返回 Writer；缺少实验、反证或归因不成立时记录 `needs_evidence`，先缩小可支持的表述，再交付补证据清单，不能无限重写。遵循最大修订轮次；数据 / 方法有效性问题优先于 AI 风格分数。
 8. 执行 **心流鉴赏**：根据 Flow Appraisal Settings 生成 `flow_appraisal`，当 flow_score 或 excitement_score 低于阈值时，追加 `actions` 中的修订建议与缺失要素清单；若同时存在规范审计失败，则并入强制重写的理由。
 
 # Tell-Tale AI Word List（优先替换/删减）

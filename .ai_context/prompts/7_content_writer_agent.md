@@ -13,6 +13,7 @@
 6. **Reference Library**: 读取 `reference_library.json` 并建立可用证据列表。
 7. **Outline**: 从 `hard_memory.json` 的 `domains.outline.key_values` 读取目标大纲，**极其严格地逐条落实每一项 `definition_of_done` (DoD)**。
 8. **Defensive Writing Output**: 若 defensive-writing-agent 已生成 Reviewer Attack Surface、Core Contribution Boundary、Strategy Ladder、Defensive Framing Plan 或 Defensive DoD，写作时必须落实这些防御性边界：清楚区分核心贡献、适用边界、未来工程优化与真实局限。必须尊重上策 → 中策 → 下策的策略顺序，不得默认把问题写成 rebuttal 式让步。
+9. **Systems Logic Output**: 系统论文读取 `.ai_context/systems_paper_logic.md` 中相关 claim、证据状态和章节契约，落实 `systems_logic_dod`。`missing / contradicted` 不能写成确定结果；局部支持只能使用表中允许的范围。保持 Design 的输入输出、术语、模型到决策交接；修订时反馈 C/E/B 变化，不把追踪 ID 写入正文。
 
 # Output Format
 输出由两部分组成：
@@ -45,5 +46,5 @@
 1. 在大纲及其 `definition_of_done` (DoD) 的严格约束下生成内容，绝不允许偏离 Spec。
 2. 接收大纲管理/检阅 Agent 的校验结果，执行修正并重复输出，直至通过或达到最大轮次。
 3. 遇到大范围修改指令时，务必先抛出 `<Revision_Plan>`。
-4. 遇到防御性预审输出时，必须将其转化为克制、坦诚、证据化的正文表达：上策强调场景适配的特点，中策分析原因、优化变量和边界，下策才准备 rebuttal 或降级 claim。不得把局限写成核心失败，也不得强行掩盖真实高风险问题。
+4. 遇到防御性预审输出时，将其转化为克制、坦诚、证据化的表达：上策强调有证据的场景特点，中策分析原因、变量和边界，下策准备据实回复或缩小 claim。先核验三策条件，核心失败不得改写为部署问题。正式 rebuttal 遵守目标届当前阶段规则，不写未完成的修订或被禁止的新实验承诺。
 5. 当上下文超限时，仅保留大纲、证据清单、防御性 DoD 与必要记忆条目后再写作。

@@ -13,6 +13,7 @@
 - [Core Workflow / 核心工作流](#core-workflow--核心工作流)
 - [Quick Start / 快速开始](#quick-start--快速开始)
 - [Agent System / 智能体体系](#agent-system--智能体体系)
+- [Systems Paper Logic / 系统论文逻辑链](#systems-paper-logic--系统论文逻辑链)
 - [Defensive Writing / 防御性写作](#defensive-writing--防御性写作)
 - [Configuration / 配置入口](#configuration--配置入口)
 - [Automation Workflows / 自动化工作流](#automation-workflows--自动化工作流)
@@ -24,7 +25,7 @@
 
 ## What This Project Is / 项目定位
 
-AI Vibe Writing Skills 不是一个传统的 Web 应用或后端服务。它是一套放在本地仓库里的 **AI 写作上下文系统**：Agent 打开这个项目后，会读取 `.ai_context` 里的提示词、风格档案、错题本、长期记忆、文档规范和工作流，从而把一次普通写作任务变成可追踪、可复核、可迭代的写作工程。
+AI Vibe Writing Skills 不是一个传统的 Web 应用或后端服务。它是一套放在本地仓库里的 **AI 写作上下文系统**：Agent 通过入口指令或 IDE 配置加载 `.ai_context` 里的提示词、风格档案、错题本、长期记忆、文档规范和工作流，把写作任务组织为可追踪、可复核、可迭代的流程。
 
 它的设计目标不是让 AI 替代作者，而是把写作中的 dirty work 交给 AI：
 
@@ -42,6 +43,19 @@ AI Vibe Writing Skills 不是一个传统的 Web 应用或后端服务。它是�
 
 ## What Is New / 最新能力
 
+### v1.10 - Systems Paper Logic / MobiCom 与 SenSys 写作逻辑链
+
+新增 `systems-paper-logic-agent`，从“句子是否流畅”进一步检查“论文论证是否成立”：
+
+> 场景与需求 → 技术瓶颈 → 关键洞察 → 设计与实现 → 实验证据 → 贡献边界
+
+- **贡献可追踪**：每条 claim 关联挑战、设计、实验、来源与已验证范围。
+- **章节能衔接**：Introduction 的承诺在 Design 被解释，在 Evaluation 被检验，在 Discussion 被限定。
+- **三策有依据**：保留上策、中策、下策；区分实测边界、模型估计和未知，不把真实有效性问题包装成工程优化。
+- **规则按届核验**：会议年份、track、投稿阶段单独记录，不把网上 skill 的旧页数或通用 rebuttal 模板当成官网规则。
+
+入口：[SKILL.md](./SKILL.md) · [逻辑链 Agent](./.ai_context/prompts/15_systems_paper_logic_agent.md) · [工作表](./.ai_context/systems_paper_logic_template.md) · [完整 GitHub 调研](./docs/research/mobicom-sensys-writing-skills.md)
+
 ### v1.9 - Defensive Writing Agent / 防御性写作智能体
 
 新增 `defensive-writing-agent`，用于投稿前的审稿人红队式预审。
@@ -50,7 +64,7 @@ AI Vibe Writing Skills 不是一个传统的 Web 应用或后端服务。它是�
 
 > 防御性写作 = 贡献边界管理 + 局限主动披露 + 审稿人误解预防
 
-它不是让作者嘴硬，也不是把局限藏起来，而是把论文的贡献、边界、证据和局限讲清楚，让审稿人即使挑刺，也只能挑到“适用边界”或“未来工程优化”，而不是动摇核心创新。
+它不是让作者嘴硬，也不是把局限藏起来，而是讲清贡献、边界、证据和局限，减少审稿误解。证据确实支持时，说明哪些问题只是适用边界或工程优化；若问题动摇核心创新，就补证据、调整设计或缩小主张。
 
 该模块内置三层策略：
 
@@ -82,13 +96,17 @@ AI Vibe Writing Skills 不是一个传统的 Web 应用或后端服务。它是�
 ```mermaid
 flowchart TD
     A["User Request<br/>用户写作请求"] --> B["Document Spec<br/>单点事实规范"]
-    B --> C["Outline + DoD<br/>大纲与验收标准"]
+    B --> Q{"Systems Logic Task?<br/>是否需要系统论文逻辑审计"}
+    Q -->|Yes| L["Systems Paper Logic<br/>贡献、设计、证据与边界"]
+    Q -->|No| C["Outline + DoD<br/>大纲与验收标准"]
+    L --> C
     C --> D["Content Writer<br/>内容写作"]
     D --> E["Defensive Writing<br/>防御性预审"]
     E --> F["Content Review<br/>规范审计与 AI 味检查"]
     F --> G{"Pass?<br/>是否通过"}
     G -->|Yes| H["Final Draft<br/>最终文本"]
-    G -->|No| D
+    G -->|Writing issue| D
+    G -->|Missing evidence| X["Evidence Gaps<br/>缩小主张或补证据"]
 
     B -.-> M["Hard / Soft Memory<br/>长期记忆"]
     M -.-> D
@@ -99,17 +117,19 @@ flowchart TD
     style E fill:#fff7ed,stroke:#ea580c,stroke-width:2px
     style F fill:#fef3c7,stroke:#d97706,stroke-width:2px
     style H fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+    style L fill:#ecfeff,stroke:#0891b2,stroke-width:2px
+    style X fill:#fff1f2,stroke:#e11d48,stroke-width:2px
 ```
 
 ### Workflow Contract / 流程契约
 
 1. **Spec Definition / 规范制定**: 生成或读取 `document_spec.md`，明确主题、目标、核心论点、证据要求和防御性写作约束。
-2. **Outline / 大纲规划**: 使用 `outline_template.md` 生成带 `definition_of_done` 和 `defensive_dod` 的大纲。
+2. **Logic & Outline / 论证与大纲**: 系统论文先生成贡献证据工作表，再使用 `outline_template.md` 生成带 DoD 的大纲；按需添加 `claim_ids` 与 `systems_logic_dod`。
 3. **Recall / 记忆召回**: 读取 `style_profile.md`、`error_log.md`、硬性记忆、柔性记忆和参考文献库。
 4. **Draft / 正文写作**: `content-writer-agent` 根据 Spec、大纲、风格和证据生成正文。
 5. **Defend / 防御性预审**: `defensive-writing-agent` 识别审稿攻击面，执行上策、中策、下策选择。
 6. **Review / 检阅审计**: `content-review-agent` 检查 Spec、DoD、Defensive DoD、AI 味、证据覆盖和心流质量。
-7. **Iterate / 迭代修正**: 若失败，回到写作阶段；若用户纠错，更新错题本和长期记忆。
+7. **Iterate / 迭代修正**: 写作问题返回修订，缺失实验返回补证据清单。达到最大轮次则报告未解决项，不靠循环润色伪造通过。
 
 ## Quick Start / 快速开始
 
@@ -121,6 +141,8 @@ cd AI-Vibe-Writing-Skills
 ```
 
 将该文件夹作为工作区打开，例如 Trae、Cursor、VS Code、Claude Code 或 Antigravity。
+
+统一入口为根目录 [SKILL.md](./SKILL.md)。可以明确要求 Agent “读取此仓库的 SKILL.md 并按任务加载资源”。这些文件是提示词和流程定义，打开目录并不保证每个 IDE 自动发现它们；自动加载方式取决于所用工具。导入技能时保留整个目录结构，不要只导入一个入口文件。
 
 ### Step 1: Fill Custom Specs / 配置写作背景
 
@@ -180,6 +202,72 @@ cd AI-Vibe-Writing-Skills
 | Router | [.ai_context/prompts/12_router_agent.md](./.ai_context/prompts/12_router_agent.md) | 根据章节和文件类型动态挂载 Prompt 切片 |
 | LaTeX Self-Healing | [.ai_context/prompts/13_latex_self_healing_agent.md](./.ai_context/prompts/13_latex_self_healing_agent.md) | 通过日志分析和脚本修复 LaTeX 编译问题 |
 | Defensive Writing | [.ai_context/prompts/14_defensive_writing_agent.md](./.ai_context/prompts/14_defensive_writing_agent.md) | 审稿攻击面预审与三策防御 |
+| Systems Paper Logic | [.ai_context/prompts/15_systems_paper_logic_agent.md](./.ai_context/prompts/15_systems_paper_logic_agent.md) | 贡献、挑战、机制、实验与边界的跨章节审计 |
+
+## Systems Paper Logic / 系统论文逻辑链
+
+### Research Findings / 调研发现
+
+这次读取了三个 GitHub 项目的具体 skill，而非只比较功能介绍。主要特点与取舍如下；固定 commit、具体文件、规则冲突和官网依据见 [调研报告](./docs/research/mobicom-sensys-writing-skills.md)。
+
+| 项目 | 特点 | 本项目采用什么 |
+| :--- | :--- | :--- |
+| [AgentSkillsArxiv](https://github.com/drunkcoding/AgentSkillsArxiv) | 系统论文结构、审稿分级、误解与真实弱点的区分 | 贡献到实验的追踪、设计理由、按影响排序修复 |
+| [ccf-conference-skills](https://github.com/SimonZeng7108/ccf-conference-skills) | MobiCom / SenSys 独立模板、硬件与部署、能耗清单 | 实验输入与实现信息检查；年度数字不直接照搬 |
+| [Awesome-Journal-Skills](https://github.com/brycewang-stanford/Awesome-Journal-Skills) | MobiCom 会议适配、贡献类型、证据缺口与官方规则核验 | 先校准研究主张，再按目标届规则检查 |
+
+### The Logic / 逻辑如何闭合
+
+```mermaid
+flowchart TD
+    S["01 场景与目标<br/>任务、指标、资源约束"] --> H["02 瓶颈与挑战 H<br/>前作为什么不够"]
+    H --> I["03 观测与洞察<br/>为什么这条路径可行"]
+    I --> D["04 设计与实现 D<br/>机制、取舍、输入输出"]
+    D --> E["05 实验与分析 E<br/>有效性、归因、代价"]
+    E --> B["06 边界 B<br/>已验证、失效、未知"]
+    C["核心贡献 C<br/>可检验的主张"] -. "提出证明义务" .-> H
+    E -. "支持或反驳" .-> C
+    B -. "限定范围" .-> C
+    B --> R["可迁移认识<br/>供后续研究使用的机制与权衡"]
+
+    style C fill:#fefce8,stroke:#ca8a04,stroke-width:2px
+    style D fill:#ecfeff,stroke:#0891b2,stroke-width:2px
+    style E fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
+    style B fill:#fff1f2,stroke:#e11d48,stroke-width:2px
+```
+
+这些节点是论证关系，不是要求论文写六个固定章节。每条贡献可以关联多个设计与实验；测量、数据集、理论或 Experience 论文按自己的证明义务调整，不强行补一个系统原型。
+
+| 章节 | 应回答的问题 | 向后交付 |
+| :--- | :--- | :--- |
+| Introduction | 谁需要什么能力，前作差在哪里，贡献是什么？ | 具体挑战与可检验承诺 |
+| Design / Analysis | 洞察如何导出机制，为什么不用直接方案？ | 设计决策、符号、输入输出、待验证命题 |
+| Evaluation | 是否有效、为何有效、代价和失效条件是什么？ | 对应 claim 的证据与剩余不确定性 |
+| Discussion / Limitations | 哪些可迁移，哪些仅在已测范围成立？ | 有来源的边界与后续研究问题 |
+
+Design 中重点检查“直觉 → 模型 → 决策 → 输出”的交接。Evaluation 按研究问题组织，不只逐图描述；对照条件、独立样本、ground truth、能耗口径和机制归因按实际主张检查。
+
+### Input And Output / 输入输出
+
+输入可包括论文片段、核心贡献、设计说明、实验图表、已知弱点以及会议年份 / track / 阶段。不要求一开始材料齐全；缺失信息会被明确记录。
+
+输出包括 `Logic Chain`、`Claim-Evidence Ledger`、`Section Contracts`、`Breakpoints & Repair Plan`、`Defensive Handoff` 与 `Systems Logic DoD`。全文任务保存在 `.ai_context/systems_paper_logic.md`，局部审计可以只返回报告。
+
+| 状态 | 含义 |
+| :--- | :--- |
+| `pass` | 本次已检查范围内论证闭合，不代表保证录用 |
+| `revise` | 存在可通过写作修复的逻辑或章节断点 |
+| `needs_evidence` | 缺少关键实验、分析或来源，不能仅靠润色修复 |
+| `partial` | 只提供部分材料，无法检查全文 |
+| `not_applicable` | 当前任务不需要系统论文逻辑审计 |
+
+### Start Here / 调用示例
+
+> 读取 SKILL.md，用 systems-paper-logic-agent 检查这篇 MobiCom 论文的 Introduction、Design 和 Evaluation。先列出 C/H/D/E/B 关系，找出“引言承诺但实验未证明”与“公式没有导出设计决策”的位置。只给局部修改建议，不补造结果。
+
+> 按 SenSys 感知系统视角检查这份大纲：ground truth 是否可靠，参与者与窗口样本是否混淆，跨环境评估是否存在数据泄漏，在线成本是否与任务需求匹配。把缺口交给 defensive-writing-agent，但先判断三策各自需要什么证据。
+
+模式配置在 `custom_specs.md` 的 `Systems Paper Logic Settings`：`auto` 按系统论文任务触发，`on` 明确启用，`off` 跳过。纯语法修改不自动启动结构审计。
 
 ## Defensive Writing / 防御性写作
 
@@ -189,15 +277,15 @@ cd AI-Vibe-Writing-Skills
 
 1. 讲清核心贡献是什么。
 2. 讲清哪些限制只是适用边界或工程变量。
-3. 讲清为什么这些限制不动摇核心创新。
+3. 基于证据判断限制是否影响核心创新，说明非致命边界，也不隐藏真正的有效性问题。
 
 ### Three-Tier Strategy / 上中下三策
 
 ```mermaid
 flowchart LR
-    A["Reviewer Attack<br/>审稿攻击点"] --> B{"Can it be a feature<br/>in this scenario?"}
+    A["Reviewer Attack<br/>审稿攻击点"] --> B{"Evidence supports<br/>a scenario feature?"}
     B -->|Yes| U["上策<br/>这不是缺陷，这是特点"]
-    B -->|No| C{"Can it become<br/>an engineering map?"}
+    B -->|No| C{"Evidence supports<br/>an engineering boundary?"}
     C -->|Yes| M["中策<br/>分析原因、变量与边界"]
     C -->|No| L["下策<br/>Rebuttal 兜底"]
 
@@ -214,15 +302,15 @@ flowchart LR
 
 | Strategy | Meaning | Example |
 | :--- | :--- | :--- |
-| 上策 | 把所谓缺陷解释为场景适配的特点 | 通信距离近意味着短距交互、更低窃听风险、更小攻击面 |
-| 中策 | 把真实局限分析为工程优化边界 | 长距离受天线、功率、遮挡和干扰影响，本文贡献是速率机制 |
+| 上策 | 把有证据支持的特性解释为场景适配 | 短距交互需求与评估范围一致；安全收益需额外威胁模型与证据 |
+| 中策 | 把真实局限分析为工程优化边界 | 用测量或模型分析天线、功率、信道对机制收益的影响与优化代价 |
 | 下策 | 为审稿意见准备克制回复 | 承认当前范围，补证据、降级 claim 或说明未来实验 |
 
 ### Attack Surface Taxonomy / 十类审稿攻击面
 
 | Attack Type | Reviewer Concern | Defensive Direction |
 | :--- | :--- | :--- |
-| 实验距离 / 实验范围不足 | 距离太短、场景太理想 | 判断能否上策化为安全、近场、低暴露面特点；否则分析距离扩展边界 |
+| 实验距离 / 实验范围不足 | 距离太短、场景太理想 | 检查短距任务匹配与机制有效性；测试距离不等于物理极限或安全边界 |
 | 样本规模不足 | 样本、设备、场景或实验次数太少 | 明确样本角色是 proof-of-concept、controlled validation 还是 population-level evidence |
 | Baseline 不足或不公平 | 没有强 baseline，或比较条件不一致 | 说明同约束比较域，列出 closest prior、practical baseline、excluded baseline rationale |
 | 消融实验不足 | 不知道提升来自哪个模块 | 区分可消融组件和耦合机制，用 controlled variant 或敏感性分析补足 |
@@ -247,14 +335,16 @@ flowchart LR
 
 ### Defensive DoD / 防御性验收标准
 
+三策是有条件的优先顺序，不要求每个问题都能特点化。上策需需求与特性收益的证据，中策需原因、变量、来源明确的边界与代价；下策不能承诺目标届 rebuttal 规则禁止的追加工作。详见 [BLE 示例与规则核验](./docs/research/mobicom-sensys-writing-skills.md#5-ble-短距实验与上中下三策连接)。
+
 - 是否把核心贡献说清楚了？
 - 该局限是否会被误读为核心实验失败？
-- 是否说明局限影响的是部署边界，而不是创新有效性？
+- 是否核验局限影响的是部署边界还是核心有效性，而非预设结论？
 - 是否先尝试上策，而不是直接进入 rebuttal？
 - 若上策不成立，是否用中策分析原因、优化变量和边界？
-- 是否有证据锚点或明确范围条件？
+- 事实解释是否有证据锚点，且没有用范围条件代替证明？
 - 是否避免了夸张词、绝对化断言和过度承诺？
-- 审稿人只读这一段时，能否明白为什么这个问题不致命？
+- 审稿人只读这一段时，能否明白已支持的结论与未解决的问题？
 
 ## Configuration / 配置入口
 
@@ -382,7 +472,12 @@ python paper_ai_detector.py
 .
 ├── README.md
 ├── SKILLS.md
-├── FREE_AI_DETECTION_APIS.md
+├── SKILL.md
+├── docs/
+│   └── research/
+│       └── mobicom-sensys-writing-skills.md
+├── tests/
+│   └── systems_paper_logic_cases.md
 ├── .traerules
 ├── .agents/
 │   └── workflows/
@@ -393,6 +488,7 @@ python paper_ai_detector.py
 │   ├── custom_specs.md
 │   ├── document_spec_template.md
 │   ├── outline_template.md
+│   ├── systems_paper_logic_template.md
 │   ├── style_profile.md
 │   ├── error_log.md
 │   ├── reference_learning.md
@@ -415,7 +511,8 @@ python paper_ai_detector.py
 │   │   ├── 11_context_compactor_agent.md
 │   │   ├── 12_router_agent.md
 │   │   ├── 13_latex_self_healing_agent.md
-│   │   └── 14_defensive_writing_agent.md
+│   │   ├── 14_defensive_writing_agent.md
+│   │   └── 15_systems_paper_logic_agent.md
 │   └── scripts/
 │       └── parse_pdf.py
 ├── Local_AI_Style_Check/
@@ -471,7 +568,7 @@ Expected output:
 1. Fill `custom_specs.md` with venue, contribution type, evidence requirements, and defensive writing settings.
 2. Create `document_spec.md` from `document_spec_template.md`.
 3. Use PDF ingestion to build `reference_library.json`.
-4. Use outline-manager-agent to create outline with DoD and Defensive DoD.
+4. For systems papers, use systems-paper-logic-agent to build the claim-evidence worksheet, then create the outline with DoD, Systems Logic DoD, and Defensive DoD.
 5. Use content-writer-agent to draft.
 6. Use defensive-writing-agent before final review.
 7. Use content-review-agent for Spec Audit, Defensive Audit, AI tone, evidence coverage, and flow appraisal.
@@ -485,6 +582,8 @@ The defensive writing taxonomy is inspired by common academic review criteria:
 - [ECCV Contribution Types](https://eccv.ecva.net/Conferences/2026/ReviewerContributionTypes)
 - [AAAI Reproducibility Checklist](https://aaai.org/conference/aaai/aaai-23/reproducibility-checklist/)
 - [ACM SIGSOFT Empirical Standards](https://www2.sigsoft.org/EmpiricalStandards/)
+
+For the systems-paper logic update, see the [version-pinned GitHub comparison and official-source checks](./docs/research/mobicom-sensys-writing-skills.md). These are research references, not endorsements or permanent venue rules.
 
 ## Roadmap / 后续模块
 
