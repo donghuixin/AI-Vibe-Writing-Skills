@@ -33,3 +33,17 @@ The maintainer reviewed the actual outputs against the source records and edit s
 | B3 — Proposed manuscript and response | The manuscript reported the 7 ms mean CPU execution time over 120 calls and its start/end boundary. The response directly excluded the observation interval, acknowledged the unmeasured collection time, and proposed a revision without claiming an applied edit. | Pass: separated technical exposition, the direct answer and actual completion state. |
 
 All six cases above were executed. Raw outputs were retained outside the shared repository; this record contains only synthetic input descriptions and observed decisions. No full manuscript compilation, venue-quality certification or publication-outcome evaluation was performed. Structural resource checks and unit tests validate different properties from these editorial trials.
+
+## Reasoning-protocol follow-up — 2026-09-13
+
+After adding `Trace The Reasoning`, a fresh agent received only the skill path and the requests/raw records for [C1–C3](sentence_flow_cases.md#c1--individual-availability-does-not-establish-a-common-choice). It read `SKILL.md`, Sentence Flow and Writer. It was instructed not to read README, examples, case acceptance observations, previous records or other agents' output. The three requests ran in one session; they are small synthetic checks, not a controlled quality benchmark. No repository files were edited by the trial agent.
+
+The maintainer compared the actual output with the records and requested scope:
+
+| Case | Actual prose | Verdict within the supplied scope |
+|---|---|---|
+| C1 — Individual versus common availability | “Each link has an available slot. However, no slot is available to all three links, so they cannot transmit in the same slot.” | Pass: recognized the empty intersection, retained individual availability and removed the invalid guarantee without inventing scheduling behavior. |
+| C2 — Intervening definition | “The parser produces records with validity flags. A record is eligible when its validity flag is set. These eligible records are forwarded to the queue.” | Pass: returned the original paragraph unchanged and explained the records–definition–forwarding relation. |
+| C3 — Antecedent scope | “The sampler estimates the offset from the reference signal. The controller subtracts the estimated offset from the reading.” | Pass: changed only the ambiguous `it`, using the supplied operation and preserving the actors. |
+
+These three cases were actually executed in addition to the six earlier sentence-flow cases. They check the new reasoning decisions; they do not establish general manuscript quality, scientific validity or venue acceptance.

@@ -63,3 +63,33 @@ These complement [revision and author-voice cases](revision_voice_cases.md). The
 **Record:** The 7 ms is the mean CPU execution time of the classification function over 120 evaluation calls. Timing starts after the input window is already assembled and stops when the label is returned. Observation-collection time was not measured. This manuscript paragraph reports inference timing only.
 
 **Acceptance observations:** The proposed manuscript reports the supported execution metric and relevant conditions without retaining repetitive editorial disclaimers. The response directly distinguishes inference timing from observation collection and states the evidence limit. Do not claim a completed manuscript edit, discard the reviewer's timing question or invent the observation duration.
+
+## C1 — Individual availability does not establish a common choice
+
+**Request:** “Check the inference and minimally revise these two sentences. Preserve established facts; do not add experiments. Return plain English prose and a brief explanation.”
+
+**Original:** “Each link has an available slot. This guarantees that all three links can transmit in the same slot.”
+
+**Record:** Available slots are {1, 2} for L1, {2, 3} for L2 and {1, 3} for L3. The discussed scheme requires all three links to use the same slot for one joint transmission. No other scheduling mechanism is specified.
+
+**Acceptance observations:** Distinguish each link having a slot from all links sharing one slot. The supplied intersection is empty, so the joint-transmission guarantee cannot stand. Retain individual availability, repair the conclusion, and do not invent retries, slot reassignment or an alternative mechanism.
+
+## C2 — An intervening definition carries the paragraph forward
+
+**Request:** “Minimally repair any actual reading discontinuity. If there is none, preserve the paragraph; do not rewrite for its own sake. Return plain English prose and a brief explanation.”
+
+**Original:** “The parser produces records with validity flags. A record is eligible when its validity flag is set. These eligible records are forwarded to the queue.”
+
+**Record:** The parser gives each record a validity flag. Eligible is defined in this paragraph as having that flag set. Only eligible records are forwarded to the queue.
+
+**Acceptance observations:** Keep the definition and the reference to eligible records. The topic is traceable through records, their defined condition and forwarding. Do not require a causal connector, repeated parser subjects, a new conclusion in every sentence or a rewrite of the passive sentence.
+
+## C3 — Resolve the antecedent without rewriting the mechanism
+
+**Request:** “Repair only a reference that affects understanding; preserve other information. Return plain English prose and a brief explanation.”
+
+**Original:** “The sampler estimates the offset from the reference signal. The controller subtracts it from the reading.”
+
+**Record:** The sampler estimates the offset using the reference signal. The controller subtracts the estimated offset from the reading, not the reference signal.
+
+**Acceptance observations:** Make the subtracted object explicit using the record, for example with `the estimated offset`. Retain the sampler/controller roles and original actions. Do not rewrite every pronoun or add a calibration stage, timing rule or quality claim.

@@ -136,6 +136,34 @@ The filter outputs the identifiers of the changed records.
 
 这些标记取决于当前用户约定，不是公共模板预设的作者偏好。按现有流程保存源快照；不要为每次复查层层包裹旧版本。定向检查新增输入关系、首句接口和紧随其后的句子；缺口已经解决且没有引入新问题时结束。
 
+## 9. 推断前提与统计口径：句子顺滑不等于结论成立
+
+**来源 R1。** 接收端记录收到 80 个包，其中 72 个通过校验；记录没有发送端的发送总数。
+
+**原文。**
+
+> Of the 80 received packets, 72 passed the checksum. Therefore, the packet delivery success rate was 90%.
+
+**诊断。** 前句已知 P 是接收集合及其校验结果；后句 Q 却是发送到接收的成功率。中间缺少前提 W：被接收的 80 个包是否代表全部发送尝试，以及何种结果算成功。`Therefore` 清楚表达了推断意图，却不能证明这两个指标等价。问题落在结论的分母与成功定义，不在句首或数字计算。
+
+**最小修复。**
+
+> Of the 80 received packets, 72 passed the checksum, giving a checksum pass rate of 90% among received packets.
+
+保留来源支持的 72/80 和接收集合，删除未经建立的 delivery 指标。原 delivery 主张仍缺依据；无需为了维持该主张要求作者新增实验。
+
+## 10. 非相邻承接与定义插入：可以无需修改
+
+**来源 R2。** 解码器输出带有校验标记的记录。下游消费者接收校验标记为真的记录。`valid record` 在本段定义为校验标记为真的记录；其定义没有加入其他条件。
+
+**原文。**
+
+> The decoder emits records with checksum flags. A record is valid if its checksum flag is true. These valid records are passed to the consumer.
+
+**诊断。** 本段回答解码器输出中哪些记录进入消费者。第一句引入记录及标记，第二句定义后续使用的 valid，第三句同时承接第一句的记录与第二句的条件。承接可以跨越一句，定义也可以承担必要职责；无需把每句话都改成新增机制或结论。
+
+**处理。** 原样保留。`A record` 是有目的的定义，`These valid records` 在当前上下文中指代明确，被动语态保持被传递记录为话题。若强改成所有句子都以 decoder 开头，反而会把注意力从选择条件移开。
+
 ## 原则来源与适用边界
 
 Gopen 与 Swan 在 [The Science of Scientific Writing](https://www.cs.tufts.edu/comp/150FP/archive/george-gopen/sci.html) 中讨论读者预期、句首话题与已有信息的回接、句末重点以及主动与被动在不同话题下的用途。这里借用其编辑视角辅助发现关系缺口；上述案例均为独立合成，没有转载该文案例。这些原则需要结合上下文使用，不是冠词禁令、固定句型，也不是 ACM SIGMOBILE 的官方写作或验收规则。
