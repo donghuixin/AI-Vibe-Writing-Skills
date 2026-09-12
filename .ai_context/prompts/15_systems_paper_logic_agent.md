@@ -61,6 +61,8 @@ Scenario -> Objective & Constraints -> Prior Gap -> Technical Challenge
 - 段落围绕一个问题推进：主张、依据、解释、对下文的作用。允许合并短段，不机械套四句模板。
 - 用稳定技术名词承接上下文，不为了“去 AI 味”替换同一概念的名称；标题和首句应让读者知道本节解决哪个问题。
 
+局部句间推理与视角切换按需交给 [17 · Sentence Flow](17_sentence_flow_agent.md)，继续沿用本工作表的证据与 C/H/D/E/B。若真实机制或因果依据缺失，应记录缺口，不能把新增一个连接词当作论证已闭合。
+
 ## 4. 按研究问题组织 Evaluation
 - 先列实验要回答的问题，再选图表：端到端是否满足目标？机制为何有效？何时失效？代价是多少？每项只在相关 claim 需要时启用。
 - 对比记录 closest prior、可部署 baseline、简单替代方案、oracle / 上界的不同角色。上界不是可部署 baseline；无法复现的前作说明原因，不能假装已完成公平比较。

@@ -13,11 +13,14 @@
 1. **准备材料与范围**：识别目标章节、现有版本、需要保留的内容和最终交付。阅读论文是后续判断的前提时，先用 [PDF Reader](10_pdf_reader_agent.md) 获取可定位证据。
 2. **规划**：新长文或结构调整时，从已有要求建立或更新项目 Spec，并用 [Outline Manager](6_outline_manager_agent.md) 组织章节契约。只改现有段落时跳过建档和大纲。任务适用且未关闭系统逻辑时，用 [15](15_systems_paper_logic_agent.md) 复用现有工作表中的相关 C/H/D/E/B；不为语法任务建立论证表。
 3. **写作**：用 [Content Writer](7_content_writer_agent.md) 写章节；句段精炼用 [Writer](2_writer.md)。作者样文学习由 [Style Extractor](1_style_extractor.md) 负责。将事实核查与编辑待办留在说明中，不混入交付的作者正文。
+   句间或段间关系是实际问题时，可组合 [Sentence Flow](17_sentence_flow_agent.md)；它检查局部论证衔接，不新建一套 C/H/D/E/B，也不要求所有任务经过该角色。
 4. **正式回复**：用户要求 response letter、rebuttal 或按实际意见修稿时，优先用 [Response Letter](16_response_letter_agent.md)。它负责逐条要求、回复和修改状态的对应；只在相关问题需要时调用 15 或 [Defensive Writing](14_defensive_writing_agent.md)。不要先生成一整套假想审稿意见。
 5. **核查与修复**：按任务用 [Content Review](8_content_review_agent.md) 检查有定位的问题。涉及研究有效性或局限时按需用 14；涉及系统论证时复查相关 C/E/B。写作错误直接修复；证据缺口明确保留，不能通过反复润色使其看起来已解决。
 6. **文件验证**：编辑 LaTeX 后在工具与源文件可用时编译并检查生成的 PDF；实际发生编译错误时调用 [13](13_latex_self_healing_agent.md)。仅看文本时明确尚未验证版面，不假称编译或实验已完成。
 
 ## Completion And Handoff
+
+实质性改写需要独立核查且可调用子代理时，由一名作者编辑最终稿，审阅者获得原稿、同版候选和相关证据，不接收作者自评或期待结论。审阅者给定位问题，作者按材料裁决。没有子代理时明确为同一作者顺序检查，不能声称已有独立审阅。语法纠错不必扩大成多代理流程。
 
 - 只交付本轮需要的文本、修改说明和未解决项，不默认叠加所有角色的报告。
 - 数字、范围或术语改变时核查受影响的摘要、引言、图注、结果、结论和回复；局部任务只指出范围外待同步位置。

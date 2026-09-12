@@ -17,5 +17,9 @@
 - Grant围绕资助目标、可行性、里程碑与风险写作，区分已有结果和计划。
 - Response letter先回答问题，再给必要证据和已完成修改的位置。简单错字短答，技术疑问按所需证据展开。
 
+## Sentence Flow
+
+句间推理与视角问题使用 [17 · Sentence Flow](../.ai_context/prompts/17_sentence_flow_agent.md)，按需读取其 [正反例](sentence-flow-examples.md)。先定位相邻句之间缺少的关系，再调整主语、语序或指代；不将句首形式、术语重复、语态或主语变化本身判为错误。关系尚无证据时不能通过润色补造。
+
 ## Learning A Particular Author
 作者样本、文体和明确纠正优先。观察只是候选偏好；不因一次改词建立永久禁令，也不保留错误文法来模仿作者。AI检测分数和词表不能判定作者身份或学术质量。

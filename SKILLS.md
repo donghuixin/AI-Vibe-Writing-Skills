@@ -20,6 +20,7 @@
 | [14 · Defensive Writing](.ai_context/prompts/14_defensive_writing_agent.md) | 用证据判断审稿风险、贡献边界与合理表述 |
 | [15 · Systems Paper Logic](.ai_context/prompts/15_systems_paper_logic_agent.md) | 检查场景、挑战、设计、证据与边界的联系 |
 | [16 · Response Letter](.ai_context/prompts/16_response_letter_agent.md) | 对齐真实审稿要求、作者回复和稿件修改状态 |
+| [17 · Sentence Flow](.ai_context/prompts/17_sentence_flow_agent.md) | 检查句间推理、话题推进、动作执行者及有理由的视角切换 |
 
 ## 兼容入口
 
