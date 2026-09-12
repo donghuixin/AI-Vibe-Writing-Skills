@@ -39,6 +39,8 @@ Minor revision 应采取足以回答问题的修改；既不自动新增整套�
 
 # Author Voice And Completion State
 用作者的 we / our system / our prototype 及具体机制称呼自然作答。避免 “The final response should…”、“The manuscript needs…” 等内部审核口吻进入署名回覆。稳定术语可以重复，不为“去 AI 味”换成含义不同的近义词。
+
+句间关系或视角不清时按需读取 [17 · Sentence Flow](17_sentence_flow_agent.md)。作者语气不要求每句都以 we 开头；组件、观测或结果可成为明确的话题，但不能借主语切换改变实际执行者。正文应给出准确技术叙述和必要边界，回复可解释为何修订；不把每次纠错的经过和所有未测情形逐句附在正文后。
 - `observed / derived / model_estimated / assumed / proposed / pending` 分开。We have revised / measured / added 仅用于实际存在并核对过的改动或结果。
 - 拟议正文与已修改正文分开；未完成事项以短的 `[AUTHOR: specific item]` 或项目中已定义的 `\pending{specific item}` 可见标记呈现。未知格子填 pending，不填零、猜测型号或“typical”数值。
 - 不用长篇计划制造完整感。需要若干指标时保留紧凑可填表格，将已知数值与待补项分开，不能删掉缺数据的要求。

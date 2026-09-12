@@ -5,6 +5,8 @@
 
 原有15号系统论文逻辑模块、C/H/D/E/B、证据表和领域调研继续使用。新增16号response模块连接正式意见、正文修改和作者回覆，不另造一套系统论文证据ID。
 
+17号 [Sentence Flow](../.ai_context/prompts/17_sentence_flow_agent.md) 作为原 skill 的按需角色加入，处理句间推理、话题与施事者问题，继续复用原有 Writer、Review 和证据记录。它不恢复旧 Flow 分数，也不要求安装另一个 skill；已有编号和纯语法入口不变。
+
 ## 配置与记忆
 - AI Tone、Flow、Excitement、PPL阈值不再作为重写或“通过”门槛。旧字段即使仍在作者项目里，也不触发评分循环。
 - `upper_first`及上中下策略强制排序取消。先判断证据与主张，再选择澄清、纠正、收窄、补证据或有依据地不同意。

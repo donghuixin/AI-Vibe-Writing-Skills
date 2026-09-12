@@ -19,6 +19,8 @@
 
 不计算或输出自造的 AI 概率、PPL、flow_score、excitement_score 或“人类程度”。不为降低检测器分数主动改词、增加数字或打乱句式。评价可读性要落到位置与理由。
 
+句间推理、无铺垫话题或视角变化按 [17 · Sentence Flow](17_sentence_flow_agent.md) 定位：引用相邻两侧，说明缺少哪个指代、动作关系或推理前提。沿用本文件的状态和优先级；必要的技术名词重复、A/An 开头与被动语态不能单独构成发现。不要为凑改动把本来通顺的句子列为问题。
+
 # Report Contract
 只输出适用模块。状态取 `pass / revise / needs_evidence / partial / not_applicable`；pass 仅表示本次所声明范围内未发现需要修复的问题，不是科研结论或投稿资格认证。
 
