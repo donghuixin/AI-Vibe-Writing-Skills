@@ -8,5 +8,6 @@ Read [SKILL.md](../../SKILL.md) and select the route matching the author's reque
 
 - Use the grammar route for minimal corrections, the Writer for scoped prose edits, and the Coordinator for work spanning planning, drafting, and review.
 - Formal reviewer responses go first to [16 · Response Letter](../../.ai_context/prompts/16_response_letter_agent.md). Style learning goes to [1 · Style Extractor](../../.ai_context/prompts/1_style_extractor.md).
+- Paper appreciation and transferable lessons go to [18 · Paper Appreciation](../../.ai_context/prompts/18_paper_appreciation_agent.md); ordinary summaries stay with PDF Reader. Appreciation alone does not authorize manuscript edits.
 - Load only relevant project context. Follow the existing request and authorization; do not require a new Spec approval before an authorized edit.
 - Keep task instances and private source material in the author's paper workspace. Return the requested result and concrete pending items.

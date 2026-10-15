@@ -4,7 +4,7 @@
 
 ## Task
 - **Topic / Audience**:
-- **Deliverable**: manuscript / response_letter / outline / local_edit / reading_notes
+- **Deliverable**: manuscript / response_letter / outline / local_edit / reading_notes / paper_appreciation
 - **Requested Scope**: 文件、章节或段落；是否仅语法
 - **Available Inputs / Missing Inputs**: 原稿、可编辑源码、数据、图表、review、decision letter
 - **Output Language / Format**:
@@ -58,6 +58,15 @@
 - **Source / Main File / Build Command / Available Tools**:
 - **Verification**: 源码结构、编译日志、最终PDF版面分别检查；无引擎可交付源码并说明未编译
 - **Cleanup**: 只处理已确认可再生的构建产物，不把所有 `.bbl` 当作可删除缓存
+
+## Paper Appreciation
+- **Purpose / Depth**: 筛选、精读、比较或迁移；只在任务需要品鉴时启用 18
+- **Paper Versions / Actual Reading Scope**: 原文、图表、附录及尚未读取区域
+- **Contribution Types / Applicable Dimensions**: 按承诺选择，不强制相同实验清单
+- **Evaluation**: 默认定性画像；质量、覆盖、置信度分开，不计算综合排名
+- **Transfer Target**: 当前稿件和可用事实；没有时只给条件性方法
+- **Anonymized Output / Private Provenance**: 根据用户要求；不把私人映射写入公共仓库
+- **Save Notes**: 仅当任务包含保存时，写入当前论文 workspace
 
 ## Context Management
 - **Context Budget**: 由承载工具和任务决定，不设通用最少token量

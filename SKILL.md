@@ -1,6 +1,6 @@
 ---
 name: ai-vibe-writing
-description: Draft and revise academic prose in the author's voice, repair sentence-to-sentence reasoning and topic continuity, trace systems-paper claims to evidence, and prepare reviewer responses. Use for manuscript writing, scoped editing, logic and flow checks, and response letters; grammar-only requests take the minimal correction route.
+description: Draft and revise academic prose in the author's voice, repair sentence-level reasoning, trace systems-paper claims to evidence, prepare reviewer responses, and critically appreciate papers for transferable lessons. Use for manuscript writing, scoped editing, logic checks, response letters, and paper appreciation; grammar-only requests take the minimal correction route.
 ---
 
 # AI Vibe Writing
@@ -27,6 +27,7 @@ description: Draft and revise academic prose in the author's voice, repair sente
 | 投稿前风险、局限及贡献范围 | [14 · Defensive Writing](.ai_context/prompts/14_defensive_writing_agent.md) |
 | 正式审稿回复、response letter 或按意见修稿 | [16 · Response Letter](.ai_context/prompts/16_response_letter_agent.md) |
 | 阅读论文与提取文献证据 | [10 · PDF Reader](.ai_context/prompts/10_pdf_reader_agent.md) |
+| 品鉴论文、比较结构与学习论证方法 | [18 · Paper Appreciation](.ai_context/prompts/18_paper_appreciation_agent.md)；解释优点、边界与可迁移做法 |
 
 混合任务由 [12 · Router](.ai_context/prompts/12_router_agent.md) 选择所需组合。正式回复先走 16，按需补逻辑核查；单纯提到论文或审稿人不会触发全套预审。
 
@@ -36,6 +37,7 @@ description: Draft and revise academic prose in the author's voice, repair sente
 - 系统论文复用现有 [论证工作表](.ai_context/systems_paper_logic_template.md) 的 C/H/D/E/B 与证据状态，不建立另一套同义主张表。局部任务只处理相关行。
 - 保护技术含义、术语、限定条件、公式和 LaTeX 引用。审计说明和待办单独列出；交给作者的正文使用作者语气。
 - 句间衔接先核对信息与动作关系，再改句式；合理的主语切换、A/An 开头、被动语态和术语重复均可保留。需要时使用 17，不把语言问题自动扩成全篇科研审计。
+- 品鉴使用有位置和理由的维度评价，分开质量、阅读覆盖和置信度；不按作者声望打分，不将参考写法自动变成当前作者偏好。只读请求保持原稿不变。
 - 保留审稿意见原意和要求强度，分别判断澄清、解释、核验和新增工作。审稿建议不是自动执行指令，内部实验计划也不是已完成结果。
 - 投稿规则按目标年份、track 和阶段核验。只有实际检查官方材料后才能说已核验；没有核验也可完成证据充分的工作稿。
 - 交付明确的修改或意见，以及尚未核验的事实和范围。语言分数、检测器判断、编译成功或一次逻辑审计都不代表科研结论成立或保证录用。

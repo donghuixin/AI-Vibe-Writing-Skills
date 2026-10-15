@@ -21,6 +21,7 @@
 | [15 · Systems Paper Logic](.ai_context/prompts/15_systems_paper_logic_agent.md) | 检查场景、挑战、设计、证据与边界的联系 |
 | [16 · Response Letter](.ai_context/prompts/16_response_letter_agent.md) | 对齐真实审稿要求、作者回复和稿件修改状态 |
 | [17 · Sentence Flow](.ai_context/prompts/17_sentence_flow_agent.md) | 检查句间推理、话题推进、动作执行者及有理由的视角切换 |
+| [18 · Paper Appreciation](.ai_context/prompts/18_paper_appreciation_agent.md) | 按证据品鉴科研内容、论证结构、表达与复用价值，提炼条件性迁移方法 |
 
 ## 兼容入口
 
@@ -29,6 +30,7 @@
 - [`/pdf_ingestion`](.agents/workflows/pdf_ingestion.md) 阅读论文或整理参考资料。
 - [`/defensive_writing`](.agents/workflows/defensive_writing.md) 检查投稿前风险和局限。
 - [`/response_letter`](.agents/workflows/response_letter.md) 起草、审计或修订正式回复。
+- [`/paper_appreciation`](.agents/workflows/paper_appreciation.md) 精读、比较与学习论文的具体做法。
 
 旧调用继续使用原路径。workflow 仅说明如何调用相应提示词；不会再维护一套独立的审批、评分或审稿策略。
 
@@ -46,5 +48,8 @@
 | [Custom Specs](.ai_context/custom_specs.md) | 当前任务选择与可选设置 |
 | [Reference Learning](.ai_context/reference_learning.md) | 文献摘要、来源和支持范围的整理 |
 | [PDF Ingestion](.ai_context/pdf_ingestion_template.md) | PDF 阅读时的来源定位与提取记录 |
+| [Paper Appreciation](.ai_context/paper_appreciation_template.md) | 阅读范围、论证路径、维度画像与迁移卡 |
+| [Appreciation Rubric](.ai_context/references/paper_appreciation_rubric.md) | 14 维定性锚点、贡献类型适配与证据门槛 |
 
 系统论文的方法取舍见 [调研说明](docs/research/mobicom-sensys-writing-skills.md)。
+论文品鉴的方法、结构分析和匿名研究边界见 [研究综合](docs/research/paper-appreciation-synthesis.md)，使用方法见 [合成案例](docs/paper-appreciation-examples.md)。

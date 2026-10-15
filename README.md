@@ -6,6 +6,8 @@
 >
 > 面向 Agent / IDE 的本地写作技能包：把作者习惯、论文证据和修稿记录保存在文件中，让多轮写作继续使用同一份上下文。
 
+新增 **Paper Appreciation / 论文品鉴**：读懂贡献，解释好在哪里，识别不能照搬之处，把有依据的论证方法迁移到自己的稿件。
+
 本手册包含安装、配置、角色选择、写作流程、审稿回复、PDF 阅读和本地工具用法。从 [SKILL.md](SKILL.md) 进入，全部角色及模板见 [SKILLS.md](SKILLS.md)。已有论文工程继续使用原目录与构建方式；私人稿件、审稿意见和研究记录保存在作者的论文工作区。
 
 ## 目录
@@ -18,6 +20,7 @@
 - [作者语气与风格学习](#作者语气与风格学习)
 - [句间推理与阅读衔接](#句间推理与阅读衔接)
 - [系统论文论证与证据](#系统论文论证与证据)
+- [论文品鉴与写作迁移](#论文品鉴与写作迁移)
 - [防御性写作](#防御性写作)
 - [正式 Reviewer Response](#正式-reviewer-response)
 - [配置入口](#配置入口)
@@ -48,6 +51,7 @@ AI Vibe Writing Skills 是一组保存在本地仓库中的提示词、模板、
 - 找出句间缺失的关系、无铺垫的话题转换、重复结论及错误的动作执行者。
 - 预审贡献与局限，完成正式审稿回复，核对实际要求和已完成修改。
 - 阅读 PDF、定位参考证据，并根据实际日志处理 LaTeX 编译问题。
+- 品鉴参考论文的科研内容、论证结构、表达和复用价值，形成有证据的评价画像与迁移建议。
 
 作者负责研究判断与最终取舍；Agent 承担可定位、可复查的编辑工作。事实以原始材料和核验来源为据，Spec 和记忆保存约定与记录。局部语法修改可以直接完成，复杂章节才需要更多规划或独立审阅。
 
@@ -55,7 +59,15 @@ AI Vibe Writing Skills 是一组保存在本地仓库中的提示词、模板、
 
 ## 最新能力与历史模块
 
-### 当前更新：2026-09-13
+### 当前更新：2026-10-15
+
+- **18 · Paper Appreciation**：新增独立品鉴入口，与 PDF 摘要、内容审计和作者语气学习分工。
+- **四层、14 维评价体系**：每个维度都有判断问题、证据位置、强/充分/薄弱锚点和修复方向；未知与不适用分开，不以总分掩盖核心证据缺口。
+- **深入阅读与结构分析**：从概览、论证追踪到关键处反事实检查，覆盖七种可选组织方式、逐节品鉴与图表解释。
+- **可迁移而不照搬**：输出“动作、作用、前提、用法、风险”的迁移卡，保留当前作者语气和真实研究事实。
+- **匿名研究综合**：公开内容不含研究样本的作者身份映射和可反查材料；方法设计、阅读观察与作者直接建议分开，限制详见[研究综合](docs/research/paper-appreciation-synthesis.md)。
+
+### 2026-09-13 更新
 
 - **保留系统论文论证框架。** 15 号角色继续使用 C/H/D/E/B、证据状态、章节契约和领域检查；response 与内容审计引用同一套 ID，避免不同角色生成不同口径。
 - **作者语气带来源。** 区分作者原稿、合著稿、编辑稿、他人范文和来源不明文本；分开保存作者确认、样本推断和普通编辑建议。论文正文与 response letter 分体裁学习。
@@ -91,6 +103,10 @@ flowchart TD
     C -->|长文或结构修订| E[按需建立 Spec 与章节契约]
     E --> F[Content Writer]
     C -->|正式审稿回复| G[Response Letter：原意见与实际修改对应]
+    C -->|论文品鉴| O[Paper Appreciation：范围、依据与迁移方法]
+    O --> P{是否授权用于当前稿件}
+    P -->|否| Q[交付只读品鉴与明确未知项]
+    P -->|是| D
     D --> H[核对相关证据与修改]
     F --> H
     G --> H
@@ -110,7 +126,7 @@ flowchart TD
 1. **确定任务与材料。** 识别文件、段落、版本和输出格式；阅读必要的前后文、作者要求及证据。只审阅时保持源文件不变。
 2. **按需规划。** 新长文或结构调整使用 Document Spec 和 Outline；系统论文复用 C/H/D/E/B。局部编辑跳过不必要的建档和大纲。
 3. **召回相关上下文。** 读取同体裁风格、相关错误记录、术语、证据和已确认决策。缺来源的事实不能自动升级为已核验。
-4. **写作或答复。** 章节用 Content Writer，句段用 Writer，真实审稿意见优先用 Response Letter。正文技术叙述与内部编辑说明分开。
+4. **写作或答复。** 章节用 Content Writer，句段用 Writer，真实审稿意见优先用 Response Letter。只读品鉴用 Paper Appreciation 交付分析，不自动进入改稿。正文技术叙述与内部编辑说明分开。
 5. **检查关键问题。** 根据任务选 Content Review、Systems Paper Logic、Defensive Writing 或 Sentence Flow。先处理事实和逻辑，再处理措辞。
 6. **独立审阅与裁决。** 实质改写需要且可调用子代理时，一名作者编辑最终稿，审阅者只拿原稿、同版候选、约束及证据，返回定位问题。作者核对来源后裁决；没有子代理时明确为同一作者顺序检查。
 7. **定向修复。** 针对具体缺口和新修改复查，不为“提高分数”反复重写。最大修订轮次见项目配置，达到上限仍有问题就说明，不能声称通过。
@@ -178,7 +194,7 @@ cd AI-Vibe-Writing-Skills
 
 ## 角色体系
 
-编号表示稳定入口，不是执行顺序，也不意味着承载工具会自动创建 17 个进程。可单独调用，或由 Router / Coordinator 组合必要角色。
+编号表示稳定入口，不是执行顺序，也不意味着承载工具会自动创建 18 个进程。可单独调用，或由 Router / Coordinator 组合必要角色。
 
 | 编号与角色 | 提示词 | 职责与典型输出 |
 |---|---|---|
@@ -199,6 +215,7 @@ cd AI-Vibe-Writing-Skills
 | 15 · Systems Paper Logic | [15_systems_paper_logic_agent.md](.ai_context/prompts/15_systems_paper_logic_agent.md) | 检查场景、挑战、设计、证据与边界的联系 |
 | 16 · Response Letter | [16_response_letter_agent.md](.ai_context/prompts/16_response_letter_agent.md) | 对齐原始要求、作者回复与真实稿件修改状态 |
 | 17 · Sentence Flow | [17_sentence_flow_agent.md](.ai_context/prompts/17_sentence_flow_agent.md) | 检查句间推理、话题推进、执行者及合理视角切换 |
+| 18 · Paper Appreciation | [18_paper_appreciation_agent.md](.ai_context/prompts/18_paper_appreciation_agent.md) | 解释论文优点与边界，按证据评价四层14维，提炼迁移方法 |
 
 ## 作者语气与风格学习
 
@@ -337,6 +354,103 @@ Design 的公式不必都导出控制决策，但应说明用途；模块名称�
 按主张选择核验方向：感知任务关注 ground truth、同步、训练测试划分及独立参与者；无线任务区分 PHY rate、有效吞吐、丢包和端到端延迟；部署任务关注校准、资源、维护及成功任务成本。相邻窗口不能代替独立样本，平均延迟或 p99 不能证明硬实时最坏界。
 
 投稿要求另记 `venue / year / track / stage / official_url / checked_at / verified_rules / unresolved`。实际阅读适用官方材料后才说已核验，不把别届页数、deadline 或 rebuttal 规则永久继承为模板要求。
+
+## 论文品鉴与写作迁移
+
+**品鉴 = 理解知识贡献 + 解释论证为何有效 + 判断表达作用 + 提炼有条件的迁移方法。**
+
+它不只是概括论文，也不只是模拟审稿人挑错。18 号 `paper-appreciation-agent` 要回答：这篇论文改变了什么理解？哪些写法降低了阅读成本？证据支持到哪里？哪些部分值得学习，哪些即使出现在好论文中也不应照搬？
+
+### 它与已有角色的区别
+
+| 入口 | 主要问题 | 交付 |
+|---|---|---|
+| 10 · PDF Reader | 原文讲了什么，证据在哪里 | 摘要、来源位置、已读范围 |
+| 8 · Content Review | 当前文本有哪些具体问题 | 有位置、有影响的审阅意见 |
+| 15 · Systems Paper Logic | 贡献、设计和实验是否对齐 | 复用 C/H/D/E/B 的论证核查 |
+| 18 · Paper Appreciation | 为什么有效，能学什么，不能学什么 | 评价画像、优点解释与迁移卡 |
+| 1/2 · Style / Writer | 如何在作者语气中写好当前文本 | 有范围的风格观察与改稿 |
+
+默认只读，只有“品鉴并修改”的任务才继续写稿。普通摘要不强制输出评价矩阵；只改语法仍只纠错。
+
+### 阅读与判断路径
+
+```mermaid
+flowchart TD
+    A[论文版本、阅读目的与可用材料] --> B[快读：问题、贡献与承诺]
+    B --> C[结构读：挑战、洞察、设计和证据]
+    C --> D[深读关键处：假设、对照、图表与反例]
+    D --> E{核心主张的证据状态}
+    E -->|限定范围内有支持| F[解释具体优点及成立条件]
+    E -->|有疑点或尚未知| G[指出受影响主张与核验缺口]
+    F --> H[四层14维：质量、覆盖、置信度分开]
+    G --> H
+    H --> I[迁移卡：动作、作用、前提、用法、风险]
+    I --> J[保留有效写法；按授权用于当前稿件]
+    classDef input fill:#eef6f1,stroke:#277456,color:#153c2d;
+    classDef check fill:#eef3fb,stroke:#496b98,color:#243b55;
+    classDef result fill:#fff1f0,stroke:#a45852,color:#673530;
+    class A,B input;
+    class C,D,E,H check;
+    class F,G,I,J result;
+```
+
+阅读深度随任务而定，不要求每次跑满。只见摘要可以判断摘要的信息安排，不能假称读过实验；阅读正文、检查原图、核验引用、运行代码与独立复现是不同状态。
+
+### 四层与十四个评价维度
+
+| 层次 | 维度 | 品鉴重点 |
+|---|---|---|
+| 科研内容 | D1 问题价值 · D2 贡献定位 · D3 关键洞察 · D4 证据有效性 · D5 贡献边界 | 有什么知识增量，为什么值得相信 |
+| 论证结构 | D6 挑战到设计 · D7 模型到决定 · D8 实验到问题 · D9 章节交接 | 读者如何从问题走到结论 |
+| 表达与阅读 | D10 多尺度概览 · D11 句段推理与语气 · D12 图表解释 | 是否准确、易跟随且不增加无谓负担 |
+| 复用价值 | D13 可复核性 · D14 可迁移知识 | 别人能检验什么、采用什么、继续研究什么 |
+
+完整规程为每维提供可观察依据和三级锚点：`strong / adequate / weak`；材料不足用 `not_assessable`，与承诺无关用 `not_applicable`。每项另写置信度及理由，不把未读章节记成零分。
+
+**核心证据缺口不能由语言和图表优势抵消。** 评价不按作者、机构或获奖情况加分，也不默认提供总分或录用概率。理论、测量、系统、平台、数据资源和应用研究采用不同证据重点，不能因为理论稿没有硬件消融就判差。
+
+### 输入与输出
+
+输入包括论文及版本、阅读目的、相关章节/图表/补充材料；需要迁移到自己的稿件时，再提供当前文本、可用证据与作者约束。信息不足不阻止有范围的分析，但未验证处保持可见。
+
+| 输出 | 内容 |
+|---|---|
+| Reading Scope | 实际读取位置、版本、未读内容与核验层级 |
+| Contribution And Argument | 贡献理解、作者承诺与支持范围、章节和图表作用 |
+| What Works And Why | 具体位置、有效动作、读者收益与成立条件 |
+| Appreciation Profile | 适用维度、依据、置信度、核心主张门槛 |
+| What Not To Copy | 证据缺口、不可迁移假设、局部弱点和未知项 |
+| Transfer Cards | 可学习动作如何用于当前稿件，以及误用风险 |
+| Next Reading Or Revision | 区分补读、核验、分析与改写的后续行动 |
+
+例如，某论文用清楚的队列示例解释调度，这是可学习的解释动作；若新旧方案带宽也不同，则速率差异不能全部归于调度。两种判断应同时保留，而不是选“赞美”或“否定”中的一个。
+
+### 调用示例
+
+```text
+请使用 paper-appreciation-agent 品鉴这篇论文。
+先说明实际读到的版本和章节，再恢复贡献与论证路径。
+按适用维度说明具体优点、依据、局限和不能照搬之处，不给综合总分。
+最后提炼可迁移的结构与写作动作；当前只读，不修改我的稿件。
+```
+
+```text
+比较这两篇论文如何从技术挑战过渡到 Design。
+只评价我提供的引言与设计章节，不推测未提供的实验。
+把可学习的做法用于我的 §3 开头，保留现有术语与语气；
+只使用我提供的事实，缺失结果标待核实。
+```
+
+支持 workflow 的工具还可使用 `/paper_appreciation`，不支持时直接读取 prompt。报告实例放在作者自己的论文工作区，不将私人稿件或来源身份映射写入共享 skill。
+
+### 深入材料
+
+- [Agent 提示词](.ai_context/prompts/18_paper_appreciation_agent.md)：执行方式、边界和角色配合。
+- [评价规程](.ai_context/references/paper_appreciation_rubric.md)：14 维锚点、类型适配、证据门槛和比较规则。
+- [匿名研究综合](docs/research/paper-appreciation-synthesis.md)：研究依据分类、阅读方法、七种结构路线及逐节品鉴。
+- [报告模板](.ai_context/paper_appreciation_template.md)：范围、优点、维度画像和迁移卡。
+- [合成示例](docs/paper-appreciation-examples.md)与[行为测试](tests/paper_appreciation_cases.md)：如何区分表达优点、证据问题与无需修改的文本。
 
 ## 防御性写作
 
@@ -500,6 +614,7 @@ Design 的公式不必都导出控制决策，但应说明用途；模块名称�
 | `/defensive_writing` | [defensive_writing.md](.agents/workflows/defensive_writing.md) | 指定范围的风险与局限预审 |
 | `/pdf_ingestion` | [pdf_ingestion.md](.agents/workflows/pdf_ingestion.md) | 阅读来源，按需整理证据与记忆 |
 | `/response_letter` | [response_letter.md](.agents/workflows/response_letter.md) | 起草、审计或修订正式回复 |
+| `/paper_appreciation` | [paper_appreciation.md](.agents/workflows/paper_appreciation.md) | 品鉴论文、比较论证结构、提炼条件性迁移方法 |
 
 [.traerules](.traerules) 保留为统一入口的薄封装。这些工作流不另设一套审批、评分或三策顺序，也不会自动建立计时任务、后台反复润色或无条件上传文件。已授权修改直接推进；影响结论的缺失事实保留待核实，其余有依据部分继续完成。
 
@@ -663,6 +778,7 @@ AI-Vibe-Writing-Skills/
 │   ├── ai_vibe_writing.md
 │   ├── defensive_writing.md
 │   ├── pdf_ingestion.md
+│   ├── paper_appreciation.md
 │   └── response_letter.md
 ├── .ai_context/
 │   ├── custom_specs.md
@@ -670,6 +786,8 @@ AI-Vibe-Writing-Skills/
 │   ├── outline_template.md
 │   ├── systems_paper_logic_template.md
 │   ├── revision_response_template.md
+│   ├── paper_appreciation_template.md
+│   ├── references/paper_appreciation_rubric.md
 │   ├── style_profile.md              # 空白作者档案模板
 │   ├── error_log.md
 │   ├── reference_learning.md
@@ -694,7 +812,8 @@ AI-Vibe-Writing-Skills/
 │   │   ├── 14_defensive_writing_agent.md
 │   │   ├── 15_systems_paper_logic_agent.md
 │   │   ├── 16_response_letter_agent.md
-│   │   └── 17_sentence_flow_agent.md
+│   │   ├── 17_sentence_flow_agent.md
+│   │   └── 18_paper_appreciation_agent.md
 │   └── scripts/parse_pdf.py
 ├── Local_AI_Style_Check/
 │   ├── README.md
@@ -704,9 +823,11 @@ AI-Vibe-Writing-Skills/
 ├── docs/
 │   ├── writing-guidelines.md
 │   ├── sentence-flow-examples.md
+│   ├── paper-appreciation-examples.md
 │   ├── migration.md
 │   └── research/
 │       ├── adopted-writing-patterns.md
+│       ├── paper-appreciation-synthesis.md
 │       └── mobicom-sensys-writing-skills.md
 ├── scripts/validate_repository.py
 ├── tests/
@@ -715,6 +836,7 @@ AI-Vibe-Writing-Skills/
 │   ├── systems_paper_logic_cases.md
 │   ├── revision_voice_cases.md
 │   ├── sentence_flow_cases.md
+│   ├── paper_appreciation_cases.md
 │   └── writing_trial_record.md
 ├── .github/workflows/validate.yml
 ├── mineru_gui.py
@@ -740,6 +862,7 @@ my-paper/
     ├── error_log.md
     ├── systems_paper_logic.md
     ├── revision_response.md
+    ├── paper_appreciation.md        # 仅在要求保存品鉴报告时建立
     └── memory/
         ├── hard_memory.json
         ├── soft_memory.json
@@ -833,7 +956,8 @@ python -m unittest discover -s tests -p "test_style_lint.py" -v
 若系统使用 `python3` 命令可相应替换；Windows 可使用 `py -3`，应确认所选版本满足要求。资源检查、工具测试与写作行为试用各有范围，不能互相替代。
 
 - [系统逻辑案例](tests/systems_paper_logic_cases.md)、[修订／作者语气案例](tests/revision_voice_cases.md)与[句间衔接案例](tests/sentence_flow_cases.md)用于独立试用：先给输入，再按实际输出核对。未逐案执行不记作通过。
-- [试用记录](tests/writing_trial_record.md)记录已执行的合成任务、实际表现与核对结果；包括当前新增的六个句间衔接案例。它们不代表真实论文录用效果。
+- [品鉴案例](tests/paper_appreciation_cases.md)覆盖阅读范围、归因混杂、贡献类型、匿名输出和迁移边界；它是行为测试材料，不是自动化测试通过声明。
+- [试用记录](tests/writing_trial_record.md)记录已执行的合成任务、实际表现与核对结果，包括句间衔接测试与本轮六项品鉴试用；逐项说明输入范围和未测内容。它们不代表真实论文录用效果。
 - [GitHub Actions](.github/workflows/validate.yml)配置了 Linux 与 Windows 上的资源校验和工具测试；实际运行状态以对应工作流记录为准。
 
 | 现象 | 排查方式 |
@@ -867,6 +991,8 @@ python -m unittest discover -s tests -p "test_style_lint.py" -v
 
 具体来源链接与采用取舍见[方法记录](docs/research/adopted-writing-patterns.md)、[MobiCom／SenSys 调研](docs/research/mobicom-sensys-writing-skills.md)及[句间论证示例](docs/sentence-flow-examples.md)。
 
+新增品鉴模块的[研究综合](docs/research/paper-appreciation-synthesis.md)按要求匿名呈现。来源映射不进入公开仓库；其中的14维评价体系和合成案例是本项目的操作化设计，不冒充任何教师、作者或会议的官方标准。
+
 历史防御性分类也参考常见学术审阅与复现要求，包括 [NeurIPS Paper Checklist](https://neurips.cc/public/guides/PaperChecklist)、[ECCV 2026 Contribution Types](https://eccv.ecva.net/Conferences/2026/ReviewerContributionTypes)、[AAAI 2023 Reproducibility Checklist](https://aaai.org/conference/aaai/aaai-23/reproducibility-checklist/) 与 [ACM SIGSOFT Empirical Standards](https://www2.sigsoft.org/EmpiricalStandards/)。它们是方法参考，不是可直接套到其他会场、年份或阶段的通用要求；实际投稿时重新核验适用来源。
 
 ## 迁移说明
@@ -892,6 +1018,7 @@ python -m unittest discover -s tests -p "test_style_lint.py" -v
 
 - **Defensive Writing**：历史 v1.9 已引入，当前继续完善证据、贡献边界与实际审稿要求对应。
 - **Systems Paper Logic、Response Letter、Sentence Flow**：已有 15–17 号入口，继续用合成行为案例和可定位问题校准，不用自评分数宣称效果。
+- **Paper Appreciation / 论文品鉴**：已有 18 号入口、分层评价规程和迁移方法；继续用真实材料校准适用性，不将主观总分或论文声望作为质量依据。
 - **Essence Inquiry / 本质探究**：保留为后续探索方向，没有对应独立角色或已完成能力承诺。
 - **Flow Guidance / 心流引导**：当前局部句间推理由 17 号承担；超出该范围的高级引导仍属探索，不恢复无限 flow_score 重写。
 - **工具与兼容性**：持续维护资源链接、只读工具测试、迁移说明及复杂 PDF 脚本的实际使用边界。
